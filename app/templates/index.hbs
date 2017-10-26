@@ -2,7 +2,7 @@
   <div class="col-md-6 col-md-offset-3">
     <h2>Latest posts</h2>
     {{#each model as |post|}}
-      <div class="panel panel-default">
+      <div class="panel panel-default" data-post-id="post-{{post.id}}">
         <div class="panel-heading">
           {{#link-to 'posts.post' post}}<h3 class="panel-title">{{post.title}} <small>{{post.date}}</small></h3>{{/link-to}}
         </div>
