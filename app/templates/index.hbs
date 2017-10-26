@@ -1,20 +1,14 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Github stats</h3>
+    {{#each model as |post|}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{post.title}} <small>{{post.date}}</small></h3>
+        </div>
+        <div class="panel-body">
+          {{post.bodyAsHtml}}
+        </div>
       </div>
-      <div class="panel-body">
-        <p>
-          Username: {{model.login}}
-        </p>
-        <p>
-          Avatar: <img src={{model.avatar_url}} width="32" height="32">
-        </p>
-        <p>
-          # of Public Repos: {{model.public_repos}}
-        </p>
-      </div>
-    </div>
+    {{/each}}
   </div>
 </div>
