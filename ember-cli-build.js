@@ -6,6 +6,22 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+
+    vendorFiles: {
+      'jquery.js': null,
+    },
+
+    sourcemaps: {
+      enabled: EmberApp.env() !== 'production',
+      extensions: ['js']
+    },
+
+    'ember-bootstrap': {
+      bootstrapVersion: 3,
+      importBootstrapFont: false,
+      importBootstrapCSS: false,
+      whitelist: ['bs-collapse', 'bs-navbar']
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
