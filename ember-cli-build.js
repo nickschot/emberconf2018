@@ -17,7 +17,7 @@ module.exports = function(defaults) {
     },
 
     'ember-bootstrap': {
-      bootstrapVersion: 3,
+      bootstrapVersion: 4,
       importBootstrapFont: false,
       importBootstrapCSS: false,
       whitelist: ['bs-collapse', 'bs-navbar']

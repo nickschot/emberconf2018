@@ -1,50 +1,47 @@
 // Core variables and mixins
-@import "ember-bootstrap/bootstrap/variables";
-@import "ember-bootstrap/bootstrap/mixins";
+@import "ember-bootstrap/variables";
+@import "ember-bootstrap/mixins";
+@import "ember-bootstrap/custom";
 
 // Reset and dependencies
-@import "ember-bootstrap/bootstrap/normalize";
-//@import "ember-bootstrap/bootstrap/print";
-//@import "ember-bootstrap/bootstrap/glyphicons";
+@import "ember-bootstrap/normalize";
+//@import "ember-bootstrap/print";
 
 // Core CSS
-@import "ember-bootstrap/bootstrap/scaffolding";
-@import "ember-bootstrap/bootstrap/type";
-//@import "ember-bootstrap/bootstrap/code";
-@import "ember-bootstrap/bootstrap/grid";
-@import "ember-bootstrap/bootstrap/tables";
-@import "ember-bootstrap/bootstrap/forms";
-@import "ember-bootstrap/bootstrap/buttons";
+@import "ember-bootstrap/reboot";
+@import "ember-bootstrap/type";
+@import "ember-bootstrap/images";
+//@import "ember-bootstrap/code";
+@import "ember-bootstrap/grid";
+@import "ember-bootstrap/tables";
+@import "ember-bootstrap/forms";
+@import "ember-bootstrap/buttons";
 
 // Components
-@import "ember-bootstrap/bootstrap/component-animations";
-@import "ember-bootstrap/bootstrap/dropdowns";
-//@import "ember-bootstrap/bootstrap/button-groups";
-//@import "ember-bootstrap/bootstrap/input-groups";
-@import "ember-bootstrap/bootstrap/navs";
-@import "ember-bootstrap/bootstrap/navbar";
-//@import "ember-bootstrap/bootstrap/breadcrumbs";
-//@import "ember-bootstrap/bootstrap/pagination";
-//@import "ember-bootstrap/bootstrap/pager";
-//@import "ember-bootstrap/bootstrap/labels";
-//@import "ember-bootstrap/bootstrap/badges";
-//@import "ember-bootstrap/bootstrap/jumbotron";
-//@import "ember-bootstrap/bootstrap/thumbnails";
-//@import "ember-bootstrap/bootstrap/alerts";
-//@import "ember-bootstrap/bootstrap/progress-bars";
-//@import "ember-bootstrap/bootstrap/media";
-//@import "ember-bootstrap/bootstrap/list-group";
-@import "ember-bootstrap/bootstrap/panels";
-//@import "ember-bootstrap/bootstrap/responsive-embed";
-//@import "ember-bootstrap/bootstrap/wells";
-//@import "ember-bootstrap/bootstrap/close";
+@import "ember-bootstrap/transitions";
+@import "ember-bootstrap/dropdown";
+@import "ember-bootstrap/button-group";
+@import "ember-bootstrap/input-group";
+@import "ember-bootstrap/custom-forms";
+@import "ember-bootstrap/nav";
+@import "ember-bootstrap/navbar";
+@import "ember-bootstrap/card";
+//@import "ember-bootstrap/breadcrumb";
+@import "ember-bootstrap/pagination";
+//@import "ember-bootstrap/badge";
+//@import "ember-bootstrap/jumbotron";
+//@import "ember-bootstrap/alert";
+//@import "ember-bootstrap/progress";
+//@import "ember-bootstrap/media";
+//@import "ember-bootstrap/list-group";
+//@import "ember-bootstrap/responsive-embed";
+//@import "ember-bootstrap/close";
 
 // Components w/ JavaScript
-//@import "ember-bootstrap/bootstrap/modals";
-//@import "ember-bootstrap/bootstrap/tooltip";
-//@import "ember-bootstrap/bootstrap/popovers";
-//@import "ember-bootstrap/bootstrap/carousel";
+//@import "ember-bootstrap/modal";
+//@import "ember-bootstrap/tooltip";
+//@import "ember-bootstrap/popover";
+//@import "ember-bootstrap/carousel";
 
 // Utility classes
-@import "ember-bootstrap/bootstrap/utilities";
-@import "ember-bootstrap/bootstrap/responsive-utilities";
+@import "ember-bootstrap/utilities";
