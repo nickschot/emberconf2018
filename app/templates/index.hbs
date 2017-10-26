@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Latest posts</h2>
+    {{#each model as |post|}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{#link-to 'posts.post' post}}<h3 class="panel-title">{{post.title}} <small>{{post.date}}</small></h3>{{/link-to}}
+        </div>
+        <div class="panel-body">
+          {{{post.bodyAsHtml}}}
+        </div>
+      </div>
+    {{/each}}
+    <div class="form-group text-right">
+      {{#link-to 'posts' class="btn btn-default"}}More posts...{{/link-to}}
+    </div>
+  </div>
+</div>
