@@ -45,6 +45,7 @@
     "ember-resolver": "^4.0.0",
     "ember-shoebox-decorator": "^1.0.0",
     "ember-source": "~2.16.0",
+    "liquid-fire": "^0.28.1",
     "loader.js": "^4.2.3"
   },
   "engines": {
