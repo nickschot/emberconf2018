@@ -2,21 +2,33 @@
 @import "bootstrap";
 
 body {
-  @include media-breakpoint-only(xs){
-    padding-top: 2rem;
+  @include media-breakpoint-down(sm){
+    padding-top: 4rem;
     padding-bottom: 4rem;
   }
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     padding-top: 5rem;
   }
 }
 
+#mobile-header-menu {
+  background: #FFF;
+  padding: 0;
+  border-bottom: 1px solid $nav-tabs-border-color;
+
+  .navbar-brand {
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+}
+
 #main-menu {
+  background: #FFF;
+
   @include media-breakpoint-down(sm){
     padding: 0;
     border-top: 1px solid $nav-tabs-border-color;
-    background: #FFF;
 
     .container {
       width: auto;
@@ -44,7 +56,6 @@ body {
 
   @include media-breakpoint-up(md){
     border-bottom: 1px solid $nav-tabs-border-color;
-    background: #FFF;
   }
 }
 

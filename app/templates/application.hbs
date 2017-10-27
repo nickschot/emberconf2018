@@ -1,3 +1,11 @@
+{{#if media.isMobile}}
+  {{#bs-navbar toggleBreakpoint='xl' fluid=false position='fixed-top' id='mobile-header-menu' as |navbar|}}
+    <div class="navbar-header">
+      <span class="navbar-brand">Brand</span>
+    </div>
+  {{/bs-navbar}}
+{{/if}}
+
 {{#bs-navbar toggleBreakpoint='xl' fluid=false position=(if media.isMobile 'fixed-bottom' 'fixed-top') id='main-menu' as |navbar|}}
   {{#navbar.content}}
     {{#navbar.nav as |nav|}}
