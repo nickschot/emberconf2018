@@ -13,8 +13,6 @@ body {
 }
 
 #main-menu {
-  z-index: 2;
-
   @include media-breakpoint-down(sm){
     padding: 0;
     border-top: 1px solid $nav-tabs-border-color;
@@ -51,9 +49,6 @@ body {
 }
 
 .app {
-  position: relative;
-  z-index: 1;
-
   .container {
     background: $body-bg;
 
