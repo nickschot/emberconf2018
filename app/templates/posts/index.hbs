@@ -1,17 +1,26 @@
-<div class="row">
-  <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <h2>Posts archive</h2>
-    {{#each model as |post|}}
-      <div class="card" data-post-id="post-{{post.id}}">
-        <div class="card-block">
-          <h4 class="card-title">{{#link-to 'posts.post' post}}{{post.title}}{{/link-to}}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{post.date}}</h6>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <h2>Posts archive</h2>
+
+      <div class="list-group">
+        {{#each model as |post|}}
+          {{#link-to 'posts.post' post class="list-group-item list-group-item-action flex-column align-items-start" data-post-id=(concat "post-" post.id)}}
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{post.title}}</h5>
+              <small>{{post.date}}</small>
+            </div>
+            <p class="mb-1">
+              Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+            </p>
+            <small>Donec id elit non mi porta.</small>
+          {{/link-to}}
+        {{/each}}
       </div>
       <br>
-    {{/each}}
-    <div class="form-group text-right">
-      {{#link-to 'posts' class="btn btn-secondary"}}More posts...{{/link-to}}
+      <div class="form-group text-right">
+        {{#link-to 'posts' class="btn btn-secondary"}}More posts...{{/link-to}}
+      </div>
     </div>
   </div>
 </div>

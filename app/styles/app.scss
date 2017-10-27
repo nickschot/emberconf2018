@@ -13,6 +13,8 @@ body {
 }
 
 #main-menu {
+  z-index: 2;
+
   @include media-breakpoint-down(sm){
     padding: 0;
     border-top: 1px solid $nav-tabs-border-color;
@@ -45,5 +47,24 @@ body {
   @include media-breakpoint-up(md){
     border-bottom: 1px solid $nav-tabs-border-color;
     background: #FFF;
+  }
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+
+  .container {
+    background: $body-bg;
+
+    @include media-breakpoint-down(sm){
+      width: auto;
+    }
+  }
+}
+
+.outlet {
+  &, & > .liquid-child {
+    overflow-x: visible!important;
   }
 }
