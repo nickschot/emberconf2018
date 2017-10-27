@@ -19,9 +19,10 @@ export default function slideOver(opts) {
   }
 
   return firstStep.then(() => {
-    let oldElementTranslate = this.oldElement.outerWidth() * 0.3;
+    let oldElementTranslate = this.oldElement.outerWidth() * 0.2;
     let newElementTranslate = this.newElement.outerWidth();
 
+    //TODO: this force feeding causes issues when finished an old transition
     oldParams['translateX'] = (-1 * oldElementTranslate) + 'px';
     newParams['translateX'] = ['0px', (newElementTranslate) + 'px'];
 
