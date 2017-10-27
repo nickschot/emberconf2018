@@ -1,0 +1,10 @@
+<div>
+  <h3>My Menu</h3>
+  {{yield}}
+</div>
+
+{{#if showMask}}
+  <div class="mask" {{action 'close' on='tap'}} style={{maskStyle}}>
+    &nbsp;
+  </div>
+{{/if}}

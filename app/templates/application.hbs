@@ -1,36 +1,45 @@
-{{#if media.isMobile}}
-  {{#bs-navbar toggleBreakpoint='xl' fluid=false position='fixed-top' id='mobile-header-menu' as |navbar|}}
-    <div class="navbar-header">
-      <span class="navbar-brand">My Brand</span>
-    </div>
+{{#gesture-wrapper}}
+  {{#if media.isMobile}}
+    {{#bs-navbar toggleBreakpoint='xl' fluid=false position='fixed-top' id='mobile-header-menu' as |navbar|}}
+      {{#navbar.content}}
+        {{#navbar.nav as |nav|}}
+          {{#nav.item}}
+            <a {{action 'toggleSideMenu'}}>{{material-icon 'menu'}}</a>
+          {{/nav.item}}
+        {{/navbar.nav}}
+      {{/navbar.content}}
+      <div class="navbar-header">
+        <span class="navbar-brand">My Brand</span>
+      </div>
+    {{/bs-navbar}}
+  {{/if}}
+
+  {{#bs-navbar toggleBreakpoint='xl' fluid=false position=(if media.isMobile 'fixed-bottom' 'fixed-top') id='main-menu' as |navbar|}}
+    {{#navbar.content}}
+      {{#navbar.nav as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "index" class=(if media.isMobile 'text-center')}}
+            {{#if media.isMobile}}
+              {{material-icon 'home' size='lg'}}
+              <div>Home</div>
+            {{else}}
+              Home
+            {{/if}}
+          {{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "posts" class=(if media.isMobile 'text-center')}}
+            {{#if media.isMobile}}
+              {{material-icon 'archive' size='lg'}}
+              <div>Archive</div>
+            {{else}}
+              Archive
+            {{/if}}
+          {{/nav.link-to}}
+        {{/nav.item}}
+      {{/navbar.nav}}
+    {{/navbar.content}}
   {{/bs-navbar}}
-{{/if}}
 
-{{#bs-navbar toggleBreakpoint='xl' fluid=false position=(if media.isMobile 'fixed-bottom' 'fixed-top') id='main-menu' as |navbar|}}
-  {{#navbar.content}}
-    {{#navbar.nav as |nav|}}
-      {{#nav.item}}
-        {{#nav.link-to "index" class=(if media.isMobile 'text-center')}}
-          {{#if media.isMobile}}
-            {{material-icon 'home' size='lg'}}
-            <div>Home</div>
-          {{else}}
-            Home
-          {{/if}}
-        {{/nav.link-to}}
-      {{/nav.item}}
-      {{#nav.item}}
-        {{#nav.link-to "posts" class=(if media.isMobile 'text-center')}}
-          {{#if media.isMobile}}
-            {{material-icon 'archive' size='lg'}}
-            <div>Archive</div>
-          {{else}}
-            Archive
-          {{/if}}
-        {{/nav.link-to}}
-      {{/nav.item}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
-{{/bs-navbar}}
-
-{{liquid-outlet enableGrowth=false class="app outlet"}}
+  {{liquid-outlet enableGrowth=false class="app outlet"}}
+{{/gesture-wrapper}}

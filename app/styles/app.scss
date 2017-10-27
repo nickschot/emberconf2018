@@ -71,6 +71,36 @@ body {
 
 .outlet {
   &, & > .liquid-child {
-    overflow-x: visible!important;
+    //overflow-x: visible!important;
+  }
+}
+
+.side-menu {
+  $sideMenuWidth: 80vw;
+
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: -$sideMenuWidth;
+
+  height: 100vh;
+  width: $sideMenuWidth;
+
+  background: #FFF;
+  border-right: 1px solid $nav-tabs-border-color;
+
+  &:not(.dragging) {
+    transition: transform 0.2s;
+  }
+
+  .mask {
+    position: fixed;
+    top: 0;
+    left: $sideMenuWidth;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.5);
   }
 }
