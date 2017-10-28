@@ -60,6 +60,9 @@ export default Component.extend(RecognizerMixin, {
       center
     } = e.originalEvent.gesture;
 
+    // workaround for https://github.com/hammerjs/hammer.js/issues/1132
+    if (center.x === 0 && center.y === 0) return;
+
     const windowWidth = this._getWindowWidth();
     const startOffset = 100 * center.x / windowWidth;
 
@@ -164,6 +167,13 @@ export default Component.extend(RecognizerMixin, {
   },
 
   panEnd(e) {
+    const {
+      center
+    } = e.originalEvent.gesture;
+
+    // workaround for https://github.com/hammerjs/hammer.js/issues/1132
+    if (center.x === 0 && center.y === 0) return;
+
     this.set('deltaXCorrection', 0);
   }
 });
