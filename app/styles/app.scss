@@ -75,6 +75,10 @@ body {
   }
 }
 
+.side-menu-open {
+  overflow: hidden;
+}
+
 .side-menu {
   $sideMenuWidth: 85vw;
 
