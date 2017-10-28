@@ -17,6 +17,7 @@ export default Component.extend(RecognizerMixin, {
     } = e.originalEvent.gesture;
 
     // TODO: only initiate when we started at the edge of the screen
+    // TODO: when open, only start dragging when the pan cursor reaches the edge of the menu
 
     const sideMenuOffset = 85;
     const triggerVelocity = 0.25;
