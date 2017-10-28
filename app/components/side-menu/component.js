@@ -12,7 +12,7 @@ export default Component.extend(RecognizerMixin, {
   isOpen: false,
   isDragging: false,
   currentPosition: 0,
-  maskOpacityOffset: 30,
+  maskOpacityOffset: 5,
 
   @computed('isOpen', 'currentPosition')
   get style(){
