@@ -6,6 +6,7 @@ import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 export default Component.extend(RecognizerMixin, {
   recognizers: 'pan',
 
+  sideMenuOffset: 85,
   currentPosition: 0,
   isDragging: false,
 
@@ -26,6 +27,27 @@ export default Component.extend(RecognizerMixin, {
     }
   }),
 
+  open() {
+    this.set('isDragging', false);
+    this.set('currentPosition', this.get('sideMenuOffset'));
+    this.set('isOpen', true);
+  },
+  close() {
+    this.set('isDragging', false);
+    this.set('currentPosition', 0);
+    this.set('isOpen', false);
+  },
+
+  actions: {
+    toggle(){
+      if(this.get('isOpen')){
+        this.close();
+      } else {
+        this.open();
+      }
+    }
+  },
+
   pan(e){
     const {
       deltaX,
@@ -43,7 +65,7 @@ export default Component.extend(RecognizerMixin, {
     // TODO: only initiate when we started at the edge of the screen
     // TODO: when open, only start dragging when the pan cursor reaches the edge of the menu
 
-    const sideMenuOffset = 85;
+    const sideMenuOffset = this.get('sideMenuOffset');
     const triggerVelocity = 0.25;
 
     const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
@@ -57,9 +79,7 @@ export default Component.extend(RecognizerMixin, {
         && additionalEvent === 'panright'
       ){
         // force open
-        this.set('isDragging', false);
-        this.set('currentPosition', sideMenuOffset);
-        this.set('isOpen', true);
+        this.open();
         return;
       } else if(
            this.get('isOpen')
@@ -67,23 +87,17 @@ export default Component.extend(RecognizerMixin, {
         && additionalEvent === 'panleft'
       ){
         // force close
-        this.set('isDragging', false);
-        this.set('currentPosition', 0);
-        this.set('isOpen', false);
+        this.close();
         return;
       }
 
       // the pan action is over, cleanup and set the correct final menu position
-      this.set('isDragging', false);
-
       if(    (!this.get('isOpen') && targetOffset > sideMenuOffset / 2)
         || ( this.get('isOpen') && -1 * targetOffset < sideMenuOffset / 2)
       ){
-        this.set('currentPosition', sideMenuOffset);
-        this.set('isOpen', true);
+        this.open();
       } else {
-        this.set('currentPosition', 0);
-        this.set('isOpen', false);
+        this.close();
       }
     } else {
       // add a dragging class so any css transitions are disabled

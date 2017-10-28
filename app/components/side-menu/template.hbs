@@ -3,6 +3,7 @@
   {{yield}}
 </div>
 
+{{!--TODO: fix transitions on open/close action when showMask was false or becomes false--}}
 {{#if showMask}}
   <div class="mask" {{action 'close'}} style={{maskStyle}}>
     &nbsp;

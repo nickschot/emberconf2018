@@ -1,10 +1,10 @@
-{{#gesture-wrapper}}
+{{#gesture-wrapper as |side-menu|}}
   {{#if media.isMobile}}
     {{#bs-navbar toggleBreakpoint='xl' fluid=false position='fixed-top' id='mobile-header-menu' as |navbar|}}
       {{#navbar.content}}
         {{#navbar.nav as |nav|}}
           {{#nav.item}}
-            <a {{action 'toggleSideMenu'}}>{{material-icon 'menu'}}</a>
+            <a {{action side-menu.toggle}}>{{material-icon 'menu'}}</a>
           {{/nav.item}}
         {{/navbar.nav}}
       {{/navbar.content}}
