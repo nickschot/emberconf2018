@@ -16,8 +16,11 @@ export default Component.extend(RecognizerMixin, {
       overallVelocityX
     } = e.originalEvent.gesture;
 
+    // TODO: limit size & disable drag for desktop
+    //    (set sideMenuOffset to pixel value and use deltaX directly instead of mapping to vw)
     // TODO: only initiate when we started at the edge of the screen
     // TODO: when open, only start dragging when the pan cursor reaches the edge of the menu
+    // TODO: vertical pan instantly closes the menu
 
     const sideMenuOffset = 85;
     const triggerVelocity = 0.25;
@@ -38,6 +41,7 @@ export default Component.extend(RecognizerMixin, {
         //TODO: velocity might be negative for this case
         this.set('currentPosition', 0);
         this.set('isOpen', false);
+        console.log('force closed');
       }
 
       return;
@@ -78,6 +82,8 @@ export default Component.extend(RecognizerMixin, {
         this.set('currentPosition', sideMenuOffset);
         this.set('isOpen', true);
       } else {
+        console.log('closing');
+        //TODO: this triggers on vertical pan somehow
         this.set('currentPosition', 0);
         this.set('isOpen', false);
       }
