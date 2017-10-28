@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 
 export default Component.extend(RecognizerMixin, {
-  recognizers: 'swipe pan',
+  recognizers: 'pan',
 
   currentPosition: 0,
   isDragging: false,
@@ -11,7 +11,9 @@ export default Component.extend(RecognizerMixin, {
   pan(e){
     const {
       deltaX,
-      isFinal
+      isFinal,
+      additionalEvent,
+      overallVelocityX
     } = e.originalEvent.gesture;
 
     // TODO: only initiate when we started at the edge of the screen
@@ -20,12 +22,29 @@ export default Component.extend(RecognizerMixin, {
     const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
     let targetOffset = deltaX * (sideMenuOffset / (windowWidth * 0.8));
 
+    // when overall horizontal velocity is high, force open and skip the rest
+    if(isFinal && overallVelocityX > 0.5
+        && (additionalEvent === 'panright' || additionalEvent === 'panleft')
+    ){
+      this.set('isDragging', false);
+
+      if(additionalEvent === 'panright'){
+        this.set('currentPosition', sideMenuOffset);
+        this.set('isOpen', true);
+      } else {
+        this.set('currentPosition', 0);
+        this.set('isOpen', false);
+      }
+
+      return;
+    }
+
     // add a dragging class so any css transitions are disabled
     if(!this.get('isDragging')){
       this.set('isDragging', true);
     }
 
-    //TODO: clean this up
+    // TODO: clean this up
     // pass the new position
     if(this.get('isOpen')){
       // enforce limits on the offset [0, 80]
@@ -58,7 +77,6 @@ export default Component.extend(RecognizerMixin, {
         this.set('currentPosition', 0);
         this.set('isOpen', false);
       }
-
     }
   }
 });

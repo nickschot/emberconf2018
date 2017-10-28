@@ -89,8 +89,8 @@ body {
   background: #FFF;
   border-right: 1px solid $nav-tabs-border-color;
 
-  &:not(.dragging) {
-    transition: transform 0.2s;
+  &.dragging {
+    will-change: transform;
   }
 
   .mask {
@@ -102,5 +102,15 @@ body {
     height: 100vh;
 
     background: rgba(0,0,0,0.5);
+
+    will-change: opacity;
+  }
+
+  &:not(.dragging) {
+    transition: transform 0.2s;
+
+    .mask {
+      transition: opacity 0.2s;
+    }
   }
 }

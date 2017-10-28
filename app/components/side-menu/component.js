@@ -12,6 +12,7 @@ export default Component.extend(RecognizerMixin, {
   isOpen: false,
   isDragging: false,
   currentPosition: 0,
+  maskOpacityOffset: 30,
 
   @computed('isOpen', 'currentPosition')
   get style(){
@@ -20,7 +21,13 @@ export default Component.extend(RecognizerMixin, {
 
   @computed('isOpen', 'currentPosition')
   get maskStyle(){
-    return htmlSafe(`opacity: ${this.get('currentPosition') / 100}`)
+    const opacity = this.get('currentPosition') > this.get('maskOpacityOffset')
+      ? (
+          this.get('currentPosition') - this.get('maskOpacityOffset'))
+           / (100 - this.get('maskOpacityOffset')
+        )
+      : 0;
+    return htmlSafe(`opacity: ${opacity}`)
   },
 
   @computed('isOpen', 'isDragging')
