@@ -1,0 +1,52 @@
+.side-menu-open {
+  overflow: hidden;
+}
+
+.side-menu {
+  $sideMenuWidth: 85vw;
+  $transition-duration: 0.2s;
+
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: -$sideMenuWidth;
+
+  height: 100vh;
+  width: $sideMenuWidth;
+
+  background: #FFF;
+  //border-right: 1px solid rgba(0,0,0,.14);
+
+  // TODO: if dragging or open
+  transition: box-shadow $transition-duration;
+
+  &.dragging {
+    will-change: transform;
+  }
+
+  .mask {
+    position: fixed;
+    top: 0;
+    left: $sideMenuWidth;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.5);
+
+    will-change: opacity;
+  }
+
+  &:not(.dragging) {
+    transition: transform $transition-duration;
+
+    .mask {
+      transition: opacity $transition-duration;
+    }
+  }
+}
+
+body.side-menu-open .side-menu,
+.side-menu.dragging {
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}

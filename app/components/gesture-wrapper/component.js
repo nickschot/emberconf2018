@@ -6,9 +6,12 @@ import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 export default Component.extend(RecognizerMixin, {
   recognizers: 'pan',
 
+  openDetectionWidth: 10,
   sideMenuOffset: 85,
   currentPosition: 0,
   isDragging: false,
+
+  deltaXCorrection: 0,
 
   _isOpen: false,
   isOpen: computed('_isOpen', {
@@ -48,6 +51,28 @@ export default Component.extend(RecognizerMixin, {
     }
   },
 
+  _getWindowWidth(){
+    return window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+  },
+
+  panStart(e){
+    const {
+      center
+    } = e.originalEvent.gesture;
+
+    const windowWidth = this._getWindowWidth();
+    const startOffset = 100 * center.x / windowWidth;
+
+    // add a dragging class so any css transitions are disabled
+    // and the pan event is enabled
+    if(!this.get('isOpen')){
+      // only detect initial drag from left side of the window
+      if(startOffset < this.get('openDetectionWidth')){
+        this.set('isDragging', true);
+      }
+    }
+  },
+
   pan(e){
     const {
       deltaX,
@@ -60,70 +85,85 @@ export default Component.extend(RecognizerMixin, {
     // workaround for https://github.com/hammerjs/hammer.js/issues/1132
     if (center.x === 0 && center.y === 0) return;
 
-    // TODO: limit size & disable drag for desktop
-    //    (set sideMenuOffset to pixel value and use deltaX directly instead of mapping to vw)
-    // TODO: only initiate when we started at the edge of the screen
-    // TODO: when open, only start dragging when the pan cursor reaches the edge of the menu
-
+    const windowWidth = this._getWindowWidth();
     const sideMenuOffset = this.get('sideMenuOffset');
-    const triggerVelocity = 0.25;
 
-    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-    let targetOffset = 100 * deltaX / windowWidth;
+    if(this.get('isOpen') && !this.get('isDragging')){
+      // start drag when center.x is at the menu edge
+      const cursorPosition = 100 * center.x / windowWidth;
 
-    if(isFinal && this.get('isDragging')){
-      // when overall horizontal velocity is high, force open/close and skip the rest
-      if(
-           !this.get('isOpen')
-        && overallVelocityX > triggerVelocity
-        && additionalEvent === 'panright'
-      ){
-        // force open
-        this.open();
-        return;
-      } else if(
-           this.get('isOpen')
-        && overallVelocityX < -1 * triggerVelocity
-        && additionalEvent === 'panleft'
-      ){
-        // force close
-        this.close();
-        return;
-      }
-
-      // the pan action is over, cleanup and set the correct final menu position
-      if(    (!this.get('isOpen') && targetOffset > sideMenuOffset / 2)
-        || ( this.get('isOpen') && -1 * targetOffset < sideMenuOffset / 2)
-      ){
-        this.open();
-      } else {
-        this.close();
-      }
-    } else {
-      // add a dragging class so any css transitions are disabled
-      if(!this.get('isDragging')){
+      // calculate and set a correction delta if the pan started outside the opened menu
+      if(cursorPosition < sideMenuOffset) {
         this.set('isDragging', true);
-      }
-
-      // TODO: clean this up
-      // pass the new position
-      if(this.get('isOpen')){
-        // enforce limits on the offset [0, 80]
-        if(targetOffset > 0){
-          targetOffset = 0;
-        } else if(targetOffset < -1 * sideMenuOffset){
-          targetOffset = -1 * sideMenuOffset;
-        }
-        this.set('currentPosition', sideMenuOffset + targetOffset);
-      } else {
-        // enforce limits on the offset [0, 80]
-        if(targetOffset < 0){
-          targetOffset = 0;
-        } else if(targetOffset > sideMenuOffset){
-          targetOffset = sideMenuOffset;
-        }
-        this.set('currentPosition', targetOffset);
+        this.set('deltaXCorrection', 100 * deltaX / windowWidth);
       }
     }
+
+    if(this.get('isDragging')){
+      // TODO: limit size & disable drag for desktop
+      //    (set sideMenuOffset to pixel value and use deltaX directly instead of mapping to vw)
+
+      const triggerVelocity = 0.25;
+      let targetOffset = 100 * deltaX / windowWidth;
+
+      if(isFinal && this.get('isDragging')){
+        // when overall horizontal velocity is high, force open/close and skip the rest
+        if(
+             !this.get('isOpen')
+          && overallVelocityX > triggerVelocity
+          && additionalEvent === 'panright'
+        ){
+          // force open
+          this.open();
+          return;
+        } else if(
+             this.get('isOpen')
+          && overallVelocityX < -1 * triggerVelocity
+          && additionalEvent === 'panleft'
+        ){
+          // force close
+          this.close();
+          return;
+        }
+        // the pan action is over, cleanup and set the correct final menu position
+        if(    (!this.get('isOpen') && targetOffset > sideMenuOffset / 2)
+          || ( this.get('isOpen') && -1 * targetOffset < sideMenuOffset / 2)
+        ){
+          this.open();
+        } else {
+          this.close();
+        }
+      } else {
+        // pass the new position taking limits into account
+        if(this.get('isOpen')){
+          const cursorPosition = 100 * center.x / windowWidth;
+
+          // correct targetOffset with deltaXCorrection set earlier
+          targetOffset -= this.get('deltaXCorrection');
+
+          // enforce limits on the offset [0, sideMenuOffset]
+          if(cursorPosition < sideMenuOffset){
+            if(targetOffset > 0){
+              targetOffset = 0;
+            } else if(targetOffset < -1 * sideMenuOffset){
+              targetOffset = -1 * sideMenuOffset;
+            }
+            this.set('currentPosition', sideMenuOffset + targetOffset);
+          }
+        } else {
+          // enforce limits on the offset [0, sideMenuOffset]
+          if(targetOffset < 0){
+            targetOffset = 0;
+          } else if(targetOffset > sideMenuOffset){
+            targetOffset = sideMenuOffset;
+          }
+          this.set('currentPosition', targetOffset);
+        }
+      }
+    }
+  },
+
+  panEnd(e) {
+    this.set('deltaXCorrection', 0);
   }
 });

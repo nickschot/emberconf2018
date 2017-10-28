@@ -1,5 +1,6 @@
 @import "variables";
 @import "bootstrap";
+@import "side-menu";
 
 body {
   @include media-breakpoint-down(sm){
@@ -12,14 +13,79 @@ body {
   }
 }
 
+.material-icons {
+  vertical-align: bottom;
+}
+
 #mobile-header-menu {
   background: #FFF;
-  padding: 0;
   border-bottom: 1px solid $nav-tabs-border-color;
+  text-align: center;
+  display: block;
 
   .navbar-brand {
     margin: 0;
-    padding: 0.5rem 0;
+  }
+
+  .side-menu-toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 1px solid $navbar-light-toggler-border;
+
+    padding: 0.3rem 0.75rem;
+
+    .material-icons {
+      display: block;
+      font-size: 1.75rem;
+      line-height: 2.75rem;
+      color: #666;
+    }
+  }
+}
+
+.side-menu {
+  $side-menu-item-color: #333;
+  $side-menu-item-active-bg: #EEE;
+
+  .side-menu-header {
+    height: 8rem;
+    padding: 1rem;
+    background: #ec971f;
+    color: #FFF;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav {
+    .nav-item a {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: $side-menu-item-color;
+      line-height: 1.5rem;
+
+      padding: 0.75rem 0.75rem;
+
+      .material-icons {
+        margin-right: 1.5rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        color: lighten($side-menu-item-color, 20%);
+      }
+
+      &.active {
+        background: $side-menu-item-active-bg;
+
+        .material-icons {
+          color: $side-menu-item-color;
+        }
+      }
+    }
+
+    .divider {
+      margin: 0.5rem 0;
+      height: 0;
+      border-bottom: 1px solid $side-menu-item-active-bg;
+    }
   }
 }
 
@@ -72,49 +138,5 @@ body {
 .outlet {
   &, & > .liquid-child {
     //overflow-x: visible!important;
-  }
-}
-
-.side-menu-open {
-  overflow: hidden;
-}
-
-.side-menu {
-  $sideMenuWidth: 85vw;
-
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: -$sideMenuWidth;
-
-  height: 100vh;
-  width: $sideMenuWidth;
-
-  background: #FFF;
-  border-right: 1px solid rgba(0,0,0,.14);
-
-  &.dragging {
-    will-change: transform;
-  }
-
-  .mask {
-    position: fixed;
-    top: 0;
-    left: $sideMenuWidth;
-
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(0,0,0,0.5);
-
-    will-change: opacity;
-  }
-
-  &:not(.dragging) {
-    transition: transform 0.3s;
-
-    .mask {
-      transition: opacity 0.3s;
-    }
   }
 }

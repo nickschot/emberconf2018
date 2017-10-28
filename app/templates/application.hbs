@@ -1,16 +1,8 @@
 {{#gesture-wrapper as |side-menu|}}
   {{#if media.isMobile}}
-    {{#bs-navbar toggleBreakpoint='xl' fluid=false position='fixed-top' id='mobile-header-menu' as |navbar|}}
-      {{#navbar.content}}
-        {{#navbar.nav as |nav|}}
-          {{#nav.item}}
-            <a {{action side-menu.toggle}}>{{material-icon 'menu'}}</a>
-          {{/nav.item}}
-        {{/navbar.nav}}
-      {{/navbar.content}}
-      <div class="navbar-header">
-        <span class="navbar-brand">My Brand</span>
-      </div>
+    {{#bs-navbar toggleBreakpoint='xl' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
+      <span class="navbar-brand">My Brand</span>
+      <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
     {{/bs-navbar}}
   {{/if}}
 
