@@ -18,12 +18,14 @@ export default Component.extend(RecognizerMixin, {
 
     // TODO: only initiate when we started at the edge of the screen
 
-    const sideMenuOffset = 80;
+    const sideMenuOffset = 85;
+    const triggerVelocity = 0.25;
+
     const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-    let targetOffset = deltaX * (sideMenuOffset / (windowWidth * 0.8));
+    let targetOffset = 100 * deltaX / windowWidth;
 
     // when overall horizontal velocity is high, force open and skip the rest
-    if(isFinal && overallVelocityX > 0.5
+    if(isFinal && overallVelocityX > triggerVelocity
         && (additionalEvent === 'panright' || additionalEvent === 'panleft')
     ){
       this.set('isDragging', false);
@@ -32,6 +34,7 @@ export default Component.extend(RecognizerMixin, {
         this.set('currentPosition', sideMenuOffset);
         this.set('isOpen', true);
       } else {
+        //TODO: velocity might be negative for this case
         this.set('currentPosition', 0);
         this.set('isOpen', false);
       }
