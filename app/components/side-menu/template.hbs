@@ -1,6 +1,8 @@
-<div class="mask" {{action 'close'}} style={{maskStyle}}>
-  &nbsp;
-</div>
+{{#if mask}}
+  <div class="mask" {{action 'close'}} style={{maskStyle}}>
+    &nbsp;
+  </div>
+{{/if}}
 
 <div class="side-menu-tray" style={{style}}>
   {{yield}}

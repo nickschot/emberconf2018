@@ -6,6 +6,7 @@ export default Component.extend({
   classNames: ['side-menu'],
   classNameBindings: ['isDragging:dragging'],
 
+  mask: true,
   isOpen: false,
   isDragging: false,
   currentPosition: 0,

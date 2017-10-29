@@ -6,6 +6,7 @@ import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 export default Component.extend(RecognizerMixin, {
   recognizers: 'pan',
 
+  mask: true,
   openDetectionWidth: 10,
   sideMenuOffset: 85,
   currentPosition: 0,
