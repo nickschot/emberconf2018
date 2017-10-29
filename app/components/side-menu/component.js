@@ -36,9 +36,7 @@ export default Component.extend({
 
   actions: {
     close(){
-      //TODO: sent action to gesture-wrapper instead of doing this
-      this.set('isOpen', false);
-      this.set('currentPosition', 0);
+      this.sendAction('close');
     }
   }
 });

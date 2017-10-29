@@ -1,6 +1,11 @@
 {{yield (hash toggle=(action 'toggle'))}}
 
-{{#side-menu isOpen=isOpen isDragging=isDragging currentPosition=currentPosition}}
+{{#side-menu
+  isOpen=isOpen
+  isDragging=isDragging
+  currentPosition=currentPosition
+  close='close'
+}}
   <div class="side-menu-header">
     <h3>My Menu</h3>
   </div>

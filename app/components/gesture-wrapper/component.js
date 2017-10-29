@@ -42,6 +42,9 @@ export default Component.extend(RecognizerMixin, {
   },
 
   actions: {
+    close(){
+      this.close();
+    },
     toggle(){
       if(this.get('isOpen')){
         this.close();
