@@ -20,7 +20,7 @@ export default Component.extend({
   get maskStyle(){
     let style = '';
 
-    if(this.get('currentPosition') === 0){
+    if(!this.get('isOpen') && this.get('currentPosition') === 0){
       style += 'left: -100vw;';
     }
 
@@ -36,6 +36,7 @@ export default Component.extend({
 
   actions: {
     close(){
+      //TODO: sent action to gesture-wrapper instead of doing this
       this.set('isOpen', false);
       this.set('currentPosition', 0);
     }

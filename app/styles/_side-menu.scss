@@ -1,6 +1,6 @@
 // variables
 $sideMenuWidth: 85vw;
-$transition-duration: 0.2s;
+$transition-duration: 0.3s;
 
 body.side-menu-open {
   overflow: hidden;
@@ -25,8 +25,8 @@ body.side-menu-open {
     background: #FFF;
     //border-right: 1px solid rgba(0,0,0,.14);
 
-    // TODO: if dragging or open
-    transition: box-shadow $transition-duration;
+    //TODO: decide if we want to have the shadow immediately appear or not when dragging/opening
+    //transition: box-shadow $transition-duration;
   }
 
   .mask {
@@ -38,7 +38,7 @@ body.side-menu-open {
     height: 100vh;
 
     background: rgba(0,0,0,0.5);
-    opacity: 0.5;
+    opacity: 0;
 
     will-change: opacity;
   }
@@ -51,7 +51,7 @@ body.side-menu-open {
 
   &:not(.dragging) {
     .side-menu-tray {
-      transition: transform $transition-duration;
+      transition: box-shadow $transition-duration, transform $transition-duration;
     }
     .mask {
       transition: opacity $transition-duration;
