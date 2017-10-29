@@ -1,45 +1,58 @@
-.side-menu-open {
+// variables
+$sideMenuWidth: 85vw;
+$transition-duration: 0.2s;
+
+body.side-menu-open {
   overflow: hidden;
 }
 
 .side-menu {
-  $sideMenuWidth: 85vw;
-  $transition-duration: 0.2s;
-
   position: fixed;
   z-index: 2000;
   top: 0;
-  left: -$sideMenuWidth;
+  left: 0;
+  width: 0;
+  height: 0;
 
-  height: 100vh;
-  width: $sideMenuWidth;
+  .side-menu-tray {
+    position: fixed;
+    top: 0;
+    left: -$sideMenuWidth;
 
-  background: #FFF;
-  //border-right: 1px solid rgba(0,0,0,.14);
+    height: 100vh;
+    width: $sideMenuWidth;
 
-  // TODO: if dragging or open
-  transition: box-shadow $transition-duration;
+    background: #FFF;
+    //border-right: 1px solid rgba(0,0,0,.14);
 
-  &.dragging {
-    will-change: transform;
+    // TODO: if dragging or open
+    transition: box-shadow $transition-duration;
   }
 
   .mask {
     position: fixed;
     top: 0;
-    left: $sideMenuWidth;
+    left: 0;
 
     width: 100vw;
     height: 100vh;
 
     background: rgba(0,0,0,0.5);
+    opacity: 0.5;
 
     will-change: opacity;
   }
 
-  &:not(.dragging) {
-    transition: transform $transition-duration;
+  &.dragging {
+    .side-menu-tray {
+      will-change: transform;
+    }
+  }
 
+  &:not(.dragging) {
+    .side-menu-tray {
+      transition: transform $transition-duration;
+    }
     .mask {
       transition: opacity $transition-duration;
     }
@@ -48,5 +61,7 @@
 
 body.side-menu-open .side-menu,
 .side-menu.dragging {
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  .side-menu-tray {
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
 }

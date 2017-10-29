@@ -1,13 +1,10 @@
 import Component from '@ember/component';
 import { htmlSafe } from '@ember/string';
 import { computed } from 'ember-decorators/object';
-import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 
-export default Component.extend(RecognizerMixin, {
+export default Component.extend({
   classNames: ['side-menu'],
   classNameBindings: ['isDragging:dragging'],
-  attributeBindings: ['style'],
-  recognizers: 'tap',
 
   isOpen: false,
   isDragging: false,
@@ -21,18 +18,20 @@ export default Component.extend(RecognizerMixin, {
 
   @computed('isOpen', 'currentPosition')
   get maskStyle(){
+    let style = '';
+
+    if(this.get('currentPosition') === 0){
+      style += 'left: -100vw;';
+    }
+
     const opacity = this.get('currentPosition') > this.get('maskOpacityOffset')
       ? (
           this.get('currentPosition') - this.get('maskOpacityOffset'))
            / (100 - this.get('maskOpacityOffset')
         )
       : 0;
-    return htmlSafe(`opacity: ${opacity}`)
-  },
-
-  @computed('isOpen', 'isDragging')
-  get showMask(){
-    return this.get('isOpen') || this.get('isDragging');
+    style += `opacity: ${opacity};`;
+    return htmlSafe(style)
   },
 
   actions: {
