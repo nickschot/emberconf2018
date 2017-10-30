@@ -39,6 +39,7 @@ body.side-menu-open {
 
     background: rgba(0,0,0,0.5);
     opacity: 0;
+    cursor: pointer; // necessary to detect click on iOS
 
     will-change: opacity;
   }
