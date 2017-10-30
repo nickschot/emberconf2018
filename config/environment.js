@@ -6,8 +6,7 @@ module.exports = function(environment) {
     modulePrefix: 'ember-fastboot-blog',
     environment,
     rootURL: '/',
-    locationType: 'router-scroll',
-    historySupportMiddleware: true,
+    locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

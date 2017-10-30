@@ -1,7 +1,11 @@
-<div class="container">
+{{scroll-to position=0 key=model.id}}
+
+<div class="container container-top">
   <div class="row">
     <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      {{#link-to "posts.index" class="btn btn-link"}}{{material-icon 'chevron_left'}}<span data-page-header="posts_archive">Posts archive</span>{{/link-to}}
       <div class="card" data-post-id="post-{{model.id}}">
+        <img data-page-image-id="{{model.id}}" class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Panama_city.png" alt="Generic placeholder image" style="width: 100%; height: auto;">
         <div class="card-block">
           <h4 class="card-title">{{model.title}}</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{model.date}}</h6>

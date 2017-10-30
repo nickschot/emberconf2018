@@ -4,8 +4,32 @@
 
 body {
   @include media-breakpoint-down(sm){
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    .container-top {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .list-group, .card {
+      margin-left: -16px;
+      margin-right: -16px;
+      border-radius: 0;
+    }
+
+    .list-group {
+      .list-group-item {
+        padding: 0.5rem;
+        color: #333;
+        font-size: 13px;
+        line-height: 13px;
+      }
+    }
+
+    .memory-scroll {
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   @include media-breakpoint-up(md) {
@@ -14,7 +38,8 @@ body {
 }
 
 .material-icons {
-  vertical-align: bottom;
+  vertical-align: middle;
+  line-height: inherit;
 }
 
 #mobile-header-menu {
@@ -22,6 +47,12 @@ body {
   border-bottom: 1px solid $nav-tabs-border-color;
   text-align: center;
   display: block;
+
+  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+    background: rgba(255, 255, 255, 0.75);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 
   .navbar-brand {
     margin: 0;
@@ -47,6 +78,12 @@ body {
 .side-menu-tray {
   $side-menu-item-color: #333;
   $side-menu-item-active-bg: #EEE;
+
+  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+    background: rgba(255, 255, 255, 0.9)!important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 
   .side-menu-header {
     height: 8rem;
@@ -74,6 +111,10 @@ body {
 
       &.active {
         background: $side-menu-item-active-bg;
+
+        @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+          background: rgba(darken($side-menu-item-active-bg, 10%), 0.5);
+        }
 
         .material-icons {
           color: $side-menu-item-color;
@@ -107,15 +148,16 @@ body {
     }
 
     .nav-item a {
-      padding: 0.3rem 1rem;
+      padding: 0.3rem 1rem 0 1rem;
 
       .material-icons {
         font-size: 1.75rem;
         display: block;
+        line-height: 1.75rem;
       }
 
       div {
-        font-size: 0.6em;
+        font-size: 0.7em;
       }
     }
   }
@@ -135,8 +177,13 @@ body {
   }
 }
 
-.outlet {
-  &, & > .liquid-child {
-    //overflow-x: visible!important;
+.btn-link {
+  font-size: $font-size-lg;
+  text-decoration: none!important;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:active {
+    opacity: 0.5;
   }
 }

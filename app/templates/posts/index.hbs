@@ -1,26 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <h2>Posts archive</h2>
+{{#memory-scroll key="posts.index" class="memory-scroll"}}
+  <div class="container container-top">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <h2 data-page-header="posts_archive">Posts archive</h2>
 
-      <div class="list-group">
-        {{#each model as |post|}}
-          {{#link-to 'posts.post' post class="list-group-item list-group-item-action flex-column align-items-start" data-post-id=(concat "post-" post.id)}}
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{post.title}}</h5>
-              <small>{{post.date}}</small>
-            </div>
-            <p class="mb-1">
-              Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-            </p>
-            <small>Donec id elit non mi porta.</small>
-          {{/link-to}}
-        {{/each}}
-      </div>
-      <br>
-      <div class="form-group text-right">
-        {{#link-to 'posts' class="btn btn-secondary"}}Pagination...{{/link-to}}
+        <div class="list-group">
+          {{#each model as |post|}}
+            {{#link-to 'posts.post' post class="list-group-item media" data-post-id=(concat "post-" post.id)}}
+                <img data-page-image-id="{{post.id}}" class="d-flex mr-3" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Panama_city.png" alt="Generic placeholder image" style="width: 30vw">
+                <div class="media-body">
+                  <div class="mt-0 font-weight-bold">{{post.title}}</div>
+                </div>
+            {{/link-to}}
+          {{/each}}
+        </div>
+        <br>
+        <div class="form-group text-right">
+          {{#link-to 'posts' class="btn btn-secondary"}}Pagination...{{/link-to}}
+        </div>
       </div>
     </div>
   </div>
-</div>
+{{/memory-scroll}}

@@ -7,14 +7,24 @@ export default function(){
     this.fromRoute(true),
     this.toRoute(true),
     this.media(breakpoints.mobile),
-    this.use('slideOverLeft', {duration: 250})
+    this.use('explode', {
+      use: ['slideOverLeft', {duration: 250}]
+    },{
+      matchBy: 'data-page-image-id',
+      use: ['flyToOverlay', {duration: 250}]
+    })
   );
 
   this.transition(
     this.fromRoute('posts.post'),
     this.toRoute(['posts', 'posts.index']),
     this.media(breakpoints.mobile),
-    this.use('slideUnderRight', {duration: 250})
+    this.use('explode', {
+      use: ['slideUnderRight', {duration: 250}]
+    },{
+      matchBy: 'data-page-image-id',
+      use: ['flyToOverlay', {duration: 250}]
+    })
   );
 
   this.transition(
@@ -22,7 +32,7 @@ export default function(){
     this.toRoute('index'),
     this.media(breakpoints.mobile),
     this.use('fade', {duration: 200})
-  )
+  );
 
   /*this.transition(
     this.fromRoute(postRoutes),
