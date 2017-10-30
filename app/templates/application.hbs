@@ -1,32 +1,24 @@
 {{#gesture-wrapper as |side-menu|}}
-  {{#if media.isMobile}}
-    {{#bs-navbar toggleBreakpoint='xl' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
-      <span class="navbar-brand">My Brand</span>
+  {{#bs-navbar toggleBreakpoint='xl' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
+    <span class="navbar-brand">My Brand</span>
+    {{#unless isFastBoot}}
       <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
-    {{/bs-navbar}}
-  {{/if}}
+    {{/unless}}
+  {{/bs-navbar}}
 
-  {{#bs-navbar toggleBreakpoint='xl' fluid=false position=(if media.isMobile 'fixed-bottom' 'fixed-top') id='main-menu' as |navbar|}}
+  {{#bs-navbar toggleBreakpoint='xl' fluid=false id='main-menu' as |navbar|}}
     {{#navbar.content}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}
-          {{#nav.link-to "index" class=(if media.isMobile 'text-center')}}
-            {{#if media.isMobile}}
-              {{material-icon 'home' size='lg'}}
-              <div>Home</div>
-            {{else}}
-              Home
-            {{/if}}
+          {{#nav.link-to "index" class='text-center'}}
+            {{material-icon 'home' size='lg' class='hidden-md-up'}}
+            <div>Home</div>
           {{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "posts" class=(if media.isMobile 'text-center')}}
-            {{#if media.isMobile}}
-              {{material-icon 'archive' size='lg'}}
-              <div>Archive</div>
-            {{else}}
-              Archive
-            {{/if}}
+          {{#nav.link-to "posts" class='text-center'}}
+            {{material-icon 'archive' size='lg' class='hidden-md-up'}}
+            <div>Archive</div>
           {{/nav.link-to}}
         {{/nav.item}}
       {{/navbar.nav}}

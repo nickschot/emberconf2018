@@ -70,6 +70,10 @@ body {
   text-align: center;
   display: block;
 
+  @include media-breakpoint-up(md){
+    display: none;
+  }
+
   @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
     background: rgba(255, 255, 255, 0.75);
     -webkit-backdrop-filter: blur(10px);
@@ -154,8 +158,14 @@ body {
 
 #main-menu {
   background: #FFF;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 
   @include media-breakpoint-down(sm){
+    bottom: 0;
+
     padding: 0;
     border-top: 1px solid $nav-tabs-border-color;
 
@@ -185,6 +195,7 @@ body {
   }
 
   @include media-breakpoint-up(md){
+    top: 0;
     border-bottom: 1px solid $nav-tabs-border-color;
   }
 }
