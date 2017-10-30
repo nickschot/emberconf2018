@@ -5,8 +5,8 @@
 body {
   @include media-breakpoint-down(sm){
     .container-top {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+      padding-top: 3.4rem;
+      padding-bottom: 3.1rem;
     }
 
     .list-group, .card {
@@ -21,6 +21,27 @@ body {
         color: #333;
         font-size: 13px;
         line-height: 13px;
+      }
+    }
+
+    .card {
+      position: relative;
+
+      &, .card-img-top {
+        border-radius: 0;
+      }
+
+      .btn-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        margin: 0;
+
+        .material-icons {
+          font-size: 48px;
+          color: #FFF;
+        }
       }
     }
 
