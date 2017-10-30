@@ -31,8 +31,14 @@ export default Component.extend(RecognizerMixin, {
       } else {
         if(value){
           $('body').addClass('side-menu-open');
+
+          this.set('isDragging', false);
+          this.set('currentPosition', this.get('sideMenuOffset'));
         } else {
           $('body').removeClass('side-menu-open');
+
+          this.set('isDragging', false);
+          this.set('currentPosition', 0);
         }
       }
 
@@ -42,13 +48,9 @@ export default Component.extend(RecognizerMixin, {
   }),
 
   open() {
-    this.set('isDragging', false);
-    this.set('currentPosition', this.get('sideMenuOffset'));
     this.set('isOpen', true);
   },
   close() {
-    this.set('isDragging', false);
-    this.set('currentPosition', 0);
     this.set('isOpen', false);
   },
 

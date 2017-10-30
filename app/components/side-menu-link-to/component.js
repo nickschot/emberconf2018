@@ -5,6 +5,7 @@ export default LinkComponent.extend({
     this._super(...arguments);
 
     this.set('queryParams.values.sideMenuOpen', false);
+    this.set('current-when', this.get('qualifiedRouteName'));
   },
 
   click(){
