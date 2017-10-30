@@ -7,11 +7,11 @@ export default function(){
     this.fromRoute(true),
     this.toRoute(true),
     this.media(breakpoints.mobile),
-    this.use('explode', {
-      use: ['slideOverLeft', {duration: 250}]
-    },{
+    this.use('explode',{
       matchBy: 'data-page-image-id',
       use: ['flyToOverlay', {duration: 250}]
+    },{
+      use: ['slideOverLeft', {duration: 250}]
     })
   );
 
@@ -19,11 +19,11 @@ export default function(){
     this.fromRoute('posts.post'),
     this.toRoute(['posts', 'posts.index']),
     this.media(breakpoints.mobile),
-    this.use('explode', {
-      use: ['slideUnderRight', {duration: 250}]
-    },{
+    this.use('explode',{
       matchBy: 'data-page-image-id',
       use: ['flyToOverlay', {duration: 250}]
+    },{
+      use: ['slideUnderRight', {duration: 250}]
     })
   );
 
