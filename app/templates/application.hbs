@@ -1,8 +1,10 @@
-{{#gesture-wrapper as |side-menu|}}
+{{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
   {{#bs-navbar toggleBreakpoint='xl' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
     <span class="navbar-brand">My Brand</span>
     {{#unless isFastBoot}}
       <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
+    {{else}}
+      {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='side-menu-toggler'}}{{material-icon 'menu'}}{{/link-to}}
     {{/unless}}
   {{/bs-navbar}}
 

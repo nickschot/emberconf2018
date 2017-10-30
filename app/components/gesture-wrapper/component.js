@@ -1,9 +1,13 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import $ from 'jquery';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 
 export default Component.extend(RecognizerMixin, {
+  fastboot: service(),
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
+
   recognizers: 'pan',
 
   mask: true,
@@ -20,10 +24,16 @@ export default Component.extend(RecognizerMixin, {
       return this.get('_isOpen');
     },
     set(key, value){
-      if(value){
-        $('body').addClass('side-menu-open');
+      if(this.get('isFastBoot')){
+        if(value){
+          this.set('currentPosition', this.get('sideMenuOffset'));
+        }
       } else {
-        $('body').removeClass('side-menu-open');
+        if(value){
+          $('body').addClass('side-menu-open');
+        } else {
+          $('body').removeClass('side-menu-open');
+        }
       }
 
       this.set('_isOpen', value);

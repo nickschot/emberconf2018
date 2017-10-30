@@ -1,7 +1,11 @@
 {{#if mask}}
-  <div class="mask" {{action 'close'}} style={{maskStyle}}>
-    &nbsp;
-  </div>
+  <div class="mask" {{action 'close'}} style={{maskStyle}}></div>
+
+  {{#if isFastBoot}}
+    {{#if isOpen}}
+      {{#link-to (query-params sideMenuOpen=false) class="mask" style="opacity: 1;"}}{{/link-to}}
+    {{/if}}
+  {{/if}}
 {{/if}}
 
 <div class="side-menu-tray" style={{style}}>

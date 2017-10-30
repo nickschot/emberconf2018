@@ -6,7 +6,10 @@ export default Controller.extend({
   fastboot: service(),
   isFastBoot: computed.reads('fastboot.isFastBoot'),
 
+  queryParams: ['sideMenuOpen'],
+
   sideMenuOpen: false,
+  sideMenuNewState: computed.not('sideMenuOpen'),
 
   actions: {
     toggleSideMenu() {

@@ -1,8 +1,12 @@
 import Component from '@ember/component';
 import { htmlSafe } from '@ember/string';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  fastboot: service(),
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
+
   classNames: ['side-menu'],
   classNameBindings: ['isDragging:dragging'],
 
@@ -12,13 +16,11 @@ export default Component.extend({
   currentPosition: 0,
   maskOpacityOffset: 5,
 
-  @computed('isOpen', 'currentPosition')
-  get style(){
+  style: computed('isOpen', 'currentPosition', function() {
     return htmlSafe(`transform: translateX(${this.get('currentPosition')}vw)`);
-  },
+  }),
 
-  @computed('isOpen', 'currentPosition')
-  get maskStyle(){
+  maskStyle: computed('isOpen', 'currentPosition', function() {
     let style = '';
 
     if(!this.get('isOpen') && this.get('currentPosition') === 0){
@@ -33,7 +35,7 @@ export default Component.extend({
       : 0;
     style += `opacity: ${opacity};`;
     return htmlSafe(style)
-  },
+  }),
 
   actions: {
     close(){

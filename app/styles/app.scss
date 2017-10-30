@@ -92,9 +92,11 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    border-right: 1px solid $navbar-light-toggler-border;
 
     padding: 0.3rem 0.75rem;
+
+    text-decoration: none;
+    border-right: 1px solid $navbar-light-toggler-border;
 
     .material-icons {
       display: block;
