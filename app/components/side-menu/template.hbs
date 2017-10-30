@@ -5,5 +5,7 @@
 {{/if}}
 
 <div class="side-menu-tray" style={{style}}>
-  {{yield}}
+  {{yield (hash
+    link-to=(component 'side-menu-link-to' close='close')
+  )}}
 </div>

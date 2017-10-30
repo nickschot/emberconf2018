@@ -6,6 +6,8 @@
   isDragging=isDragging
   currentPosition=currentPosition
   close='close'
+
+  as |side-menu|
 }}
   <div class="side-menu-header">
     <h3>My Menu</h3>
@@ -13,10 +15,10 @@
   <div class="side-menu-body">
     <ul class="nav flex-column">
       <li class="nav-item">
-        {{#link-to 'index' class="nav-link"}}{{material-icon 'home'}} Home{{/link-to}}
+        {{#side-menu.link-to 'index' class="nav-link"}}{{material-icon 'home'}} Home{{/side-menu.link-to}}
       </li>
       <li class="nav-item">
-        {{#link-to 'posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/link-to}}
+        {{#side-menu.link-to 'posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/side-menu.link-to}}
       </li>
       <li class="divider"></li>
       <li class="nav-item">
