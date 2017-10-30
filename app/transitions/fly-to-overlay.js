@@ -36,7 +36,3 @@ export default function flyToFont(opts={}) {
     });
   }
 }
-
-function rgbToHex(rgb){
-  return '#' + rgb.substr(4, rgb.indexOf(')') - 4).split(',').map((color) => parseInt(color).toString(16)).join('');
-}
