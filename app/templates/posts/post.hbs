@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <div class="card" data-post-id="post-{{model.id}}">
+        <img class="card-img-top" data-page-image-id="{{model.id}}" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Abstract_in_sand_and_sky_%288398922985%29.jpg/640px-Abstract_in_sand_and_sky_%288398922985%29.jpg" alt="Generic placeholder image" style="width: 100%; height: auto;">
         {{#link-to "posts.index" class="btn btn-link btn-back"}}{{material-icon 'arrow_back'}}{{/link-to}}
-        <img data-page-image-id="{{model.id}}" class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Panama_city.png" alt="Generic placeholder image" style="width: 100%; height: auto;">
-        <div class="card-block">
+        <div class="card-block" style="position: relative; z-index:2;">
           <h4 class="card-title">{{model.title}}</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{model.date}}</h6>
           <p class="card-text">
