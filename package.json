@@ -12,9 +12,9 @@
   "repository": "",
   "scripts": {
     "build": "ember build",
+    "debug": "node --inspect-brk ./node_modules/.bin/ember server",
     "start": "ember server",
-    "test": "ember test",
-    "debug": "node --inspect-brk ./node_modules/.bin/ember server"
+    "test": "ember test"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
@@ -44,11 +44,12 @@
     "ember-hammertime": "^1.2.5",
     "ember-load-initializers": "^1.0.0",
     "ember-material-icons": "^1.1.0",
+    "ember-resize-text": "^1.0.3",
     "ember-resolver": "^4.0.0",
     "ember-responsive": "^2.0.5",
     "ember-shoebox-decorator": "^1.0.0",
-    "ember-source": "~2.16.0",
-    "liquid-fire": "^0.28.1",
+    "ember-source": "^2.16.1",
+    "liquid-fire": "^0.29.0",
     "loader.js": "^4.2.3",
     "memory-scroll": "^0.9.0"
   },
