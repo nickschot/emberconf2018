@@ -1,5 +1,5 @@
 {{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
-  {{#bs-navbar toggleBreakpoint='xl' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
+  {{#bs-navbar toggleBreakpoint='sm' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
     <span class="navbar-brand">My Brand</span>
     {{#unless isFastBoot}}
       <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
@@ -8,18 +8,18 @@
     {{/unless}}
   {{/bs-navbar}}
 
-  {{#bs-navbar toggleBreakpoint='xl' fluid=false id='main-menu' as |navbar|}}
+  {{#bs-navbar toggleBreakpoint='sm' fluid=false id='main-menu' as |navbar|}}
     {{#navbar.content}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "index" class='text-center'}}
-            {{material-icon 'home' size='lg' class='hidden-md-up'}}
+            {{material-icon 'home' size='lg' class='d-md-none'}}
             <div>Home</div>
           {{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
           {{#nav.link-to "posts" class='text-center'}}
-            {{material-icon 'archive' size='lg' class='hidden-md-up'}}
+            {{material-icon 'archive' size='lg' class='d-md-none'}}
             <div>Archive</div>
           {{/nav.link-to}}
         {{/nav.item}}

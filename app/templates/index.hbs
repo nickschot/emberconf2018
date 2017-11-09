@@ -4,7 +4,7 @@
       <h2>Latest posts</h2>
       {{#each model as |post|}}
         <div class="card" data-post-id="post-{{post.id}}">
-          <div class="card-block">
+          <div class="card-body">
             <h4 class="card-title">{{#link-to 'posts.post' post}}{{post.title}}{{/link-to}}</h4>
             <h6 class="card-subtitle mb-2 text-muted">{{post.date}}</h6>
             <p class="card-text">

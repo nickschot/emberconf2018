@@ -1,23 +1,23 @@
-// Core variables and mixins
+/*!
+ * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "ember-bootstrap/functions";
 @import "ember-bootstrap/variables";
 @import "ember-bootstrap/mixins";
-@import "ember-bootstrap/custom";
-
-// Reset and dependencies
-@import "ember-bootstrap/normalize";
-//@import "ember-bootstrap/print";
-
-// Core CSS
+@import "ember-bootstrap/root";
+@import "ember-bootstrap/print";
 @import "ember-bootstrap/reboot";
 @import "ember-bootstrap/type";
 @import "ember-bootstrap/images";
-//@import "ember-bootstrap/code";
+@import "ember-bootstrap/code";
 @import "ember-bootstrap/grid";
 @import "ember-bootstrap/tables";
 @import "ember-bootstrap/forms";
 @import "ember-bootstrap/buttons";
-
-// Components
 @import "ember-bootstrap/transitions";
 @import "ember-bootstrap/dropdown";
 @import "ember-bootstrap/button-group";
@@ -26,22 +26,17 @@
 @import "ember-bootstrap/nav";
 @import "ember-bootstrap/navbar";
 @import "ember-bootstrap/card";
-//@import "ember-bootstrap/breadcrumb";
+@import "ember-bootstrap/breadcrumb";
 @import "ember-bootstrap/pagination";
-//@import "ember-bootstrap/badge";
-//@import "ember-bootstrap/jumbotron";
-//@import "ember-bootstrap/alert";
-//@import "ember-bootstrap/progress";
+@import "ember-bootstrap/badge";
+@import "ember-bootstrap/jumbotron";
+@import "ember-bootstrap/alert";
+@import "ember-bootstrap/progress";
 @import "ember-bootstrap/media";
 @import "ember-bootstrap/list-group";
-//@import "ember-bootstrap/responsive-embed";
-//@import "ember-bootstrap/close";
-
-// Components w/ JavaScript
-//@import "ember-bootstrap/modal";
-//@import "ember-bootstrap/tooltip";
-//@import "ember-bootstrap/popover";
-//@import "ember-bootstrap/carousel";
-
-// Utility classes
+@import "ember-bootstrap/close";
+@import "ember-bootstrap/modal";
+@import "ember-bootstrap/tooltip";
+@import "ember-bootstrap/popover";
+@import "ember-bootstrap/carousel";
 @import "ember-bootstrap/utilities";

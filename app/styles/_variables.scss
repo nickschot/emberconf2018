@@ -1,8 +1,9 @@
+@import "ember-bootstrap/functions";
 @import "ember-bootstrap/variables";
 
 $body-bg: #FAFBFC;
-$navbar-light-active-color: $brand-primary;
+$navbar-light-active-color: $primary;
 
-$list-group-active-border: $list-group-border-color;
-$list-group-active-color: $list-group-link-hover-color;
+$list-group-active-border-color: $list-group-border-color;
+$list-group-active-color: $list-group-action-hover-color;
 $list-group-active-bg: $list-group-hover-bg;
