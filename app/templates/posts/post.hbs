@@ -4,7 +4,7 @@
   <div class="container container-top">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <div class="card" data-post-id="post-{{model.id}}">
+        <div class="card post" data-post-id="post-{{model.id}}">
           {{#if model.headerImage}}
             <div class="card-img-top img-responsive">
               <img data-page-image-id="{{model.id}}" class="img-fluid" src="{{model.headerImage}}" alt="Generic placeholder image">
@@ -12,8 +12,14 @@
           {{/if}}
           {{#link-to "posts.index" class="btn btn-link btn-back"}}{{material-icon 'arrow_back'}}{{/link-to}}
           <div class="card-body" style="position: relative; z-index:2;">
-            <h4 class="card-title">{{model.id}} - {{model.title}}</h4>
-            <h6 class="card-subtitle mb-2 text-muted">{{moment-format model.published 'DD-MM-YYYY HH:mm'}} - {{model.author.name}}</h6>
+            <h4 class="card-title">{{model.title}}</h4>
+            <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+              <img src="{{model.author.avatar}}" class="rounded-circle mr-3" width="50" height="50">
+              <div class="d-flex flex-column justify-content-center">
+                <div>{{model.author.name}}</div>
+                <div><small>{{moment-format model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+              </div>
+            </h6>
             <p class="card-text">
               {{{model.bodyAsHtml}}}
             </p>

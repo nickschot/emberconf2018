@@ -47,7 +47,6 @@ body {
   }
 }
 
-
 .btn-back {
   z-index: 999;
   position: absolute;
@@ -236,5 +235,12 @@ body {
 
   img {
     width: 100%;
+  }
+}
+
+.post {
+  .card-text {
+    font-size: 0.85rem;
+    line-height: 1.25rem;
   }
 }

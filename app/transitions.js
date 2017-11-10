@@ -13,7 +13,7 @@ export default function(){
       matchBy: 'data-page-image-id',
       use: ['flyToOverlay', {duration: slideDuration}]
     },*/{
-      pickNew: '.btn-back',
+      pickNew: '.current .btn-back',
       use: ['wait', slideDuration, { then: 'fade' }, { duration: slideDuration }]
     },{
       use: ['slideOverLeft', {duration: slideDuration}]
