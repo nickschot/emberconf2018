@@ -20,6 +20,7 @@ export default Component.extend(RecognizerMixin, {
   currentModel: null,
   leftOpenDetectionWidth: 10,
   transitionDuration: 300,
+  triggerVelocity: 0.25,
 
   // private attributes
   isDragging: false,
@@ -84,9 +85,6 @@ export default Component.extend(RecognizerMixin, {
   pan(e){
     const {
       deltaX,
-      isFinal,
-      additionalEvent,
-      overallVelocityX,
       center,
       pointerType
     } = e.originalEvent.gesture;
@@ -128,8 +126,10 @@ export default Component.extend(RecognizerMixin, {
 
   panEnd(e) {
     const {
+      additionalEvent,
       center,
-      pointerType
+      overallVelocityX,
+      pointerType,
     } = e.originalEvent.gesture;
 
     if(pointerType === 'touch'){
@@ -147,7 +147,16 @@ export default Component.extend(RecognizerMixin, {
       const currentPosition = this.get('currentPosition');
       const currentRouteName = getOwner(this).lookup('controller:application').get('currentRouteName');
 
-      if(currentPosition < -50){
+      // when position has the overhand or overall horizontal velocity is high,
+      // transition to the prev/next model
+      if(
+           currentPosition < -50
+        || (
+             this.get('nextModel')
+          && overallVelocityX < -1 * this.get('triggerVelocity')
+          && additionalEvent === 'panleft'
+        )
+      ){
         this.set('currentPosition', -100);
         this.storeScroll();
 
@@ -155,7 +164,14 @@ export default Component.extend(RecognizerMixin, {
         setTimeout(() => {
           this.get('router').transitionTo(currentRouteName, targetModel);
         }, this.get('transitionDuration'));
-      } else if(currentPosition > 50){
+      } else if(
+           currentPosition > 50
+        || (
+             this.get('previousModel')
+          && overallVelocityX > this.get('triggerVelocity')
+          && additionalEvent === 'panright'
+        )
+      ){
         this.set('currentPosition', 100);
         this.storeScroll();
 
