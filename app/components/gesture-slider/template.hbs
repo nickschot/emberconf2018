@@ -1,6 +1,6 @@
 <div class="gesture-slider-container" style="{{containerStyle}}">
   {{#if previousModel}}
-    <div class="gesture-slider-child previous">
+    <div class="gesture-slider-child previous" style="{{scrollOffset}}">
       {{~yield previousModel ~}}
     </div>
   {{/if}}
@@ -10,7 +10,7 @@
   </div>
 
   {{#if nextModel}}
-    <div class="gesture-slider-child next">
+    <div class="gesture-slider-child next" style="{{scrollOffset}}">
       {{~yield nextModel ~}}
     </div>
   {{/if}}

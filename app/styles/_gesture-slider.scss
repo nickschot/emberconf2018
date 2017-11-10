@@ -9,13 +9,12 @@ $transition-duration: 0.3s;
 
   .gesture-slider-child {
     overflow: hidden;
-    max-height: 100vh;
-    -webkit-overflow-scrolling: touch;
 
     &.previous, &.next {
       position: absolute;
       top: 0;
       left: 0;
+      max-height: 100vh;
     }
 
     &.current {

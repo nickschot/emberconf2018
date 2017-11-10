@@ -53,6 +53,10 @@ export default Component.extend(RecognizerMixin, {
     return htmlSafe(`transform: translateX(${this.get('currentPosition')}vw)`);
   }),
 
+  scrollOffset: computed('currentScroll', function(){
+    return htmlSafe(`top: ${this.get('currentScroll')}px`);
+  }),
+
   currentRouteName: computed(function(){
     return getOwner(this).lookup('controller:application').get('currentRouteName');
   }),
@@ -68,6 +72,9 @@ export default Component.extend(RecognizerMixin, {
     if(pointerType === 'touch'){
       // workaround for https://github.com/hammerjs/hammer.js/issues/1132
       if (center.x === 0 && center.y === 0) return;
+
+      // write scroll offset for prev/next children
+      this.set('currentScroll', document.documentElement.scrollTop);
 
       const windowWidth = this._getWindowWidth();
       const startOffset = 100 * center.x / windowWidth;
@@ -201,10 +208,11 @@ export default Component.extend(RecognizerMixin, {
       const elem = this.element.querySelector('.gesture-slider-container .current');
       const key = this._buildMemoryKey(this.get('currentModel.id'));
 
-      this.get('memory')[key] = elem.scrollTop;
+      this.get('memory')[key] = document.documentElement.scrollTop;//elem.scrollTop;
     }
   },
 
+  //TODO: only do this within the route
   restoreScroll(){
     if(!this.get('isFastBoot')){
       const prevKey     = this._buildMemoryKey(this.get('previousModel.id'));
@@ -212,7 +220,7 @@ export default Component.extend(RecognizerMixin, {
       const nextKey     = this._buildMemoryKey(this.get('nextModel.id'));
 
       const prev    = this.element.querySelector('.gesture-slider-container .previous');
-      const current = this.element.querySelector('.gesture-slider-container .current');
+      const current = document.documentElement;//this.element.querySelector('.gesture-slider-container .current');
       const next    = this.element.querySelector('.gesture-slider-container .next');
 
       if(prev) prev.scrollTop    = this.get('memory')[prevKey] || 0;
