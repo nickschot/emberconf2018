@@ -50,6 +50,7 @@
     "ember-responsive": "^2.0.5",
     "ember-shoebox-decorator": "^1.0.0",
     "ember-source": "^2.16.2",
+    "ember-useragent": "^0.3.0",
     "liquid-fire": "^0.29.0",
     "loader.js": "^4.2.3",
     "memory-scroll": "^0.9.1"

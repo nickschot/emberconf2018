@@ -5,28 +5,27 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { getOwner } from "@ember/application";
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
-
-import Ember from 'ember';
+import { scheduleOnce } from '@ember/runloop';
 
 export default Component.extend(RecognizerMixin, {
   classNames: ['gesture-slider'],
   classNameBindings: ['isDragging:dragging', 'finishAnimation:transitioning'],
   recognizers: 'pan',
-  router: service(),
 
+  router: service(),
+  memory: service('memory-scroll'),
+
+  // public attributes
   slideableModels: null,
   currentModel: null,
   leftOpenDetectionWidth: 10,
+  transitionDuration: 300,
 
+  // private attributes
   isDragging: false,
   finishAnimation: false,
 
-  transitionDuration: 300,
-
-  _getWindowWidth(){
-    return window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-  },
-
+  // computed properties
   currentModelIndex: computed('slideableModels.[]', 'currentModel', function(){
     return this.get('slideableModels').indexOf(this.get('currentModel'));
   }),
@@ -51,10 +50,16 @@ export default Component.extend(RecognizerMixin, {
     return htmlSafe(`transform: translateX(${this.get('currentPosition')}vw)`);
   }),
 
+  currentRouteName: computed(function(){
+    return getOwner(this).lookup('controller:application').get('currentRouteName');
+  }),
+
+  // event handlers
   panStart(e){
     const {
       center,
-      pointerType
+      pointerType,
+      angle,
     } = e.originalEvent.gesture;
 
     if(pointerType === 'touch'){
@@ -64,13 +69,14 @@ export default Component.extend(RecognizerMixin, {
       const windowWidth = this._getWindowWidth();
       const startOffset = 100 * center.x / windowWidth;
 
-      // add a dragging class so any css transitions are disabled
-      // and the pan event is enabled
-      if(!this.get('isOpen')){
-        // only detect initial drag from left side of the window
-        if(startOffset > this.get('leftOpenDetectionWidth')){
-          this.set('isDragging', true);
-        }
+      // only detect initial drag from left side of the window
+      // only detect when angle is 30 deg or lower (fix for iOS)
+      if(startOffset > this.get('leftOpenDetectionWidth')
+        && ((angle > -30 && angle < 30) || (angle > 150 || angle < -150))
+      ){
+        // add a dragging class so any css transitions are disabled
+        // and the pan event is enabled
+        this.set('isDragging', true);
       }
     }
   },
@@ -134,15 +140,17 @@ export default Component.extend(RecognizerMixin, {
 
       if(currentPosition < -50){
         this.set('currentPosition', -100);
-        const targetModel = this.get('nextModel');
+        this.storeScroll();
 
+        const targetModel = this.get('nextModel');
         setTimeout(() => {
           this.get('router').transitionTo(currentRouteName, targetModel);
         }, this.get('transitionDuration'));
       } else if(currentPosition > 50){
         this.set('currentPosition', 100);
-        const targetModel = this.get('previousModel');
+        this.storeScroll();
 
+        const targetModel = this.get('previousModel');
         setTimeout(() => {
           this.get('router').transitionTo(currentRouteName, targetModel);
         }, this.get('transitionDuration'));
@@ -156,5 +164,38 @@ export default Component.extend(RecognizerMixin, {
     this._super(...arguments);
 
     this.set('currentPosition', 0);
+    scheduleOnce('afterRender', () => { this.restoreScroll(); });
+  },
+
+  // functions
+  //TODO: dont run store/restore scroll when in fastboot mode
+  storeScroll(){
+    const elem = this.element.querySelector('.gesture-slider-container .current');
+    const key = this._buildMemoryKey(this.get('currentModel.id'));
+
+    this.get('memory')[key] = elem.scrollTop;
+  },
+
+  restoreScroll(){
+    const prevKey     = this._buildMemoryKey(this.get('previousModel.id'));
+    const currentKey  = this._buildMemoryKey(this.get('currentModel.id'));
+    const nextKey     = this._buildMemoryKey(this.get('nextModel.id'));
+
+    const prev    = this.element.querySelector('.gesture-slider-container .previous');
+    const current = this.element.querySelector('.gesture-slider-container .current');
+    const next    = this.element.querySelector('.gesture-slider-container .next');
+
+    if(prev) prev.scrollTop    = this.get('memory')[prevKey] || 0;
+             current.scrollTop = this.get('memory')[currentKey] || 0;
+    if(next) next.scrollTop    = this.get('memory')[nextKey] || 0;
+  },
+
+  // utils
+  _getWindowWidth(){
+    return window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+  },
+
+  _buildMemoryKey(id){
+    return `gesture-slider/${this.get('currentRouteName')}.${id}`;
   }
 });

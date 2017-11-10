@@ -87,7 +87,7 @@ export default Component.extend(RecognizerMixin, {
 
       // add a dragging class so any css transitions are disabled
       // and the pan event is enabled
-      if(!this.get('isOpen') && additionalEvent === 'panright'){
+      if(!this.get('isOpen') && additionalEvent === 'panright' && !this.get('userAgent.os.isIOS')){
         // only detect initial drag from left side of the window
         if(startOffset < this.get('openDetectionWidth')){
           this.set('isDragging', true);

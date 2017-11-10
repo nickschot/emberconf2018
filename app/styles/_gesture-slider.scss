@@ -9,11 +9,19 @@ $transition-duration: 0.3s;
 
   .gesture-slider-child {
     overflow: hidden;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
 
     &.previous, &.next {
       position: absolute;
       top: 0;
       left: 0;
+    }
+
+    &.current {
+      touch-action: pan-y;
+      height: 100%;
+      overflow: auto;
     }
 
     &.previous {
