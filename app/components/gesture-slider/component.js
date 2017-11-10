@@ -14,6 +14,8 @@ export default Component.extend(RecognizerMixin, {
 
   router: service(),
   memory: service('memory-scroll'),
+  fastboot: service(),
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
 
   // public attributes
   slideableModels: null,
@@ -195,24 +197,28 @@ export default Component.extend(RecognizerMixin, {
   // functions
   //TODO: dont run store/restore scroll when in fastboot mode
   storeScroll(){
-    const elem = this.element.querySelector('.gesture-slider-container .current');
-    const key = this._buildMemoryKey(this.get('currentModel.id'));
+    if(!this.get('isFastBoot')){
+      const elem = this.element.querySelector('.gesture-slider-container .current');
+      const key = this._buildMemoryKey(this.get('currentModel.id'));
 
-    this.get('memory')[key] = elem.scrollTop;
+      this.get('memory')[key] = elem.scrollTop;
+    }
   },
 
   restoreScroll(){
-    const prevKey     = this._buildMemoryKey(this.get('previousModel.id'));
-    const currentKey  = this._buildMemoryKey(this.get('currentModel.id'));
-    const nextKey     = this._buildMemoryKey(this.get('nextModel.id'));
+    if(!this.get('isFastBoot')){
+      const prevKey     = this._buildMemoryKey(this.get('previousModel.id'));
+      const currentKey  = this._buildMemoryKey(this.get('currentModel.id'));
+      const nextKey     = this._buildMemoryKey(this.get('nextModel.id'));
 
-    const prev    = this.element.querySelector('.gesture-slider-container .previous');
-    const current = this.element.querySelector('.gesture-slider-container .current');
-    const next    = this.element.querySelector('.gesture-slider-container .next');
+      const prev    = this.element.querySelector('.gesture-slider-container .previous');
+      const current = this.element.querySelector('.gesture-slider-container .current');
+      const next    = this.element.querySelector('.gesture-slider-container .next');
 
-    if(prev) prev.scrollTop    = this.get('memory')[prevKey] || 0;
-             current.scrollTop = this.get('memory')[currentKey] || 0;
-    if(next) next.scrollTop    = this.get('memory')[nextKey] || 0;
+      if(prev) prev.scrollTop    = this.get('memory')[prevKey] || 0;
+               current.scrollTop = this.get('memory')[currentKey] || 0;
+      if(next) next.scrollTop    = this.get('memory')[nextKey] || 0;
+    }
   },
 
   // utils
