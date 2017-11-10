@@ -1,5 +1,5 @@
 {{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
-  {{#bs-navbar toggleBreakpoint='sm' fluid=true position='fixed-top' id='mobile-header-menu' as |navbar|}}
+  {{#bs-navbar fluid=true position='fixed-top' class='navbar-expand' id='mobile-header-menu' as |navbar|}}
     <span class="navbar-brand">My Brand</span>
     {{#unless isFastBoot}}
       <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
@@ -8,7 +8,7 @@
     {{/unless}}
   {{/bs-navbar}}
 
-  {{#bs-navbar toggleBreakpoint='sm' fluid=false id='main-menu' as |navbar|}}
+  {{#bs-navbar fluid=false position='fixed-bottom' class='navbar-expand' id='main-menu' as |navbar|}}
     {{#navbar.content}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}
