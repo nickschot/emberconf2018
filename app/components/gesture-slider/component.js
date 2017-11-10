@@ -100,10 +100,19 @@ export default Component.extend(RecognizerMixin, {
       const windowWidth = this._getWindowWidth();
 
       if(this.get('isDragging')){
+        // initial target offset calculation
         let targetOffset = 100 * deltaX / windowWidth;
 
-        const targetOffsetMin = this.get('nextModel') ? -100 : -50;
-        const targetOffsetMax = this.get('previousModel') ? 100 : 50;
+        // overflow scrolling bounds
+        const targetOffsetMin = this.get('nextModel')     ? -100 : -34;
+        const targetOffsetMax = this.get('previousModel') ?  100 :  34;
+
+        // calculate overflow scroll offset
+        if(  (!this.get('nextModel') && targetOffset < 0)
+          || (!this.get('previousModel') && targetOffset > 0)
+        ){
+          targetOffset = 100 * (deltaX / 3) / windowWidth;
+        }
 
         // pass the new position taking limits into account
         if(targetOffset < targetOffsetMin){
