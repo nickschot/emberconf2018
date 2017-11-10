@@ -1,0 +1,17 @@
+<div class="gesture-slider-container" style="{{containerStyle}}">
+  {{#if previousModel}}
+    <div class="gesture-slider-child previous">
+      {{~yield previousModel ~}}
+    </div>
+  {{/if}}
+
+  <div class="gesture-slider-child current">
+    {{~yield currentModel ~}}
+  </div>
+
+  {{#if nextModel}}
+    <div class="gesture-slider-child next">
+      {{~yield nextModel ~}}
+    </div>
+  {{/if}}
+</div>

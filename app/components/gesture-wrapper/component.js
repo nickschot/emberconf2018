@@ -74,7 +74,8 @@ export default Component.extend(RecognizerMixin, {
   panStart(e){
     const {
       center,
-      pointerType
+      pointerType,
+      additionalEvent,
     } = e.originalEvent.gesture;
 
     if(pointerType === 'touch'){
@@ -86,7 +87,7 @@ export default Component.extend(RecognizerMixin, {
 
       // add a dragging class so any css transitions are disabled
       // and the pan event is enabled
-      if(!this.get('isOpen')){
+      if(!this.get('isOpen') && additionalEvent === 'panright'){
         // only detect initial drag from left side of the window
         if(startOffset < this.get('openDetectionWidth')){
           this.set('isDragging', true);

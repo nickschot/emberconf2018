@@ -1,6 +1,7 @@
 @import "variables";
 @import "bootstrap";
 @import "side-menu";
+@import "gesture-slider";
 
 body {
   @include media-breakpoint-down(sm){
@@ -30,23 +31,6 @@ body {
       &, .card-img-top {
         border-radius: 0;
       }
-
-      .btn-back {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 0;
-        margin: 0;
-
-        height: 3.3rem;
-        width: 3.3rem;
-        line-height: 3.3rem;
-
-        .material-icons {
-          font-size: 24px;
-          color: #FFF;
-        }
-      }
     }
 
     .memory-scroll {
@@ -60,6 +44,25 @@ body {
 
   @include media-breakpoint-up(md) {
     padding-top: 5rem;
+  }
+}
+
+
+.btn-back {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+
+  height: 3.3rem;
+  width: 3.3rem;
+  line-height: 3.3rem;
+
+  .material-icons {
+    font-size: 24px;
+    color: #FFF;
   }
 }
 
@@ -224,5 +227,14 @@ body {
 
   &:active {
     opacity: 0.5;
+  }
+}
+
+.img-responsive {
+  height: 0;
+  padding-bottom: 56.2%;
+
+  img {
+    width: 100%;
   }
 }

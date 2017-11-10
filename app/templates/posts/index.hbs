@@ -8,7 +8,11 @@
           {{#each model as |post|}}
             {{#link-to 'posts.post' post class="list-group-item" data-post-id=(concat "post-" post.id)}}
               <div class="media">
-                <img data-page-image-id="{{post.id}}" class="mr-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Abstract_in_sand_and_sky_%288398922985%29.jpg/640px-Abstract_in_sand_and_sky_%288398922985%29.jpg" alt="Generic placeholder image" style="width: 30vw">
+                <div class="mr-3" style="width: 30vw">
+                  <div class="img-responsive">
+                    <img data-page-image-id="{{post.id}}" class="img-fluid" src="{{post.headerImage}}" alt="Generic placeholder image">
+                  </div>
+                </div>
                 <div class="media-body">
                   <div class="mt-0 font-weight-bold">{{post.title}}</div>
                 </div>

@@ -2,16 +2,21 @@ import breakpoints from './breakpoints';
 
 const postRoutes = ['posts', 'posts.index'];
 
+const slideDuration = 250;
+
 export default function(){
   this.transition(
     this.fromRoute(true),
     this.toRoute(true),
     this.media(breakpoints.mobile),
-    this.use('explode',{
+    this.use('explode',/*{
       matchBy: 'data-page-image-id',
-      use: ['flyToOverlay', {duration: 250}]
+      use: ['flyToOverlay', {duration: slideDuration}]
+    },*/{
+      pickNew: '.btn-back',
+      use: ['wait', slideDuration, { then: 'fade' }, { duration: slideDuration }]
     },{
-      use: ['slideOverLeft', {duration: 250}]
+      use: ['slideOverLeft', {duration: slideDuration}]
     })
   );
 
@@ -19,11 +24,11 @@ export default function(){
     this.fromRoute('posts.post'),
     this.toRoute(['posts', 'posts.index']),
     this.media(breakpoints.mobile),
-    this.use('explode',{
+    this.use('explode',/*{
       matchBy: 'data-page-image-id',
-      use: ['flyToOverlay', {duration: 250}]
-    },{
-      use: ['slideUnderRight', {duration: 250}]
+      use: ['flyToOverlay', {duration: slideDuration}]
+    },*/{
+      use: ['slideUnderRight', {duration: slideDuration}]
     })
   );
 

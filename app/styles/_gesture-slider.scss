@@ -1,0 +1,37 @@
+$transition-duration: 0.3s;
+
+.gesture-slider {
+  position: relative;
+
+  .gesture-slider-container {
+    will-change: transform;
+  }
+
+  .gesture-slider-child {
+    overflow: hidden;
+
+    &.previous, &.next {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &.previous {
+      transform: translateX(-100vw);
+    }
+
+    &.next {
+      transform: translateX(100vw);
+    }
+  }
+
+  &.transitioning .gesture-slider-container {
+    transition: transform $transition-duration;
+  }
+
+  &.dragging {
+    .gesture-slider-container {
+      transition: none;
+    }
+  }
+}
