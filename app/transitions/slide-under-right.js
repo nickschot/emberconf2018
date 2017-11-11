@@ -26,12 +26,13 @@ export default function slideOver(opts) {
     oldParams['translateX'] = [(oldElementTranslate) + 'px', '0px'];
     newParams['translateX'] = ['0px', (-1 * newElementTranslate) + 'px'];
 
-    this.oldElement.css('z-index', 2);
-    this.newElement.css('z-index', 1);
+    this.newElement.css('z-index', -1);
 
     return LiquidPromise.all([
       animate(this.oldElement, oldParams, opts),
       animate(this.newElement, newParams, opts, 'sliding-under-right')
-    ]);
+    ]).then(() => {
+      this.newElement.css('z-index', '');
+    });
   });
 }

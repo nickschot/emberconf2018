@@ -7,6 +7,7 @@ import { getOwner } from "@ember/application";
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
 import { scheduleOnce } from '@ember/runloop';
 
+//TODO: when transitioning in from some route wich doesn't match, reset scroll
 export default Component.extend(RecognizerMixin, {
   classNames: ['gesture-slider'],
   classNameBindings: ['isDragging:dragging', 'finishAnimation:transitioning'],
@@ -21,7 +22,7 @@ export default Component.extend(RecognizerMixin, {
   slideableModels: null,
   currentModel: null,
   leftOpenDetectionWidth: 10,
-  transitionDuration: 300,
+  transitionDuration: 200,
   triggerVelocity: 0.25,
 
   // private attributes
@@ -69,7 +70,8 @@ export default Component.extend(RecognizerMixin, {
       angle,
     } = e.originalEvent.gesture;
 
-    if(pointerType === 'touch'){
+    // don't allow pan start while the animation is finishing (for now)
+    if(pointerType === 'touch' && !this.get('finishAnimation')){
       // workaround for https://github.com/hammerjs/hammer.js/issues/1132
       if (center.x === 0 && center.y === 0) return;
 
