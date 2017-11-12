@@ -76,7 +76,7 @@ export default Component.extend(RecognizerMixin, {
       if (center.x === 0 && center.y === 0) return;
 
       // write scroll offset for prev/next children
-      this.set('currentScroll', document.documentElement.scrollTop);
+      this.set('currentScroll', document.scrollingElement.scrollTop || document.documentElement.scrollTop);//elem.scrollTop;
 
       const windowWidth = this._getWindowWidth();
       const startOffset = 100 * center.x / windowWidth;
@@ -84,7 +84,7 @@ export default Component.extend(RecognizerMixin, {
       // only detect initial drag from left side of the window
       // only detect when angle is 30 deg or lower (fix for iOS)
       if(startOffset > this.get('leftOpenDetectionWidth')
-        && ((angle > -30 && angle < 30) || (angle > 150 || angle < -150))
+        && ((angle > -25 && angle < 25) || (angle > 155 || angle < -155))
       ){
         // add a dragging class so any css transitions are disabled
         // and the pan event is enabled
@@ -207,10 +207,10 @@ export default Component.extend(RecognizerMixin, {
   //TODO: dont run store/restore scroll when in fastboot mode
   storeScroll(){
     if(!this.get('isFastBoot')){
-      const elem = this.element.querySelector('.gesture-slider-container .current');
+      //const elem = this.element.querySelector('.gesture-slider-container .current');
       const key = this._buildMemoryKey(this.get('currentModel.id'));
 
-      this.get('memory')[key] = document.documentElement.scrollTop;//elem.scrollTop;
+      this.get('memory')[key] = document.scrollingElement.scrollTop || document.documentElement.scrollTop;//elem.scrollTop;
     }
   },
 
@@ -222,7 +222,7 @@ export default Component.extend(RecognizerMixin, {
       const nextKey     = this._buildMemoryKey(this.get('nextModel.id'));
 
       const prev    = this.element.querySelector('.gesture-slider-container .previous');
-      const current = document.documentElement;//this.element.querySelector('.gesture-slider-container .current');
+      const current = document.scrollingElement || document.documentElement;
       const next    = this.element.querySelector('.gesture-slider-container .next');
 
       if(prev) prev.scrollTop    = this.get('memory')[prevKey] || 0;
