@@ -100,38 +100,34 @@ export default Component.extend(RecognizerMixin, {
       pointerType
     } = e.originalEvent.gesture;
 
-    //TODO: add velocity support
-
-    if(pointerType === 'touch'){
+    if(pointerType === 'touch' && this.get('isDragging')){
       // workaround for https://github.com/hammerjs/hammer.js/issues/1132
       if (center.x === 0 && center.y === 0) return;
 
       const windowWidth = this._getWindowWidth();
 
-      if(this.get('isDragging')){
-        // initial target offset calculation
-        let targetOffset = 100 * deltaX / windowWidth;
+      // initial target offset calculation
+      let targetOffset = 100 * deltaX / windowWidth;
 
-        // overflow scrolling bounds
-        const targetOffsetMin = this.get('nextModel')     ? -100 : -34;
-        const targetOffsetMax = this.get('previousModel') ?  100 :  34;
+      // overflow scrolling bounds
+      const targetOffsetMin = this.get('nextModel')     ? -100 : -34;
+      const targetOffsetMax = this.get('previousModel') ?  100 :  34;
 
-        // calculate overflow scroll offset
-        if(  (!this.get('nextModel') && targetOffset < 0)
-          || (!this.get('previousModel') && targetOffset > 0)
-        ){
-          targetOffset = 100 * (deltaX / 3) / windowWidth;
-        }
-
-        // pass the new position taking limits into account
-        if(targetOffset < targetOffsetMin){
-          targetOffset = targetOffsetMin;
-        } else if(targetOffset > targetOffsetMax){
-          targetOffset = targetOffsetMax;
-        }
-
-        this.set('currentPosition', targetOffset);
+      // calculate overflow scroll offset
+      if(  (!this.get('nextModel') && targetOffset < 0)
+        || (!this.get('previousModel') && targetOffset > 0)
+      ){
+        targetOffset = 100 * (deltaX / 3) / windowWidth;
       }
+
+      // pass the new position taking limits into account
+      if(targetOffset < targetOffsetMin){
+        targetOffset = targetOffsetMin;
+      } else if(targetOffset > targetOffsetMax){
+        targetOffset = targetOffsetMax;
+      }
+
+      this.set('currentPosition', targetOffset);
     }
   },
 
@@ -143,7 +139,7 @@ export default Component.extend(RecognizerMixin, {
       pointerType,
     } = e.originalEvent.gesture;
 
-    if(pointerType === 'touch'){
+    if(pointerType === 'touch' && this.get('isDragging')){
       // workaround for https://github.com/hammerjs/hammer.js/issues/1132
       if (center.x === 0 && center.y === 0) return;
 
