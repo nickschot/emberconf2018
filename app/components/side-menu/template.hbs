@@ -1,5 +1,5 @@
 {{#if mask}}
-  <div class="mask" {{action 'close'}} style={{maskStyle}}></div>
+  <div class="mask" {{action 'close'}}></div>
 
   {{#if isFastBoot}}
     {{#if isOpen}}
@@ -8,7 +8,7 @@
   {{/if}}
 {{/if}}
 
-<div class="side-menu-tray" style={{style}}>
+<div class="side-menu-tray">
   {{yield (hash
     link-to=(component 'side-menu-link-to' close='close')
   )}}

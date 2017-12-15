@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { htmlSafe } from '@ember/string';
-import { computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
@@ -16,25 +15,36 @@ export default Component.extend({
   currentPosition: 0,
   maskOpacityOffset: 5,
 
+  didRender(){
+    this.$('.side-menu-tray').css(get(this, 'style'));
+    if(get(this, 'mask')){
+      this.$('.mask').css(get(this, 'maskStyle'));
+    }
+  },
+
   style: computed('isOpen', 'currentPosition', function() {
-    return htmlSafe(`transform: translateX(${this.get('currentPosition')}vw)`);
+    return {
+      transform: `translateX(${this.get('currentPosition')}vw)`
+    };
   }),
 
   maskStyle: computed('isOpen', 'currentPosition', function() {
-    let style = '';
+    const style = {
+      left: '',
+      opacity: ''
+    };
 
     if(!this.get('isOpen') && this.get('currentPosition') === 0){
-      style += 'left: -100vw;';
+      style.left = '-100vw';
     }
 
-    const opacity = this.get('currentPosition') > this.get('maskOpacityOffset')
+    style.opacity = this.get('currentPosition') > this.get('maskOpacityOffset')
       ? (
-          this.get('currentPosition') - this.get('maskOpacityOffset'))
-           / (100 - this.get('maskOpacityOffset')
-        )
+        this.get('currentPosition') - this.get('maskOpacityOffset'))
+        / (100 - this.get('maskOpacityOffset')
+      )
       : 0;
-    style += `opacity: ${opacity};`;
-    return htmlSafe(style)
+    return style;
   }),
 
   actions: {

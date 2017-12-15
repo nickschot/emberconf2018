@@ -23,6 +23,10 @@ module.exports = function(defaults) {
       whitelist: ['bs-collapse', 'bs-navbar']
     },
 
+    'ember-service-worker': {
+      enabled: EmberApp.env() === 'production'
+    },
+
     'asset-cache': {
       include: [
         'assets/**/*'
@@ -33,7 +37,7 @@ module.exports = function(defaults) {
         '*',
         'http://localhost:4000/(.+)'
       ],
-      version: new Date.now() // Changing the version will bust the cache //TODO: use ember-app-version version here
+      version: new Date() // Changing the version will bust the cache //TODO: use ember-app-version version here
     }
   });
 
