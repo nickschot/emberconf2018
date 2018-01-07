@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "side-menu";
 @import "gesture-slider";
+@import "mobile-bar-wrapper";
 
 body {
   @include media-breakpoint-down(sm){

@@ -1,0 +1,22 @@
+$mobile-bar-height: 50px;
+
+.mobile-bar-wrapper {
+  padding: $mobile-bar-height 0;
+}
+
+.mobile-bar {
+  height: $mobile-bar-height;
+  width: 100%;
+  position: fixed;
+  left: 0;
+
+  &.mobile-bar__top {
+    background: darkcyan;
+    top: 0;
+  }
+
+  &.mobile-bar__bottom {
+    background: orange;
+    bottom: 0;
+  }
+}
