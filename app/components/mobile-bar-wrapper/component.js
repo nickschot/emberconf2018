@@ -24,7 +24,7 @@ export default Component.extend({
     for(const touch of e.changedTouches){
       const touchData = this.getCurrentTouchData(touch, e.timeStamp);
 
-      console.log(touchData.current);
+      //console.log('touchmove', touchData.current.deltaY);
 
       get(this, 'currentTouches').replace(touch.identifier, 1, touchData);
     }

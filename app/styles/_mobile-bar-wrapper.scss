@@ -9,6 +9,7 @@ $mobile-bar-height: 50px;
   width: 100%;
   position: fixed;
   left: 0;
+  touch-action: pan-x; // disable vertical scrolling for mobile bars
 
   &.mobile-bar__top {
     background: darkcyan;
@@ -18,6 +19,10 @@ $mobile-bar-height: 50px;
   &.mobile-bar__bottom {
     background: orange;
     bottom: 0;
+  }
+
+  &.mobile-bar__moving {
+    position: absolute;
   }
 
   &.mobile-bar__transitioning {
