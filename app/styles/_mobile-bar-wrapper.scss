@@ -19,4 +19,8 @@ $mobile-bar-height: 50px;
     background: orange;
     bottom: 0;
   }
+
+  &.mobile-bar__transitioning {
+    transition: transform 0.15s;
+  }
 }

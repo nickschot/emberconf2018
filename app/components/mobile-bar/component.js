@@ -1,16 +1,18 @@
 import Component from '@ember/component';
 import { computed, get, set } from '@ember/object';
 import RespondsToScroll from 'ember-responds-to/mixins/responds-to-scroll';
-import $ from 'jquery';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend(RespondsToScroll, {
   classNames: ['mobile-bar'],
-  classNameBindings: ['isBottomBar:mobile-bar__bottom:mobile-bar__top'],
+  classNameBindings: ['isBottomBar:mobile-bar__bottom:mobile-bar__top', 'isTransitioning:mobile-bar__transitioning'],
 
   isLocked: true,
+  height: 50,
 
-  lastScrollTop: 0,
+  lastScrollTop: 0.0,
   currentPosition: 0,
+  isTransitioning: false,
 
   isBottomBar: computed('type', function(){
     return get(this, 'type') === 'bottom';
@@ -24,26 +26,29 @@ export default Component.extend(RespondsToScroll, {
 
   scroll(){
     if(!get(this, 'isLocked')){
-      const scrollTop = this.getScrollTop();
-      const dy = scrollTop - get(this, 'lastScrollTop');
+      set(this, 'isTransitioning', false);
 
-      if(dy === 0){
+      const scrollTop = this.getScrollTop();
+      let dy = scrollTop - get(this, 'lastScrollTop');
+
+      if(dy === 0) {
         return;
       }
 
       set(this, 'lastScrollTop', scrollTop);
 
       this.setPosition(dy);
+      get(this, 'setOpenOrClose').perform();
     }
   },
 
-  setPosition(dy){
-    let newPosition = get(this, 'currentPosition') + dy;
+  setPosition(dy, setAsNewPosition = false){
+    let newPosition = setAsNewPosition ? dy : get(this, 'currentPosition') + dy;
 
     if(newPosition < 0){
       newPosition = 0;
-    } else if(newPosition > 50){
-      newPosition = 50;
+    } else if(newPosition > get(this, 'height')){
+      newPosition = get(this, 'height');
     }
 
     set(this, 'currentPosition', newPosition);
@@ -52,9 +57,30 @@ export default Component.extend(RespondsToScroll, {
       newPosition = -newPosition;
     }
 
-    this.element.style.transform = `translateY(${newPosition}px)`;
-    //this.$().css('transform', `translateY(${newPosition}px)`);
+    //this.element.style.transform = `translateY(${newPosition}px)`;
+    this.$().css('transform', `translateY(${newPosition}px)`);
   },
+
+  /**
+   * Decide whether the bar should be fully visible or completely hidden
+   * @param position
+   */
+  setOpenOrClose: task(function * () {
+    yield timeout(450);
+
+    set(this, 'isTransitioning', true);
+
+    const newPosition = get(this, 'currentPosition') >= get(this, 'height')/2 ? get(this, 'height') : 0;
+    this.setPosition(newPosition, true);
+
+    get(this, 'disableTransition').perform();
+  }).restartable(),
+
+  disableTransition: task(function * () {
+    yield timeout(150);
+
+    set(this, 'isTransitioning', false);
+  }),
 
   getScrollTop(){
     return document.scrollingElement.scrollTop || document.documentElement.scrollTop;
