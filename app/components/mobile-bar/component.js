@@ -94,14 +94,18 @@ export default Component.extend(RespondsToScroll, {
   scroll(){
     const currentState = get(this, 'currentState');
     if(!get(this, 'isLocked')){
+      const scrollTop = this.getScrollTop();
+
       if(currentState === STATE_MOVING_STANDBY){
-        //TODO: this currently does nothing but skip the first scroll event, might be good enough?
+        //this causes a minor skip, but if we don't do this we jump up a little
+        const dy = scrollTop - get(this, 'lastScrollTop');
+        set(this, 'currentPosition', get(this, 'currentPosition') + dy);
+
         this.toState(STATE_MOVING);
       } else if(currentState === STATE_MOVING
              || currentState === STATE_MOVING_CLOSED
              || currentState === STATE_MOVING_OPEN
       ){
-        const scrollTop = this.getScrollTop();
         const dy = scrollTop - get(this, 'lastScrollTop');
 
         if(dy !== 0) {
