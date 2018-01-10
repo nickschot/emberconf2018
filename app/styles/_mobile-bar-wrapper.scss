@@ -24,22 +24,25 @@ $mobile-bar-height: 50px;
 
 //TODO: this is demo css
 .search-menu {
-  padding: 10px;
+  padding: 7px;
   height: 85px;
 
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
 
   input {
+    border-radius: 2px;
     border: none;
     margin: 0;
   }
 
   .nav-item a {
     color: #FFF;
-    padding-bottom: 0.2rem;
+    padding-top: 0.7rem;
+    padding-bottom: calc(0.7rem - 1px);
+    font-size: 0.8em;
 
     &.active {
-      border-bottom: 4px solid #FFF;
+      border-bottom: 2px solid #FFF;
     }
   }
 }
