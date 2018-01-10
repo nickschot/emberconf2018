@@ -12,7 +12,9 @@ const STATE_OPEN           = 6;
 export default Component.extend(RespondsToScroll, {
   classNames: ['mobile-bar'],
   classNameBindings: [
-    'isBottomBar:mobile-bar__bottom:mobile-bar__top'
+    'isBottomBar:mobile-bar--bottom:mobile-bar--top',
+    'isOpen:mobile-bar--open',
+    'isClosed:mobile-bar--closed'
   ],
 
   isLocked: true,
@@ -24,6 +26,15 @@ export default Component.extend(RespondsToScroll, {
 
   isBottomBar: computed('type', function(){
     return get(this, 'type') === 'bottom';
+  }),
+
+  isOpen: computed('currentState', function(){
+    const currentState = get(this, 'currentState');
+    return currentState === STATE_OPEN || currentState === STATE_MOVING_OPEN;
+  }),
+  isClosed: computed('currentState', function(){
+    const currentState = get(this, 'currentState');
+    return currentState === STATE_CLOSED || currentState === STATE_MOVING_CLOSED;
   }),
 
   didInsertElement(){
@@ -87,9 +98,10 @@ export default Component.extend(RespondsToScroll, {
 
       // MOVING_STANDBY prevents jumping around on small movements, acts as a deadzone
       if(currentState === STATE_MOVING_STANDBY){
-        const dy = scrollTop - get(this, 'lastScrollTop');
+        //TODO: this currently does nothing but skip the first scroll event, might be good enough?
 
-        set(this, 'currentPosition', get(this, 'currentPosition') - dy);
+        /*const dy = scrollTop - get(this, 'lastScrollTop');
+        set(this, 'currentPosition', get(this, 'currentPosition') - dy);*/
         this.toState(STATE_MOVING);
       } else if(currentState === STATE_MOVING
              || currentState === STATE_MOVING_CLOSED

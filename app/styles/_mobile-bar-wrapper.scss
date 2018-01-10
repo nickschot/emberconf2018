@@ -11,21 +11,35 @@ $mobile-bar-height: 50px;
   left: 0;
   touch-action: pan-x; // disable vertical scrolling for mobile bars
 
-  &.mobile-bar__top {
+  &.mobile-bar--top {
     background: darkcyan;
     top: 0;
   }
 
-  &.mobile-bar__bottom {
+  &.mobile-bar--bottom {
     background: orange;
     bottom: 0;
   }
+}
 
-  &.mobile-bar__moving {
-    position: absolute;
+//TODO: this is demo css
+.search-menu {
+  padding: 10px;
+  height: 85px;
+
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
+  input {
+    border: none;
+    margin: 0;
   }
 
-  &.mobile-bar__transitioning {
-    transition: transform 0.15s;
+  .nav-item a {
+    color: #FFF;
+    padding-bottom: 0.2rem;
+
+    &.active {
+      border-bottom: 4px solid #FFF;
+    }
   }
 }
