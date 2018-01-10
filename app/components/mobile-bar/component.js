@@ -94,27 +94,20 @@ export default Component.extend(RespondsToScroll, {
   scroll(){
     const currentState = get(this, 'currentState');
     if(!get(this, 'isLocked')){
-      const scrollTop = this.getScrollTop();
-
-      // MOVING_STANDBY prevents jumping around on small movements, acts as a deadzone
       if(currentState === STATE_MOVING_STANDBY){
         //TODO: this currently does nothing but skip the first scroll event, might be good enough?
-
-        /*const dy = scrollTop - get(this, 'lastScrollTop');
-        set(this, 'currentPosition', get(this, 'currentPosition') - dy);*/
         this.toState(STATE_MOVING);
       } else if(currentState === STATE_MOVING
              || currentState === STATE_MOVING_CLOSED
              || currentState === STATE_MOVING_OPEN
       ){
+        const scrollTop = this.getScrollTop();
         const dy = scrollTop - get(this, 'lastScrollTop');
 
-        if(dy === 0) {
-          return;
+        if(dy !== 0) {
+          set(this, 'lastScrollTop', scrollTop);
+          this.setPosition(dy, currentState);
         }
-
-        set(this, 'lastScrollTop', scrollTop);
-        this.setPosition(dy, currentState);
       }
     }
   },
