@@ -1,0 +1,84 @@
+import Motion from 'ember-animated/motion';
+import Tween from 'ember-animated/tween';
+import { rAF } from 'ember-animated/concurrency-helpers';
+
+export default class TrackPan extends Motion {
+  constructor(sprite, opts) {
+    super(sprite, opts);
+
+    this.router = window.TrackPan.router; //TODO: throw warning & disable "cancel" if no router was passed
+    this.trackPan = window.TrackPan.trackPan;
+  }
+
+  * animate() {
+    const sprite = this.sprite;
+    const duration = this.duration;
+
+    const txStart = sprite.transform.tx;
+    const didPan = this.trackPan.get('panning');
+
+    console.log('started animating', sprite.initialBounds, sprite.finalBounds);
+
+    // make sure the panned element is on top during the Motion
+    sprite.applyStyles({
+      zIndex: 2
+    });
+
+    // track pan
+    while (this.trackPan.get('panning')) {
+      // calculate horizontal translation
+      let dx = txStart + this.trackPan.get('dx') - sprite.transform.tx;
+
+      // calculate and enforce horizontal bounds
+      if(sprite.transform.tx + dx > sprite.initialBounds.width){
+        dx = sprite.initialBounds.width - sprite.transform.tx;
+      } else if(sprite.transform.tx + dx < 0){
+        dx = -sprite.transform.tx;
+      }
+
+      sprite.translate(
+        dx,
+        sprite.transform.ty + sprite.initialBounds.top
+      );
+
+      yield rAF();
+    }
+
+    // detect whether we should finish the Motion or cancel and return to the previous route
+    const shouldFinish = sprite.transform.tx >= sprite.initialBounds.width / 2 || !didPan;
+
+    if(shouldFinish){
+      // finish Motion
+      this.xTween = new Tween(
+        sprite.transform.tx,
+        sprite.initialBounds.width,
+        duration
+      );
+    } else {
+      // revert Motion
+      this.xTween = new Tween(
+        sprite.transform.tx,
+        0,
+        duration
+      );
+    }
+
+    // pan stopped, finish animation
+    while(!this.xTween.done){
+      sprite.translate(
+        this.xTween.currentValue - sprite.transform.tx,
+        sprite.transform.ty
+      );
+
+      yield rAF();
+    }
+
+    if(!shouldFinish){
+      // cancel transition, replace target with previousRoute in history
+      // this.trackPan.get('transition').abort();
+      yield this.router.replaceWith(this.trackPan.get('previousRoute'));
+    } else {
+      yield this.router.transitionTo(this.trackPan.get('targetRoute'));
+    }
+  }
+}
