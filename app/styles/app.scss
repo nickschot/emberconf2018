@@ -1,6 +1,6 @@
 @import "variables";
 @import "bootstrap";
-@import "side-menu";
+//@import "side-menu";
 @import "gesture-slider";
 @import "mobile-bar-wrapper";
 
@@ -153,7 +153,7 @@ body {
   }
 }
 
-.side-menu-tray {
+.mobile-menu__tray {
   $side-menu-item-color: #333;
   $side-menu-item-active-bg: #EEE;
 
@@ -163,7 +163,7 @@ body {
     backdrop-filter: blur(10px);
   }
 
-  .side-menu-header {
+  .mobile-menu__header {
     height: 8rem;
     padding: 1rem;
     background: #ec971f;
