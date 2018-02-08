@@ -1,8 +1,10 @@
 @import "variables";
 @import "bootstrap";
-//@import "side-menu";
-@import "gesture-slider";
-@import "mobile-bar-wrapper";
+//@import "gesture-slider";
+
+@import "ember-mobile-menu";
+@import "ember-mobile-pane";
+@import "ember-mobile-bar";
 
 body {
   @include media-breakpoint-down(sm){
@@ -70,7 +72,7 @@ body {
   line-height: inherit;
 }
 
-#mobile-header-menu {
+/*#mobile-header-menu {
   background: #FFF;
   border-bottom: 1px solid $nav-tabs-border-color;
   text-align: center;
@@ -80,6 +82,7 @@ body {
     display: none;
   }
 
+  //TODO: apply this to mobile-bar
   @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
     background: rgba(255, 255, 255, 0.75);
     -webkit-backdrop-filter: blur(10px);
@@ -90,7 +93,7 @@ body {
     margin: 0;
   }
 
-  .side-menu-toggler {
+  .mobile-menu-toggle {
     position: absolute;
     top: 0;
     left: 0;
@@ -107,7 +110,7 @@ body {
       color: #666;
     }
   }
-}
+}*/
 
 #main-menu {
   background: #FFF;
@@ -180,6 +183,10 @@ body {
 
       padding: 0.75rem 0.75rem;
 
+      &.nav-link.disabled {
+        color: $nav-link-disabled-color;
+      }
+
       .material-icons {
         margin-right: 1.5rem;
         font-size: 1.5rem;
@@ -243,4 +250,8 @@ body {
     font-size: 0.85rem;
     line-height: 1.25rem;
   }
+}
+
+.mobile-menu__toggle {
+  padding: 0 0.5rem;
 }

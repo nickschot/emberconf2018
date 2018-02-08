@@ -1,31 +1,73 @@
 {{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
-  {{#bs-navbar fluid=true position='fixed-top' class='navbar-expand' id='mobile-header-menu' as |navbar|}}
-    <span class="navbar-brand">My Brand</span>
-    {{#unless isFastBoot}}
-      <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
-    {{else}}
-      {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='side-menu-toggler'}}{{material-icon 'menu'}}{{/link-to}}
-    {{/unless}}
-  {{/bs-navbar}}
+  {{#side-menu.mobile-menu as |mobile-menu|}}
+    <div class="mobile-menu__header">
+      <h3>My Menu</h3>
+    </div>
+    <div class="mobile-menu__body">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          {{#mobile-menu.link-to 'index' class="nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
+        </li>
+        <li class="nav-item">
+          {{#mobile-menu.link-to 'posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
+        </li>
+        <li class="divider"></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  {{/side-menu.mobile-menu}}
 
-  {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
-    {{#navbar.content}}
-      {{#navbar.nav as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "index" class='text-center'}}
-            {{material-icon 'home' size='lg' class='d-md-none'}}
-            <div>Home</div>
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "posts" class='text-center'}}
-            {{material-icon 'archive' size='lg' class='d-md-none'}}
-            <div>Archive</div>
-          {{/nav.link-to}}
-        {{/nav.item}}
-      {{/navbar.nav}}
-    {{/navbar.content}}
-  {{/bs-navbar}}
+  {{#mobile-bar-wrapper as |wrapper|}}
+    {{liquid-outlet enableGrowth=false class="app outlet"}}
 
-  {{liquid-outlet enableGrowth=false class="app outlet"}}
+    {{#wrapper.mobile-bar type='top' height=46 isLocked=false class='search-menu'}}
+      <div>
+        {{#unless isFastBoot}}
+          {{#mobile-menu-toggle}}{{material-icon 'menu' class='text-light'}}{{/mobile-menu-toggle}}
+        {{else}}
+          {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='side-menu-toggler'}}{{material-icon 'menu'}}{{/link-to}}
+        {{/unless}}
+
+        <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">EmberConf 2018</h1>
+      </div>
+
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">APPS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">MOVIES</a>
+        </li>
+      </ul>
+    {{/wrapper.mobile-bar}}
+
+    {{#wrapper.mobile-bar type='bottom' height=46 isLocked=true}}
+      {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
+        {{#navbar.content}}
+          {{#navbar.nav as |nav|}}
+            {{#nav.item}}
+              {{#nav.link-to "index" class='text-center'}}
+                {{material-icon 'home' size='lg' class='d-md-none'}}
+                <div>Home</div>
+              {{/nav.link-to}}
+            {{/nav.item}}
+            {{#nav.item}}
+              {{#nav.link-to "posts" class='text-center'}}
+                {{material-icon 'archive' size='lg' class='d-md-none'}}
+                <div>Archive</div>
+              {{/nav.link-to}}
+            {{/nav.item}}
+          {{/navbar.nav}}
+        {{/navbar.content}}
+      {{/bs-navbar}}
+    {{/wrapper.mobile-bar}}
+  {{/mobile-bar-wrapper}}
 {{/gesture-wrapper}}

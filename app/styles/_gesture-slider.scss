@@ -1,43 +1,43 @@
 $transition-duration: 0.2s;
 
-.gesture-slider {
+.mobile-pane-old {
   position: relative;
 
-  .gesture-slider-container {
+  .mobile-pane__container {
     will-change: transform;
   }
 
-  .gesture-slider-child {
+  .mobile-pane__child {
     overflow: hidden;
 
-    &.previous, &.next {
+    &.child__previous, &.child__next {
       position: fixed;
       top: 0;
       left: 0;
       max-height: 100vh;
     }
 
-    &.current {
+    &.child__current {
       touch-action: pan-y;
       height: 100%;
       overflow: auto;
     }
 
-    &.previous {
+    &.child__previous {
       transform: translateX(-100vw);
     }
 
-    &.next {
+    &.child__next {
       transform: translateX(100vw);
     }
   }
 
-  &.transitioning .gesture-slider-container {
+  &.mobile-pane--transitioning .mobile-pane__container {
     transition: transform $transition-duration;
   }
 
-  &.dragging {
-    .gesture-slider-container {
+  &.mobile-pane--dragging {
+    .mobile-pane__container {
       transition: none;
     }
   }
