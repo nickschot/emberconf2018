@@ -8,10 +8,6 @@
 
 body {
   @include media-breakpoint-down(sm){
-    .container-top {
-      padding-top: 3.4rem;
-      padding-bottom: 3.1rem;
-    }
 
     .list-group, .card {
       margin-left: -16px;
@@ -46,7 +42,7 @@ body {
   }
 
   @include media-breakpoint-up(md) {
-    padding-top: 5rem;
+
   }
 }
 
@@ -114,12 +110,9 @@ body {
 
 #main-menu {
   background: #FFF;
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
 
   @include media-breakpoint-down(sm){
+    position: unset;
     bottom: 0;
 
     padding: 0;
