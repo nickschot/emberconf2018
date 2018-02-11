@@ -1,13 +1,13 @@
-{{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
+{{#mobile-menu-wrapper isOpen=sideMenuOpen as |mmw|}}
   {{#mobile-bar-wrapper as |wrapper|}}
     {{liquid-outlet enableGrowth=false class="app outlet"}}
 
     {{#wrapper.mobile-bar type='top' collapsibleHeight=46 isLocked=false class='search-menu'}}
       <div>
         {{#unless isFastBoot}}
-          {{#mobile-menu-toggle}}{{material-icon 'menu' class='text-light'}}{{/mobile-menu-toggle}}
+          {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
         {{else}}
-          {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='side-menu-toggler'}}{{material-icon 'menu'}}{{/link-to}}
+          {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}
         {{/unless}}
 
         <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">EmberConf 2018</h1>
@@ -48,9 +48,9 @@
     {{/wrapper.mobile-bar}}
   {{/mobile-bar-wrapper}}
 
-  {{#side-menu.mobile-menu as |mobile-menu|}}
+  {{#mmw.mobile-menu as |mobile-menu|}}
     <div class="mobile-menu__header">
-      <h3>My Menu</h3>
+      <h3>Left Menu</h3>
     </div>
     <div class="mobile-menu__body">
       <ul class="nav flex-column">
@@ -69,5 +69,20 @@
         </li>
       </ul>
     </div>
-  {{/side-menu.mobile-menu}}
-{{/gesture-wrapper}}
+  {{/mmw.mobile-menu}}
+  {{#mmw.mobile-menu type='right' as |mobile-menu|}}
+    <div class="mobile-menu__header">
+      <h3>Right Menu</h3>
+    </div>
+    <div class="mobile-menu__body">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          {{#mobile-menu.link-to 'index' class="nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
+        </li>
+        <li class="nav-item">
+          {{#mobile-menu.link-to 'posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
+        </li>
+      </ul>
+    </div>
+  {{/mmw.mobile-menu}}
+{{/mobile-menu-wrapper}}
