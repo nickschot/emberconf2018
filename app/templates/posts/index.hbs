@@ -2,7 +2,9 @@
 
 {{#mobile-pane activeIndex=pane onChange=(action 'setActiveTabQP') as |mp|}}
 
-  {{to-elsewhere named="mobile-bar-top" send=(component mp.nav class='pt-1 pl-2')}}
+  {{#if elseWhereIsActive}}
+    {{to-elsewhere named="mobile-bar-top" send=(component mp.nav class='pt-1 pl-2')}}
+  {{/if}}
 
   {{#mp.scroller as |mps|}}
     {{#mps.pane title="All"}}
