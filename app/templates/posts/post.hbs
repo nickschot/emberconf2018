@@ -1,7 +1,7 @@
 {{scroll-to position=0 key=(concat "posts.post." model.id)}}
 
-{{#gesture-slider slideableModels=modelCollection currentModel=model as |model|}}
-  <div class="container container-top">
+{{!--#mobile-pane-old slideableModels=modelCollection currentModel=model as |model|}}
+  <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <div class="card post" data-post-id="post-{{model.id}}">
@@ -28,4 +28,63 @@
       </div>
     </div>
   </div>
-{{/gesture-slider}}
+{{/mobile-pane-old--}}
+{{#mobile-pane activeIndex=0 onChange=(action 'setActiveTabQP') as |mp|}}
+
+  {{to-elsewhere named="mobile-bar-top" send=(component mp.nav class='pt-1 pl-2')}}
+
+  {{#mp.scroller as |mps|}}
+    {{#mps.pane title="All"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+    {{/mps.pane}}
+    {{#mps.pane title="Apps"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Some card
+        </div>
+      </div>
+    {{/mps.pane}}
+    {{#mps.pane title="Games"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+    {{/mps.pane}}
+    {{#mps.pane title="Movies"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+      {{network-test}}
+    {{/mps.pane}}
+    {{#mps.pane title="Music"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Some card
+        </div>
+      </div>
+    {{/mps.pane}}
+    {{#mps.pane title="Other"}}
+      <div class="card mt-3 ml-2 mr-2">
+        <div class="card-body">
+          Some card
+        </div>
+      </div>
+    {{/mps.pane}}
+  {{/mp.scroller}}
+{{/mobile-pane}}
