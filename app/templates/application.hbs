@@ -1,7 +1,18 @@
 {{#mobile-menu-wrapper isOpen=sideMenuOpen as |mmw|}}
   {{#mmw.mobile-menu as |mobile-menu|}}
-    <div class="mobile-menu__header">
-      <h3>Left Menu</h3>
+    <div class="mobile-menu__header d-flex flex-column justify-content-between">
+      <div class="header__text">
+        {{user-avatar
+          picture='img/tomster.png'
+          class='z-depth-1'
+        }}
+      </div>
+      <div class="header__btn d-flex justify-content-between">
+        <div>
+          Tomster
+          <small class="d-block">tomster@example.com</small>
+        </div>
+      </div>
     </div>
     <div class="mobile-menu__body">
       <ul class="nav flex-column">
@@ -22,11 +33,11 @@
     </div>
   {{/mmw.mobile-menu}}
 
-  {{#mobile-bar-wrapper as |wrapper|}}
+  {{#mobile-bar-wrapper as |mbw|}}
     {{liquid-outlet enableGrowth=false class="app outlet"}}
 
-    {{#wrapper.mobile-bar type='top' collapsibleHeight=50 isLocked=false class='search-menu'}}
-      <div class="m-1">
+    {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false class='search-menu'}}
+      <div class="m-2">
         {{#unless isFastBoot}}
           {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
         {{else}}
@@ -37,9 +48,9 @@
       </div>
 
       {{from-elsewhere name="mobile-bar-top"}}
-    {{/wrapper.mobile-bar}}
+    {{/mbw.mobile-bar}}
 
-    {{#wrapper.mobile-bar type='bottom' isLocked=true withShadow=false}}
+    {{#mbw.mobile-bar type='bottom' isLocked=true withShadow=false}}
       {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
         {{#navbar.content}}
           {{#navbar.nav as |nav|}}
@@ -58,7 +69,7 @@
           {{/navbar.nav}}
         {{/navbar.content}}
       {{/bs-navbar}}
-    {{/wrapper.mobile-bar}}
+    {{/mbw.mobile-bar}}
   {{/mobile-bar-wrapper}}
 
   {{#mmw.mobile-menu type='right' maxWidth=75 as |mobile-menu|}}

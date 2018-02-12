@@ -2,9 +2,17 @@
 @import "bootstrap";
 //@import "gesture-slider";
 
+// dependencies
 @import "ember-mobile-menu";
 @import "ember-mobile-pane";
 @import "ember-mobile-bar";
+
+// utils
+@import "shadows";
+
+// components
+@import "mobile-menu";
+@import "user-avatar";
 
 body {
   @include media-breakpoint-down(sm){
@@ -149,7 +157,7 @@ body {
   }
 }
 
-.mobile-menu__tray {
+/*.mobile-menu__tray {
   $side-menu-item-color: #333;
   $side-menu-item-active-bg: #EEE;
 
@@ -206,7 +214,7 @@ body {
       border-bottom: 1px solid $side-menu-item-active-bg;
     }
   }
-}
+}*/
 
 .app {
   .container {
