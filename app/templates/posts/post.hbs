@@ -1,12 +1,8 @@
 {{!--scroll-to position=0 key=(concat "posts.post." model.id)--}}
 
-{{#mobile-pane-old slideableModels=modelCollection currentModel=model as |model|}}
-    {{#mbw.mobile-bar type='top' isLocked=true isOverlay=true as |mmw|}}
-      <div class="m-1">
-        {{#link-to 'posts.index'}}{{material-icon 'arrow_back' class='text-light'}}{{/link-to}}
-      </div>
-    {{/mbw.mobile-bar}}
+{{to-elsewhere named="mobile-bar-top-btn" send=(component 'mobile-bar-btn' targetRoute='posts.index' icon='arrow_back')}}
 
+{{#mobile-pane-old slideableModels=modelCollection currentModel=model as |model|}}
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -16,7 +12,6 @@
                 <img data-page-image-id="{{model.id}}" class="img-fluid" src="{{model.headerImage}}" alt="Generic placeholder image">
               </div>
             {{/if}}
-            {{#link-to "posts.index" class="btn btn-link btn-back"}}{{material-icon 'arrow_back'}}{{/link-to}}
             <div class="card-body" style="position: relative; z-index:2;">
               <h4 class="card-title">{{model.title}}</h4>
               <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">

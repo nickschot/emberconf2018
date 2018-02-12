@@ -3,7 +3,7 @@
     <div class="mobile-menu__header d-flex flex-column justify-content-between">
       <div class="header__text">
         {{user-avatar
-          picture='img/tomster.png'
+          picture='/img/tomster.png'
           class='z-depth-1'
         }}
       </div>
@@ -39,7 +39,13 @@
     {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false class='search-menu'}}
       <div class="m-2">
         {{#unless isFastBoot}}
-          {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
+          {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
+            {{#if btn}}
+              {{component btn}}
+            {{else}}
+              {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
+            {{/if}}
+          {{/from-elsewhere}}
         {{else}}
           {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}
         {{/unless}}
