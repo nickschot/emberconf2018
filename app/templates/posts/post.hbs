@@ -29,7 +29,7 @@
     </div>
   </div>
 {{/mobile-pane-old--}}
-{{#mobile-pane activeIndex=0 onChange=(action 'setActiveTabQP') as |mp|}}
+{{#mobile-pane activeIndex=pane onChange=(action 'setActiveTabQP') as |mp|}}
 
   {{to-elsewhere named="mobile-bar-top" send=(component mp.nav class='pt-1 pl-2')}}
 
