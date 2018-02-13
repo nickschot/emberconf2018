@@ -36,24 +36,29 @@
   {{#mobile-bar-wrapper as |mbw|}}
     {{liquid-outlet enableGrowth=false class="app outlet"}}
 
-    {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false class='search-menu'}}
-      <div class="m-2">
-        {{#unless isFastBoot}}
-          {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
-            {{#if btn}}
-              {{component btn}}
+    {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false isOverlay=false class='search-menu'}}
+      <div class="container">
+        <div class="row">
+          <div class="m-2">
+            {{#unless isFastBoot}}
+              {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
+                {{#liquid-if btn use='crossFade'}}
+                  {{liquid-bind btn use='crossFade'}}
+                {{else}}
+                  {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
+                {{/liquid-if}}
+              {{/from-elsewhere}}
             {{else}}
-              {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
-            {{/if}}
-          {{/from-elsewhere}}
-        {{else}}
-          {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}
-        {{/unless}}
+              {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}
+            {{/unless}}
 
-        <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">EmberConf 2018</h1>
+            <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">EmberConf 2018</h1>
+          </div>
+        </div>
+        <div class="row">
+          {{from-elsewhere name="mobile-bar-top"}}
+        </div>
       </div>
-
-      {{from-elsewhere name="mobile-bar-top"}}
     {{/mbw.mobile-bar}}
 
     {{#mbw.mobile-bar type='bottom' isLocked=true withShadow=false}}
