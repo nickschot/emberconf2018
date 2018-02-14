@@ -54,11 +54,21 @@
       </div>
     {{/mps.pane}}
     {{#mps.pane title="Games"}}
-      <div class="card mt-3 ml-2 mr-2">
-        <div class="card-body">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </div>
+      <h3>Nested panes</h3>
+      {{#mobile-pane as |mpn|}}
+        {{#mpn.scroller overScrollFactor=0 as |mpns|}}
+          {{#mpns.pane}}
+            <img class="img-fluid" src="/img/tomster.png">
+          {{/mpns.pane}}
+          {{#mpns.pane}}
+            <img class="img-fluid" src="/img/tomster.png">
+          {{/mpns.pane}}
+          {{#mpns.pane}}
+            <img class="img-fluid" src="/img/tomster.png">
+          {{/mpns.pane}}
+        {{/mpn.scroller}}
+        {{mpn.simple-indicator}}
+      {{/mobile-pane}}
     {{/mps.pane}}
     {{#mps.pane title="Movies"}}
       <div class="card mt-3 ml-2 mr-2">
