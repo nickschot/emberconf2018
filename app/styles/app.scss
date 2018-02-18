@@ -45,7 +45,7 @@ body {
       overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-y; // fix for https://github.com/html-next/ember-gestures/issues/104
+      //touch-action: pan-y; // fix for https://github.com/html-next/ember-gestures/issues/104
     }
   }
 

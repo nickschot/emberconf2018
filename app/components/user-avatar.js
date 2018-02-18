@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed, get } from '@ember/object';
-import { htmlSafe, capitalize } from '@ember/string';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   classNames: ['user-avatar', 'rounded-circle'],
