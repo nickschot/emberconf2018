@@ -19,7 +19,6 @@
   "devDependencies": {
     "bootstrap": "^4.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^3.0.0",
     "ember-bootstrap": "^1.2.0",
     "ember-cached-shoe": "^0.1.1",
     "ember-cli": "~3.0.0",
@@ -41,6 +40,7 @@
     "ember-data": "~3.0.0",
     "ember-elsewhere": "^1.0.4",
     "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^3.4.4",
     "ember-load-initializers": "^1.0.0",
     "ember-material-icons": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
