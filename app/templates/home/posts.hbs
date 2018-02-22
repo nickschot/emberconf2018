@@ -1,0 +1,24 @@
+{{#animated-bind 'home.posts' use=transition duration=150}}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="list-group">
+          {{#each model as |post|}}
+            {{#link-to 'post' post class="list-group-item" data-post-id=(concat "post-" post.id)}}
+              <div class="media">
+                <div class="mr-3" style="width: 30vw">
+                  <div class="img-responsive">
+                    <img data-page-image-id="{{post.id}}" class="img-fluid" src="{{post.headerImage}}" alt="Generic placeholder image">
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="mt-0 font-weight-bold">{{post.title}}</div>
+                </div>
+              </div>
+            {{/link-to}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/animated-bind}}

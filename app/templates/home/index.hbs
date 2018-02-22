@@ -1,0 +1,16 @@
+{{#animated-bind 'home.index' use=transition duration=150}}
+  {{#mobile-pane as |mpn|}}
+    {{#mpn.scroller overScrollFactor=0 as |mpns|}}
+      {{#mpns.pane class="text-center"}}
+        <img class="img-fluid" src="/img/tomster.png">
+      {{/mpns.pane}}
+      {{#mpns.pane class="text-center"}}
+        <img class="img-fluid" src="/img/tomster.png">
+      {{/mpns.pane}}
+      {{#mpns.pane class="text-center"}}
+        <img class="img-fluid" src="/img/tomster.png">
+      {{/mpns.pane}}
+    {{/mpn.scroller}}
+    {{mpn.simple-indicator}}
+  {{/mobile-pane}}
+{{/animated-bind}}

@@ -8,6 +8,6 @@ export default Route.extend({
   setupController(controller, model){
     this._super(controller, model);
 
-    controller.set('modelCollection', this.modelFor('posts'));
+    controller.set('modelCollection', this.modelFor('home.posts'));
   }
 });
