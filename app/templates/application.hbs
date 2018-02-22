@@ -34,19 +34,19 @@
   {{/mmw.mobile-menu}}
 
   {{#mobile-bar-wrapper as |mbw|}}
-    {{liquid-outlet enableGrowth=false class="app outlet"}}
+    {{outlet class="app"}}
 
-    {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false isOverlay=false class='search-menu'}}
+    {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=true isOverlay=false class='search-menu'}}
       <div class="container">
         <div class="row">
           <div class="m-2 d-flex align-items-center">
             {{#unless isFastBoot}}
               {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
-                {{#liquid-if btn use='crossFade'}}
-                  {{liquid-bind btn use='crossFade'}}
+                {{#if btn}}
+                  {{component btn}}
                 {{else}}
                   {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
-                {{/liquid-if}}
+                {{/if}}
               {{/from-elsewhere}}
             {{else}}
               {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}

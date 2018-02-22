@@ -11,35 +11,12 @@
 @import "shadows";
 
 // components
+@import "main-menu";
 @import "mobile-menu";
 @import "user-avatar";
 
 body {
   @include media-breakpoint-down(sm){
-
-    .list-group, .card {
-      margin-left: -16px;
-      margin-right: -16px;
-      border-radius: 0;
-    }
-
-    .list-group {
-      .list-group-item {
-        padding: 0.5rem;
-        color: #333;
-        font-size: 13px;
-        line-height: 13px;
-      }
-    }
-
-    .card {
-      position: relative;
-
-      &, .card-img-top {
-        border-radius: 0;
-      }
-    }
-
     .memory-scroll {
       height: 100vh;
       overflow-x: hidden;
@@ -58,146 +35,6 @@ body {
   vertical-align: middle;
   line-height: inherit;
 }
-
-/*#mobile-header-menu {
-  background: #FFF;
-  border-bottom: 1px solid $nav-tabs-border-color;
-  text-align: center;
-  display: block;
-
-  @include media-breakpoint-up(md){
-    display: none;
-  }
-
-  //TODO: apply this to mobile-bar
-  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-    background: rgba(255, 255, 255, 0.75);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
-  .navbar-brand {
-    margin: 0;
-  }
-
-  .mobile-menu-toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    padding: 0.3rem 0.85rem;
-
-    text-decoration: none;
-    border-right: 1px solid $navbar-light-toggler-border-color;
-
-    .material-icons {
-      display: block;
-      font-size: 1.75rem;
-      line-height: 2.9rem;
-      color: #666;
-    }
-  }
-}*/
-
-#main-menu {
-  background: #FFF;
-
-  @include media-breakpoint-down(sm){
-    position: unset;
-    bottom: 0;
-
-    padding: 0;
-    border-top: 1px solid $nav-tabs-border-color;
-
-    .container {
-      width: auto;
-    }
-
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      background: rgba(255, 255, 255, 0.75);
-      -webkit-backdrop-filter: blur(10px);
-              backdrop-filter: blur(10px);
-    }
-
-    .nav-item a {
-      padding: 0.3rem 1rem 0 1rem;
-
-      .material-icons {
-        font-size: 1.75rem;
-        display: block;
-        line-height: 1.75rem;
-      }
-
-      div {
-        font-size: 0.7em;
-      }
-    }
-  }
-
-  @include media-breakpoint-up(md){
-    top: 0;
-    border-bottom: 1px solid $nav-tabs-border-color;
-  }
-}
-
-/*.mobile-menu__tray {
-  $side-menu-item-color: #333;
-  $side-menu-item-active-bg: #EEE;
-
-  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-    background: rgba(255, 255, 255, 0.9)!important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
-  .mobile-menu__header {
-    height: 8rem;
-    padding: 1rem;
-    background: #ec971f;
-    color: #FFF;
-    margin-bottom: 0.5rem;
-  }
-
-  .nav {
-    .nav-item a {
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: $side-menu-item-color;
-      line-height: 1.5rem;
-
-      padding: 0.75rem 0.75rem;
-
-      &.nav-link.disabled {
-        color: $nav-link-disabled-color;
-      }
-
-      .material-icons {
-        margin-right: 1.5rem;
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        color: lighten($side-menu-item-color, 20%);
-      }
-
-      &.active {
-        background: $side-menu-item-active-bg;
-
-        @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-          background: rgba(darken($side-menu-item-active-bg, 10%), 0.5);
-        }
-
-        .material-icons {
-          color: $side-menu-item-color;
-        }
-      }
-    }
-
-    .divider {
-      margin: 0.5rem 0;
-      height: 0;
-      border-bottom: 1px solid $side-menu-item-active-bg;
-    }
-  }
-}*/
 
 .app {
   .container {
@@ -241,9 +78,6 @@ body {
 }
 
 .nav__item .item__link {
-  font-size: 0.8em;
-}
-
-.scroller__simple-indicator span i {
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  font-size: 0.9em;
+  font-weight: 400;
 }

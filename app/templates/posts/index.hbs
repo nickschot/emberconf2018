@@ -1,6 +1,6 @@
 {{remember-document-scroll key="posts.index"}}
 
-{{#mobile-pane activeIndex=pane lazyRendering=false onChange=(action 'setActiveTabQP') as |mp|}}
+{{#mobile-pane activeIndex=pane lazyRendering=true onChange=(action 'setActiveTabQP') as |mp|}}
 
   {{#if elseWhereIsActive}}
     {{to-elsewhere named="mobile-bar-top" send=(component mp.nav class='pt-1 pl-2')}}

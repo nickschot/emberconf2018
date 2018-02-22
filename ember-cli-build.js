@@ -21,23 +21,6 @@ module.exports = function(defaults) {
       importBootstrapFont: false,
       importBootstrapCSS: false,
       whitelist: ['bs-collapse', 'bs-navbar']
-    },
-
-    'ember-service-worker': {
-      enabled: EmberApp.env() === 'production'
-    },
-
-    'asset-cache': {
-      include: [
-        'assets/**/*'
-      ]
-    },
-    'esw-cache-fallback': {
-      patterns: [
-        '*',
-        'http://localhost:4000/(.+)'
-      ],
-      version: new Date() // Changing the version will bust the cache //TODO: use ember-app-version version here
     }
   });
 
