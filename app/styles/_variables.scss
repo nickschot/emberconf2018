@@ -6,9 +6,14 @@ $primary: #E04E39;
 $body-bg: #FAFBFC;
 $navbar-light-active-color: $primary;
 
+$ember-mobile-bar-bg: $primary;
+
 $list-group-active-border-color: $list-group-border-color;
 $list-group-active-color: $list-group-action-hover-color;
 $list-group-active-bg: $list-group-hover-bg;
 
 $mobile-pane-link-color: #FFF;
 $mobile-pane-active-link-color: #FFF;
+
+$mobile-pane-simple-indicator-bg: rgba(255,255,255,0.4);
+$mobile-pane-simple-indicator-active-bg: #FFF;

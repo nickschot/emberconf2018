@@ -26,12 +26,6 @@
         <li class="nav-item">
           {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
       </ul>
     </div>
   {{/mmw.mobile-menu}}
@@ -45,7 +39,7 @@
     {{#mbw.mobile-bar type='top' class='search-menu'}}
       <div class="container">
         <div class="row">
-          <div class="m-2 d-flex align-items-center">
+          <div class="m-2 my-3 d-flex align-items-center">
             {{#unless isFastBoot}}
               {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
                 {{#if btn}}

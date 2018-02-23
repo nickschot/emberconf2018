@@ -10,8 +10,14 @@ export default Component.extend(PanRecognizer, {
   recognizers: 'pan',
   //useCapture: true,
 
-  panStart(){
-    if(get(this, 'router.currentRouteName') === 'settings.account'){
+  panStart(e){
+    const {
+      center: {
+        x
+      }
+    } = e.originalEvent.gesture;
+
+    if(x < 30 && get(this, 'router.currentRouteName') === 'settings.account'){
       set(get(this, 'trackPan'), 'panning', true);
       set(get(this, 'trackPan'), 'previousRoute', 'post');
       set(get(this, 'trackPan'), 'targetRoute', 'home.posts');
