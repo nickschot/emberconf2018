@@ -80,3 +80,13 @@ body {
   font-size: 0.9em;
   font-weight: 400;
 }
+
+.mobile-page {
+  background: $body-bg;
+  @extend .z-depth-3;
+
+  @include media-breakpoint-down(sm){
+    min-height: 100vh;
+    //background: #FFF;
+  }
+}
