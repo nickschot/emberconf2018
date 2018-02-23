@@ -21,12 +21,20 @@ export class TrackPan extends Motion {
     const txStart = sprite.transform.tx;
     const didPan = this.trackPan.get('panning');
 
-    console.log('started animating', sprite.initialBounds, sprite.finalBounds);
-
     // make sure the panned element is on top during the Motion
     sprite.applyStyles({
       zIndex: 2
     });
+
+    // correct for document scroll
+    sprite.translate(0, -1 * this.trackPan.get('scrollY')); //sprite._$element[0].scrollTop = this.trackPan.get('scrollY');
+
+    const topMobileBars = sprite._$element[0].getElementsByClassName('mobile-bar--top');
+    const bottomMobileBars = sprite._$element[0].getElementsByClassName('mobile-bar--bottom');
+    for(let mb of topMobileBars){
+      mb.style.top = `${this.trackPan.get('scrollY')}px`;
+    }
+    //TODO: bottom bar
 
     // track pan
     while (this.trackPan.get('panning')) {
@@ -39,11 +47,10 @@ export class TrackPan extends Motion {
       } else if(sprite.transform.tx + dx < 0){
         dx = -sprite.transform.tx;
       }
-      console.log('panning', dx);
 
       sprite.translate(
         dx,
-        sprite.transform.ty + sprite.initialBounds.top
+        0
       );
 
       yield rAF();
@@ -72,7 +79,7 @@ export class TrackPan extends Motion {
     while(!this.xTween.done){
       sprite.translate(
         this.xTween.currentValue - sprite.transform.tx,
-        sprite.transform.ty
+        0
       );
 
       yield rAF();
@@ -80,10 +87,12 @@ export class TrackPan extends Motion {
 
     if(!shouldFinish){
       // cancel transition, replace target with previousRoute in history
-      // this.trackPan.get('transition').abort();
-      yield this.router.replaceWith(this.trackPan.get('previousRoute'));
+      //this.trackPan.get('transition').abort();
+      //yield this.router.replaceWith(this.trackPan.get('previousRoute'));
     } else {
-      yield this.router.transitionTo(this.trackPan.get('targetRoute'));
+      //yield this.router.transitionTo(this.trackPan.get('targetRoute'));
     }
+
+    this.trackPan.reset();
   }
 }

@@ -5,5 +5,13 @@ export default Service.extend({
   dx: 0,
   transition: null,
   previousRoute: '',
-  targetRoute: ''
+  targetRoute: '',
+
+  reset(){
+    this.set('panning', false);
+    this.set('dx', 0);
+    this.set('transition', null);
+    this.set('previousRoute', '');
+    this.set('targetRoute', '');
+  }
 });

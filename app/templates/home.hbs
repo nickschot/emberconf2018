@@ -24,6 +24,9 @@
         </li>
         <li class="divider"></li>
         <li class="nav-item">
+          {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item">
@@ -78,6 +81,12 @@
               {{#nav.link-to "home.posts" class='text-center'}}
                 {{material-icon 'archive' size='lg' class='d-md-none'}}
                 <div>Archive</div>
+              {{/nav.link-to}}
+            {{/nav.item}}
+            {{#nav.item}}
+              {{#nav.link-to "home.settings" class='text-center'}}
+                {{material-icon 'settings' size='lg' class='d-md-none'}}
+                <div>Settings</div>
               {{/nav.link-to}}
             {{/nav.item}}
           {{/navbar.nav}}

@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import PanRecognizer from 'ember-mobile-core/mixins/pan-recognizer';
+import PanRecognizer from 'ember-gestures/mixins/recognizers';
 import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 
@@ -8,41 +8,43 @@ export default Component.extend(PanRecognizer, {
   trackPan: service(),
 
   recognizers: 'pan',
+  useCapture: true,
 
-  didPanStart(){
-    console.log('pan start triggered');
+  panStart(){
+    if(get(this, 'router.currentRouteName') === 'settings.account'){
+      console.log('pan start triggered');
 
-    set(get(this, 'trackPan'), 'panning', true);
-    set(get(this, 'trackPan'), 'previousRoute', 'event');
-    set(get(this, 'trackPan'), 'targetRoute', 'index');
+      set(get(this, 'trackPan'), 'panning', true);
+      set(get(this, 'trackPan'), 'previousRoute', 'post');
+      set(get(this, 'trackPan'), 'targetRoute', 'home.posts');
+      set(get(this, 'trackPan'), 'scrollY', window.scrollY);
 
-    //TODO: set some target from somewhere
-    console.log(document.body.tagName, window.scrollY);
-    const transition = get(this, 'router').transitionTo('home.posts');
-    set(get(this, 'trackPan'), 'transition', transition);
-  },
-
-  didPan(e){
-    if(get(this, 'trackPan.panning')) {
-      const {
-        distanceX,
-        // overallVelocityX,
-      } = e.current;
-
-      if (get(this, 'trackPan.panning')) {
-        set(get(this, 'trackPan'), 'dx', distanceX);
-        console.log('pan');
-      }
+      //TODO: set some target from somewhere
+      const transition = get(this, 'router').transitionTo('home.settings');
+      set(get(this, 'trackPan'), 'transition', transition);
     }
   },
 
-  didPanEnd(e){
+  pan(e){
+    const {
+      deltaX,
+      distanceX
+    } = e.originalEvent.gesture;
+
+    console.log('did pan 1');
+
+    if (get(this, 'trackPan.panning')) {
+      set(get(this, 'trackPan'), 'dx', deltaX);
+      console.log('did pan 2', deltaX);
+    }
+  },
+
+  panEnd(e){
+    console.log('end 1');
     if(get(this, 'trackPan.panning')) {
-      if (get(this, 'trackPan.panning')) {
-        set(get(this, 'trackPan'), 'panning', false);
-        set(get(this, 'trackPan'), 'dx', 0);
-        console.log('stop');
-      }
+      set(get(this, 'trackPan'), 'panning', false);
+      set(get(this, 'trackPan'), 'dx', 0);
+      console.log('end 2');
     }
   }
 });
