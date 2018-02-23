@@ -8,12 +8,10 @@ export default Component.extend(PanRecognizer, {
   trackPan: service(),
 
   recognizers: 'pan',
-  useCapture: true,
+  //useCapture: true,
 
   panStart(){
     if(get(this, 'router.currentRouteName') === 'settings.account'){
-      console.log('pan start triggered');
-
       set(get(this, 'trackPan'), 'panning', true);
       set(get(this, 'trackPan'), 'previousRoute', 'post');
       set(get(this, 'trackPan'), 'targetRoute', 'home.posts');
@@ -31,11 +29,8 @@ export default Component.extend(PanRecognizer, {
       distanceX
     } = e.originalEvent.gesture;
 
-    console.log('did pan 1');
-
     if (get(this, 'trackPan.panning')) {
       set(get(this, 'trackPan'), 'dx', deltaX);
-      console.log('did pan 2', deltaX);
     }
   },
 
@@ -44,7 +39,6 @@ export default Component.extend(PanRecognizer, {
     if(get(this, 'trackPan.panning')) {
       set(get(this, 'trackPan'), 'panning', false);
       set(get(this, 'trackPan'), 'dx', 0);
-      console.log('end 2');
     }
   }
 });

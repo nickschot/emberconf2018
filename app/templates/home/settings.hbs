@@ -1,6 +1,25 @@
 <h1 class="m-3">Settings</h1>
 
+<div class="list-group mb-3">
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'settings' size='lg' class='mr-3'}} General {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'account_circle' size='lg' class='mr-3'}} Account {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'notifications' size='lg' class='mr-3'}} Notifications {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
+</div>
+
 <div class="list-group">
-  {{#link-to 'settings.account' class='list-group-item'}}{{material-icon 'settings' size='lg' class='mr-3'}} General {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}{{/link-to}}
-  {{#link-to 'settings.account' class='list-group-item'}}{{material-icon 'account_circle' size='lg' class='mr-3'}} Account{{/link-to}}
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'settings' size='lg' class='mr-3'}} General {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'account_circle' size='lg' class='mr-3'}} Account {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
+  {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+    {{material-icon 'notifications' size='lg' class='mr-3'}} Notifications {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+  {{/link-to}}
 </div>

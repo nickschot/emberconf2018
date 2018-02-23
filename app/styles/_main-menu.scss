@@ -20,7 +20,8 @@
     }
 
     .nav-item a {
-      padding: 0.3rem 1rem 0 1rem;
+      position: relative;
+      padding: 0.3rem 1rem 1rem 1rem;
 
       .material-icons {
         font-size: 1.75rem;
@@ -30,6 +31,12 @@
 
       div {
         font-size: 0.7em;
+
+        // some trickery to keep the menu items the same width while keeping a centered label
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }
