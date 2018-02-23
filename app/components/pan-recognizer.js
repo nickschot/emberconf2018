@@ -41,7 +41,6 @@ export default Component.extend(PanRecognizer, {
   },
 
   panEnd(e){
-    console.log('end 1');
     if(get(this, 'trackPan.panning')) {
       set(get(this, 'trackPan'), 'panning', false);
       set(get(this, 'trackPan'), 'dx', 0);
