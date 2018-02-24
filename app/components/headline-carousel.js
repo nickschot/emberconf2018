@@ -19,7 +19,7 @@ export default Component.extend({
       const newPane = (get(this, 'visiblePane') + 1) % panesLength;
       set(this, 'visiblePane', newPane);
     }
-  }),
+  }).restartable(),
 
   didInsertElement(){
     this._super(...arguments);

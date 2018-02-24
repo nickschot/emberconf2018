@@ -75,6 +75,11 @@ body {
 .mobile-menu__toggle {
   padding: 0 0.5rem;
 }
+.mobile-bar__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%)
+}
 
 .nav__item .item__link {
   font-size: 0.9em;

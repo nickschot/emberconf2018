@@ -38,7 +38,7 @@
       {{outlet}}
     {{/animated-container}}
 
-    {{#mbw.mobile-bar type='top' class='search-menu'}}
+    {{#mbw.mobile-bar type='top'}}
       <div class="container">
         <div class="row">
           <div class="mx-2 my-3 d-flex align-items-center w-100" style="position: relative;">
@@ -52,11 +52,11 @@
 
             {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
               {{#if title}}
-                <h1 class="text-white h6 d-inline-block align-middle mb-0" style="position: absolute; left: 50%; transform: translateX(-50%)">
+                <h1 class="mobile-bar__title text-white h6 d-inline-block align-middle mb-0">
                   {{title}}
                 </h1>
               {{else}}
-                <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">
+                <h1 class="mobile-bar__title text-white h4 font-weight-light d-inline-block align-middle mb-0">
                   EmberConf 2018
                 </h1>
               {{/if}}
