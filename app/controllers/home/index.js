@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import opacity from 'ember-animated/motions/opacity';
-import { htmlSafe } from '@ember/string';
 
 export default Controller.extend({
   transition,
@@ -9,15 +8,15 @@ export default Controller.extend({
   panes: [
     {
       heading: 'This carousel is on a loop.',
-      image: htmlSafe('/img/pixabay/pocket-watch.jpg')
+      image: '/img/pixabay/pocket-watch.jpg'
     },
     {
       heading: `What's under the hood?`,
-      image: htmlSafe('/img/pixabay/cars.jpg')
+      image: '/img/pixabay/cars.jpg'
     },
     {
       heading: 'Through a lens.',
-      image: htmlSafe('/img/pixabay/lens.jpg')
+      image: '/img/pixabay/lens.jpg'
     },
   ],
 });

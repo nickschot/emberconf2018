@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
-import { get, set } from '@ember/object';
+import EmberObject, { get, set, computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   // public
@@ -25,6 +26,16 @@ export default Component.extend({
 
     get(this, 'changePane').perform();
   },
+
+  //TODO: htmlSafe doesn't seem to do anything like this
+  safePanes: computed('panes.@each.{heading,image}', function(){
+    return get(this, 'panes').map((pane) => {
+      return EmberObject.create({
+        heading: get(pane, 'heading'),
+        image: htmlSafe(get(pane, 'image'))
+      });
+    });
+  }),
 
   // pause carousel when hovering with mouse or touching the carousel
   mouseEnter(){
