@@ -1,0 +1,37 @@
+{{to-elsewhere named='mobile-bar-top-title' send='Settings'}}
+
+{{#animated-bind 'home.settings.index' use=transition duration=150}}
+  <div class="mobile-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 offset-md-3">
+          <h1 class="mt-3 mb-3">Settings</h1>
+
+          <div class="list-group mb-3">
+            {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'settings' size='lg' class='mr-3'}} General {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+            {{#link-to 'home.settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'account_circle' size='lg' class='mr-3'}} Account {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+            {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'notifications' size='lg' class='mr-3'}} Notifications {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+          </div>
+
+          <div class="list-group">
+            {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'settings' size='lg' class='mr-3'}} General {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+            {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'account_circle' size='lg' class='mr-3'}} Account {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+            {{#link-to 'settings.account' class='list-group-item list-group-item-action'}}
+              {{material-icon 'notifications' size='lg' class='mr-3'}} Notifications {{material-icon 'keyboard_arrow_right' size='lg' class='float-right'}}
+            {{/link-to}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/animated-bind}}

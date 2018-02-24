@@ -1,34 +1,36 @@
 {{#mobile-menu-wrapper isOpen=sideMenuOpen as |mmw|}}
-  {{#mmw.mobile-menu as |mobile-menu|}}
-    <div class="mobile-menu__header d-flex flex-column justify-content-between">
-      <div class="header__text">
-        {{user-avatar
-          picture='/img/tomster.png'
-          class='z-depth-1'
-        }}
-      </div>
-      <div class="header__btn d-flex justify-content-between">
-        <div>
-          Tomster
-          <small class="d-block">tomster@example.com</small>
+  {{#if menuEnabled}}
+    {{#mmw.mobile-menu as |mobile-menu|}}
+      <div class="mobile-menu__header d-flex flex-column justify-content-between">
+        <div class="header__text">
+          {{user-avatar
+            picture='/img/tomster.png'
+            class='z-depth-1'
+          }}
+        </div>
+        <div class="header__btn d-flex justify-content-between">
+          <div>
+            Tomster
+            <small class="d-block">tomster@example.com</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mobile-menu__body">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          {{#mobile-menu.link-to 'home.index' class="nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
-        </li>
-        <li class="nav-item">
-          {{#mobile-menu.link-to 'home.posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
-        </li>
-        <li class="divider"></li>
-        <li class="nav-item">
-          {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
-        </li>
-      </ul>
-    </div>
-  {{/mmw.mobile-menu}}
+      <div class="mobile-menu__body">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.index' class="nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
+          </li>
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
+          </li>
+          <li class="divider"></li>
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
+          </li>
+        </ul>
+      </div>
+    {{/mmw.mobile-menu}}
+  {{/if}}
 
   {{#mobile-bar-wrapper as |mbw|}}
 
@@ -39,24 +41,30 @@
     {{#mbw.mobile-bar type='top' class='search-menu'}}
       <div class="container">
         <div class="row">
-          <div class="m-2 my-3 d-flex align-items-center">
-            {{#unless isFastBoot}}
-              {{#from-elsewhere name="mobile-bar-top-btn" as |btn|}}
-                {{#if btn}}
-                  {{component btn}}
-                {{else}}
-                  {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
-                {{/if}}
-              {{/from-elsewhere}}
-            {{else}}
-              {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='mobile-menu__toggle'}}{{material-icon 'menu'}}{{/link-to}}
-            {{/unless}}
+          <div class="m-2 my-3 d-flex align-items-center w-100" style="position: relative;">
+            {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
+              {{#if btn}}
+                {{component btn}}
+              {{else if menuEnabled}}
+                {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
+              {{/if}}
+            {{/from-elsewhere}}
 
-            <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">EmberConf 2018</h1>
+            {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
+              {{#if title}}
+                <h1 class="text-white h6 d-inline-block align-middle mb-0" style="position: absolute; left: 50%; transform: translateX(-50%)">
+                  {{title}}
+                </h1>
+              {{else}}
+                <h1 class="text-white h4 font-weight-light d-inline-block align-middle mb-0 ml-3">
+                  EmberConf 2018
+                </h1>
+              {{/if}}
+            {{/from-elsewhere}}
           </div>
         </div>
         <div class="row">
-          {{from-elsewhere name="mobile-bar-top"}}
+          {{from-elsewhere name="mobile-bar-top-second-row"}}
         </div>
       </div>
     {{/mbw.mobile-bar}}
