@@ -1,9 +1,25 @@
 import Controller from '@ember/controller';
 import opacity from 'ember-animated/motions/opacity';
+import { htmlSafe } from '@ember/string';
 
 export default Controller.extend({
   transition,
-  share
+  share,
+
+  panes: [
+    {
+      heading: 'This carousel is on a loop.',
+      image: htmlSafe('/img/pixabay/pocket-watch.jpg')
+    },
+    {
+      heading: `What's under the hood?`,
+      image: htmlSafe('/img/pixabay/cars.jpg')
+    },
+    {
+      heading: 'Through a lens.',
+      image: htmlSafe('/img/pixabay/lens.jpg')
+    },
+  ],
 });
 
 function * transition({ insertedSprites, receivedSprites, removedSprites }) {
@@ -16,7 +32,7 @@ function * transition({ insertedSprites, receivedSprites, removedSprites }) {
   });
 
   removedSprites.forEach(sprite => {
-    opacity(sprite, { to: 0 });
+    //opacity(sprite, { to: 0 });
   });
 }
 

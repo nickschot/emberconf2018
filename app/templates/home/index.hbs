@@ -1,36 +1,8 @@
-{{#animated-bind 'home.index' use=transition duration=75}}
+{{#animated-bind 'home.index' use=transition duration=150}}
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6">
-        {{#mobile-pane class="carousel rounded-large z-depth-1 mt-3" as |mpn|}}
-          {{#mpn.scroller overScrollFactor=0 as |mpns|}}
-            {{#mpns.pane class="text-center"}}
-              <div class="covering-img" style="background-image:url('/img/pixabay/pocket-watch.jpg');">
-                <img class="img-fluid" src="/img/pixabay/pocket-watch.jpg">
-              </div>
-              <div class="carousel__heading">
-                <h3 class="text-white">This carousel is on a loop.</h3>
-              </div>
-            {{/mpns.pane}}
-            {{#mpns.pane class="text-center"}}
-              <div class="covering-img" style="background-image:url('/img/pixabay/auto.jpg');">
-                <img class="img-fluid" src="/img/pixabay/auto.jpg">
-              </div>
-              <div class="carousel__heading">
-                <h3 class="text-white">What's under the hood?</h3>
-              </div>
-            {{/mpns.pane}}
-            {{#mpns.pane class="text-center"}}
-              <div class="covering-img" style="background-image:url('/img/pixabay/lens.jpg');">
-                <img class="img-fluid" src="/img/pixabay/lens.jpg">
-              </div>
-              <div class="carousel__heading">
-                <h3 class="text-white">Through a lens.</h3>
-              </div>
-            {{/mpns.pane}}
-          {{/mpn.scroller}}
-          {{mpn.simple-indicator}}
-        {{/mobile-pane}}
+        {{headline-carousel panes=panes}}
       </div>
     </div>
   </div>
