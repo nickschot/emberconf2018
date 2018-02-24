@@ -4,6 +4,7 @@ export default Component.extend({
   classNames: ['mobile-menu__toggle'],
 
   targetRoute: '',
+  action: null,
   icon: '',
   text: ''
 });

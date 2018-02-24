@@ -4,6 +4,10 @@
   text='Settings'
 )}}
 {{to-elsewhere named='mobile-bar-top-title' send='Account'}}
+{{to-elsewhere named='mobile-bar-top-btn-right' send=(component 'mobile-bar-btn'
+  action=(action 'save')
+  text='Save'
+)}}
 
 {{#animated-container}}
   {{#animated-bind 'post-route' use=transition duration=200}}

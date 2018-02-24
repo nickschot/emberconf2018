@@ -41,12 +41,12 @@
     {{#mbw.mobile-bar type='top' class='search-menu'}}
       <div class="container">
         <div class="row">
-          <div class="m-2 my-3 d-flex align-items-center w-100" style="position: relative;">
+          <div class="mx-2 my-3 d-flex align-items-center w-100" style="position: relative;">
             {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
               {{#if btn}}
-                {{component btn}}
+                {{component btn class="mr-auto"}}
               {{else if menuEnabled}}
-                {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
+                {{#mmw.toggle target='left' class="mr-auto"}}{{material-icon 'menu' class='text-light'}}{{/mmw.toggle}}
               {{/if}}
             {{/from-elsewhere}}
 
@@ -61,6 +61,8 @@
                 </h1>
               {{/if}}
             {{/from-elsewhere}}
+
+            {{from-elsewhere name="mobile-bar-top-btn-right"}}
           </div>
         </div>
         <div class="row">
