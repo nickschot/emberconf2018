@@ -1,4 +1,4 @@
-{{to-elsewhere named='mobile-bar-top-btn-left' send=(component 'mobile-bar-btn'
+{{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
   targetRoute='home.settings.index'
   icon='arrow_back'
   text='Settings'
@@ -10,7 +10,7 @@
 )}}
 
 {{#animated-container}}
-  {{#animated-bind 'post-route' use=transition duration=200}}
+  {{#animated-bind 'post-route' use=transition duration=300}}
     <div class="mobile-page settings">
       <div class="container">
         <div class="row">

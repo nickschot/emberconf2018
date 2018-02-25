@@ -88,11 +88,10 @@ body {
 
 .mobile-page {
   background: $body-bg;
-  @extend .z-depth-3;
 
   @include media-breakpoint-down(sm){
     min-height: 100vh;
-    //background: #FFF;
+    box-shadow: $z-depth-3;
   }
 }
 

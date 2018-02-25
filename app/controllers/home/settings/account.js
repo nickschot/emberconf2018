@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 
 import trackPan from 'ember-fastboot-blog/motions/track-pan';
+import move from 'ember-animated/motions/move';
 
 export default Controller.extend({
   transition,
@@ -12,14 +13,10 @@ export default Controller.extend({
   }
 });
 
-function * transition({ insertedSprites, receivedSprites, removedSprites }) {
+function * transition({ insertedSprites, removedSprites }) {
   insertedSprites.forEach(sprite => {
-    //sprite.translate(sprite.finalBounds.width, 0);
-    //opacity(sprite, { to: 1 });
-  });
-
-  receivedSprites.forEach(sprite => {
-
+    sprite.startAtPixel({ x: window.outerWidth });
+    move(sprite);
   });
 
   removedSprites.forEach(sprite => {
