@@ -10,10 +10,12 @@ let currentTitleSprite = null;
 let transitionDirection = false;
 
 export default Controller.extend({
+  btnLeftIconTransition,
   btnLeftTransition,
   titleTransition,
 
   router: service(),
+  motion: service('-ea-motion'),
 
   transitionDirection: computed({
     get(){
@@ -73,6 +75,7 @@ function * titleTransition({ insertedSprites, removedSprites }) {
     currentTitleSprite = sprite;
 
     if(currentBtnLeftSprite && transitionDirection === 'up'){
+      console.log(currentBtnLeftSprite);
       sprite.startAtSprite(currentBtnLeftSprite);
       move(sprite);
     } else if(transitionDirection === 'down'){

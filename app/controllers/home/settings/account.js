@@ -13,13 +13,23 @@ export default Controller.extend({
   }
 });
 
-function * transition({ insertedSprites, removedSprites }) {
-  insertedSprites.forEach(sprite => {
-    sprite.startAtPixel({ x: window.outerWidth });
-    move(sprite);
-  });
+function transition(initialRender){
+  //if(!initialRender){
+    return function * ({ insertedSprites, removedSprites }) {
+      insertedSprites.forEach(sprite => {
+        sprite.startTranslatedBy(window.outerWidth, 0);
+        //sprite.startAtPixel({ x: window.outerWidth });
+        move(sprite);
+      });
 
-  removedSprites.forEach(sprite => {
-    trackPan(sprite);
-  });
+      removedSprites.forEach(sprite => {
+        sprite.endAtPixel({ x: window.outerWidth });
+        //sprite.endTranslatedBy(window.outerWidth, 0);
+        //move(sprite);
+        //TODO: apply scroll
+        trackPan(sprite);
+      });
+    }
+
+  //}
 }

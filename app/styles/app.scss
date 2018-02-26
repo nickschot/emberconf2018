@@ -135,3 +135,22 @@ body {
     }
   }
 }
+
+.mobile-bar {
+  z-index: 3;
+}
+.animated-orphans {
+  //max-width: 100vw;
+  //overflow-x: hidden;
+  //overflow-y: auto;
+  //position: absolute;
+  //top: 0;
+  //left: 0;
+}
+.animated-container.animated-page {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+}

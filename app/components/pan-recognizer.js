@@ -19,10 +19,10 @@ export default Component.extend(PanRecognizer, {
     } = e.originalEvent.gesture;
 
     if(!(x === 0 && y === 0)){
-      if(x < 30 && get(this, 'router.currentRouteName') === 'settings.account'){
+      if(x < 30 /*&& get(this, 'router.currentRouteName') === 'settings.account'*/){
         set(get(this, 'trackPan'), 'panning', true);
         set(get(this, 'trackPan'), 'previousRoute', 'post');
-        set(get(this, 'trackPan'), 'targetRoute', 'home.posts');
+        set(get(this, 'trackPan'), 'targetRoute', 'home.settings');
         set(get(this, 'trackPan'), 'scrollY', window.scrollY);
 
         //TODO: set some target from somewhere
@@ -38,7 +38,6 @@ export default Component.extend(PanRecognizer, {
     } = e.originalEvent.gesture;
 
     if (get(this, 'trackPan.panning')) {
-      console.log('panning');
       set(get(this, 'trackPan'), 'dx', deltaX);
     }
   },

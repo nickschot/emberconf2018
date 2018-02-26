@@ -10,6 +10,8 @@ export class TrackPan extends Motion {
   constructor(sprite, opts) {
     super(sprite, opts);
 
+    this.xTween = null;
+
     this.router = window.TrackPan.router; //TODO: throw warning & disable "cancel" if no router was passed
     this.trackPan = window.TrackPan.trackPan;
   }
@@ -27,7 +29,7 @@ export class TrackPan extends Motion {
     });
 
     // correct for document scroll
-    sprite.translate(0, -1 * this.trackPan.get('scrollY')); //sprite._$element[0].scrollTop = this.trackPan.get('scrollY');
+    //sprite.translate(0, -1 * this.trackPan.get('scrollY')); //sprite._$element[0].scrollTop = this.trackPan.get('scrollY');
 
     const topMobileBars = sprite._$element[0].getElementsByClassName('mobile-bar--top');
     const bottomMobileBars = sprite._$element[0].getElementsByClassName('mobile-bar--bottom');
@@ -59,12 +61,20 @@ export class TrackPan extends Motion {
     // detect whether we should finish the Motion or cancel and return to the previous route
     const shouldFinish = sprite.transform.tx >= sprite.initialBounds.width / 2 || !didPan;
 
+    let dx;
+    {
+      let initial = sprite.initialBounds;
+      let final = sprite.finalBounds;
+      dx = final.left - initial.left;
+    }
+
     if(shouldFinish){
       // finish Motion
       this.xTween = new Tween(
         sprite.transform.tx,
-        sprite.initialBounds.width,
-        duration
+        sprite.transform.tx + dx,
+        fuzzyZero(dx) ? 0 : duration,
+        this.opts.easing
       );
     } else {
       // revert Motion
@@ -96,3 +106,10 @@ export class TrackPan extends Motion {
     this.trackPan.reset();
   }
 }
+
+// Because sitting around while your sprite animates by 3e-15 pixels
+// is no fun.
+function fuzzyZero(number) {
+  return Math.abs(number) < 0.00001;
+}
+
