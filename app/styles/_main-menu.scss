@@ -1,22 +1,14 @@
 // bottom bar
 #main-menu {
-  background: #FFF;
-
   @include media-breakpoint-down(sm){
     position: unset;
     bottom: 0;
 
     padding: 0;
-    border-top: 1px solid $nav-tabs-border-color;
+    background: none!important;
 
     .container {
       width: auto;
-    }
-
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      background: rgba(255, 255, 255, 0.75);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
     }
 
     .nav-item a {

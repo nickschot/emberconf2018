@@ -1,0 +1,34 @@
+.mobile-bar {
+  @extend .blurred-backdrop;
+
+  // make sure we are above animating mobile-pages but below any sidebars
+  z-index: 3;
+}
+
+.mobile-bar--top    { border-bottom: $mobile-bar-border; /*box-shadow: inset 0 -0.5px 0 rgba(0,0,0,0.5);*/ }
+.mobile-bar--bottom { border-top: $mobile-bar-border; /*box-shadow: inset 0 0.5px 0 rgba(0,0,0,0.5);*/ }
+
+.mobile-bar__icon {
+  margin-left: 0.5rem;
+  width: 24px;
+
+  a, div {
+    display: block;
+    color: $blue;
+  }
+}
+
+.mobile-bar__btn {
+  text-decoration: none!important;
+  color: $blue!important;
+}
+
+.mobile-bar__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%)
+}
+.mobile-bar__title--logo {
+  color: $primary;
+  font-weight: normal!important;
+}
