@@ -3,10 +3,11 @@
 
 $primary: #E04E39;
 
-$body-bg: #FAFBFC;
+$body-bg: #f5f6f7;
 $navbar-light-active-color: $primary;
 
-$ember-mobile-bar-bg: $primary;
+$ember-mobile-bar-bg: #FFF;
+$ember-mobile-bar-color: #333!important;
 
 $list-group-active-border-color: $list-group-border-color;
 $list-group-active-color: $list-group-action-hover-color;

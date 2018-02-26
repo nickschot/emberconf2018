@@ -35,7 +35,7 @@
     {{#mobile-bar-wrapper as |mbw|}}
       {{outlet}}
 
-      {{#mbw.mobile-bar type='top'}}
+      {{#mbw.mobile-bar type='top' withShadow=false}}
         {{#animated-container}}
           <div class="container">
             <div class="row">
@@ -44,17 +44,17 @@
                   {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
                     <div style="width: 24px;">
                       {{#if animatedBtn}}
-                        {{#link-to animatedBtn.targetRoute class='text-white'}}
-                          {{material-icon animatedBtn.icon class='text-light align-top'}}
+                        {{#link-to animatedBtn.targetRoute class=''}}
+                          {{material-icon animatedBtn.icon class='align-top'}}
                         {{/link-to}}
                       {{else}}
-                        {{#mmw.toggle target='left'}}{{material-icon 'menu' class='text-light align-top'}}{{/mmw.toggle}}
+                        {{#mmw.toggle target='left'}}{{material-icon 'menu' class='align-top'}}{{/mmw.toggle}}
                       {{/if}}
                     </div>
                   {{/animated-bind}}
                   {{#animated-bind btn use=btnLeftTransition duration=300 as |animatedBtn|}}
                     {{#if animatedBtn}}
-                      {{#link-to animatedBtn.targetRoute class='text-white'}}
+                      {{#link-to animatedBtn.targetRoute class='mobile-bar__btn'}}
                         {{animatedBtn.text}}
                       {{/link-to}}
                     {{/if}}
@@ -64,11 +64,11 @@
                 {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
                   {{#animated-bind title use=titleTransition duration=300 as |animatedTitle|}}
                     {{#if animatedTitle}}
-                      <h1 class="mobile-bar__title text-white h6 mb-0 font-weight-normal" style="line-height: 1.5;">
+                      <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
                         {{animatedTitle}}
                       </h1>
                     {{else}}
-                      <h1 class="mobile-bar__title text-white h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
+                      <h1 class="mobile-bar__title h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
                         EmberConf 2018
                       </h1>
                     {{/if}}
@@ -85,8 +85,8 @@
         {{/animated-container}}
       {{/mbw.mobile-bar}}
 
-      {{#if menuEnabled}}
-        {{#mbw.mobile-bar type='bottom' withShadow=false}}
+      {{#mbw.mobile-bar type='bottom' withShadow=false}}
+        {{#if menuEnabled}}
           {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
             {{#navbar.content}}
               {{#navbar.nav as |nav|}}
@@ -111,8 +111,8 @@
               {{/navbar.nav}}
             {{/navbar.content}}
           {{/bs-navbar}}
-        {{/mbw.mobile-bar}}
-      {{/if}}
+        {{/if}}
+      {{/mbw.mobile-bar}}
     {{/mobile-bar-wrapper}}
   {{/animated-container}}
 {{/mobile-menu-wrapper}}

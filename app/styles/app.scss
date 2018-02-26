@@ -9,6 +9,7 @@
 
 // utils
 @import "shadows";
+@import "util";
 
 // components
 @import "main-menu";
@@ -154,3 +155,15 @@ body {
   max-width: 100vw;
   overflow: hidden;
 }
+
+.mobile-bar {
+  @extend .blurred-backdrop;
+}
+.mobile-bar--top {
+  border-bottom: 1px solid #CCC;
+}
+.mobile-bar__btn {
+  text-decoration: none!important;
+  color: $blue!important;
+}
+

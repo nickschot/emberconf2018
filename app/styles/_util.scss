@@ -1,0 +1,9 @@
+.blurred-backdrop {
+  $blurred-backdrop-filter: saturate(180%) blur(20px);
+
+  @supports ((backdrop-filter: $blurred-backdrop-filter) or (-webkit-backdrop-filter: $blurred-backdrop-filter)) {
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: $blurred-backdrop-filter;
+    backdrop-filter: $blurred-backdrop-filter;
+  }
+}
