@@ -1,5 +1,5 @@
 {{#if targetRoute}}
-  {{#link-to targetRoute class='text-white'}}{{material-icon icon class='text-light align-top'}} {{text}}{{/link-to}}
+  {{#link-to targetRoute}}{{material-icon icon class='align-top'}} {{text}}{{/link-to}}
 {{else if action}}
-  <a class='text-white' {{action action}}>{{material-icon icon class='text-light align-top'}} {{text}}</a>
+  <a class="d-block" {{action action}}>{{#if icon}}{{material-icon icon class='align-top'}}{{/if}} {{text}}</a>
 {{/if}}

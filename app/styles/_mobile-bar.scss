@@ -9,7 +9,6 @@
 .mobile-bar--bottom { border-top: $mobile-bar-border; /*box-shadow: inset 0 0.5px 0 rgba(0,0,0,0.5);*/ }
 
 .mobile-bar__icon {
-  margin-left: 0.5rem;
   width: 24px;
 
   a, div {
@@ -21,6 +20,10 @@
 .mobile-bar__btn {
   text-decoration: none!important;
   color: $blue!important;
+}
+.mobile-bar__btn--right {
+  position: absolute;
+  right: 0;
 }
 
 .mobile-bar__title {

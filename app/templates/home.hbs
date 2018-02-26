@@ -39,7 +39,7 @@
         {{#animated-container}}
           <div class="container">
             <div class="row">
-              <div class="mx-2 my-3 d-flex align-items-center w-100" style="position: relative; height: 25px;">
+              <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
                 {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
                   {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
                     <div class="mobile-bar__icon">
@@ -75,7 +75,11 @@
                   {{/animated-bind}}
                 {{/from-elsewhere}}
 
-                {{!--from-elsewhere name="mobile-bar-top-btn-right"--}}
+                {{#from-elsewhere name="mobile-bar-top-btn-right" as |btn|}}
+                  {{#animated-bind btn use=btnLeftIconTransition duration=100 as |animatedBtn|}}
+                    {{component animatedBtn class="mobile-bar__btn mobile-bar__btn--right"}}
+                  {{/animated-bind}}
+                {{/from-elsewhere}}
               </div>
             </div>
             <div class="row">
