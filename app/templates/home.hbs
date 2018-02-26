@@ -42,9 +42,9 @@
               <div class="mx-2 my-3 d-flex align-items-center w-100" style="position: relative; height: 25px;">
                 {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
                   {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
-                    <div style="width: 24px;">
+                    <div class="mobile-bar__icon">
                       {{#if animatedBtn}}
-                        {{#link-to animatedBtn.targetRoute class=''}}
+                        {{#link-to animatedBtn.targetRoute}}
                           {{material-icon animatedBtn.icon class='align-top'}}
                         {{/link-to}}
                       {{else}}

@@ -73,9 +73,9 @@ body {
   }
 }
 
-.mobile-menu__toggle {
+/*.mobile-menu__toggle {
   padding: 0 0.5rem;
-}
+}*/
 .mobile-bar__title {
   position: absolute;
   left: 50%;
@@ -162,8 +162,29 @@ body {
 .mobile-bar--top {
   border-bottom: 1px solid #CCC;
 }
+.mobile-bar__icon {
+  margin-left: 0.5rem;
+  width: 24px;
+
+  a, div {
+    display: block;
+    color: $blue;
+  }
+}
 .mobile-bar__btn {
   text-decoration: none!important;
   color: $blue!important;
 }
 
+@include media-breakpoint-down(xs){
+  .list-group {
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+
+    .list-group-item {
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+    }
+  }
+}
