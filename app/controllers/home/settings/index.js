@@ -1,12 +1,28 @@
 import Controller from '@ember/controller';
 import move from 'ember-animated/motions/move';
+import { inject as service } from '@ember/service';
+
+let transitionsService;
 
 export default Controller.extend({
-  transition
+  transition,
+
+  transitions: service(),
+
+  init(){
+    this._super(...arguments);
+
+    transitionsService = this.get('transitions')
+  },
 });
 
-function transition(initialRender) {
-  //if (!initialRender) {
+function transition() {
+  const oldRouteName = transitionsService.get('oldRouteName');
+  const newRouteName = transitionsService.get('newRouteName');
+
+  const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
+
+  if (withinRoute) {
     return function * ({insertedSprites, receivedSprites, removedSprites}) {
       insertedSprites.forEach(sprite => {
         sprite.startTranslatedBy(window.outerWidth / -3, 0);
@@ -20,5 +36,5 @@ function transition(initialRender) {
         move(sprite);
       });
     }
-  //}
+  }
 }

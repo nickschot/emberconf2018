@@ -5,9 +5,9 @@ import { computed, get, set } from '@ember/object';
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
-let currentBtnLeftSprite = null;
-let currentTitleSprite = null;
-let transitionDirection = false;
+let currentBtnLeftSprite;
+let currentTitleSprite;
+let transitionsService;
 
 export default Controller.extend({
   btnLeftIconTransition,
@@ -16,16 +16,13 @@ export default Controller.extend({
 
   router: service(),
   motion: service('-ea-motion'),
+  transitions: service(),
 
-  transitionDirection: computed({
-    get(){
-      return transitionDirection;
-    },
-    set(key, value){
-      transitionDirection = value;
-      return value;
-    }
-  }),
+  init(){
+    this._super(...arguments);
+
+    transitionsService = get(this, 'transitions')
+  },
 
   /**
    * Enable the side menu only on first and second level routes (and third level "index" routes)
@@ -36,8 +33,6 @@ export default Controller.extend({
   })
 });
 
-
-//TODO: change transition depending on route direction (deeper we must move left, shallower we must move to title position)
 function * btnLeftIconTransition({ insertedSprites, removedSprites }) {
   insertedSprites.forEach(sprite => {
     opacity(sprite, { to: 1 });
@@ -50,6 +45,7 @@ function * btnLeftIconTransition({ insertedSprites, removedSprites }) {
 function * btnLeftTransition({ insertedSprites, removedSprites }) {
   insertedSprites.forEach(sprite => {
     currentBtnLeftSprite = sprite;
+    const transitionDirection = transitionsService.get('direction');
 
     if(transitionDirection === 'down'){
       sprite.startAtPixel({ x: window.outerWidth / 2 - sprite.finalBounds.width / 2 });
@@ -60,6 +56,7 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
   });
 
   removedSprites.forEach(sprite => {
+    let transitionDirection = transitionsService.get('direction');
     currentBtnLeftSprite = sprite;
 
     if(transitionDirection === 'up'){
@@ -71,16 +68,23 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
   });
 }
 function * titleTransition({ insertedSprites, removedSprites }) {
+  const oldRouteName = transitionsService.get('oldRouteName');
+  const newRouteName = transitionsService.get('newRouteName');
+  const transitionDirection = transitionsService.get('direction');
+
+  const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
+
   insertedSprites.forEach(sprite => {
     currentTitleSprite = sprite;
 
-    if(currentBtnLeftSprite && transitionDirection === 'up'){
-      console.log(currentBtnLeftSprite);
-      sprite.startAtSprite(currentBtnLeftSprite);
-      move(sprite);
-    } else if(transitionDirection === 'down'){
-      sprite.startAtPixel({ x: window.outerWidth });
-      move(sprite);
+    if(withinRoute){
+      if(currentBtnLeftSprite && transitionDirection === 'up'){
+        sprite.startAtSprite(currentBtnLeftSprite);
+        move(sprite);
+      } else if(transitionDirection === 'down'){
+        sprite.startAtPixel({ x: window.outerWidth });
+        move(sprite);
+      }
     }
 
     opacity(sprite, { from: 0, to: 1 });
@@ -89,12 +93,14 @@ function * titleTransition({ insertedSprites, removedSprites }) {
   removedSprites.forEach(sprite => {
     currentTitleSprite = sprite;
 
-    if(transitionDirection === 'up'){
-      sprite.endAtPixel({ x: window.outerWidth });
-      move(sprite);
-    } else if(transitionDirection === 'down' && currentBtnLeftSprite){
-      sprite.endAtSprite(currentBtnLeftSprite);
-      move(sprite);
+    if(withinRoute){
+      if(transitionDirection === 'up'){
+        sprite.endAtPixel({ x: window.outerWidth });
+        move(sprite);
+      } else if(transitionDirection === 'down' && currentBtnLeftSprite){
+        sprite.endAtSprite(currentBtnLeftSprite);
+        move(sprite);
+      }
     }
     opacity(sprite, { to: 0 });
   });

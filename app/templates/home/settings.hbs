@@ -1,3 +1,5 @@
 {{#pan-recognizer class='pan-recognizer'}}
-  {{outlet}}
+  {{#animated-bind 'home.settings' use=transition duration=150}}
+    {{outlet}}
+  {{/animated-bind}}
 {{/pan-recognizer}}
