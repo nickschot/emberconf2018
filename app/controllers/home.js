@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed, get, set } from '@ember/object';
+import { timeout } from 'ember-concurrency';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
@@ -13,6 +14,7 @@ export default Controller.extend({
   btnLeftIconTransition,
   btnLeftTransition,
   titleTransition,
+  btnRightTransition,
 
   router: service(),
   motion: service('-ea-motion'),
@@ -34,18 +36,14 @@ export default Controller.extend({
 });
 
 function * btnLeftIconTransition({ insertedSprites, removedSprites }) {
-  insertedSprites.forEach(sprite => {
-    opacity(sprite, { to: 1 });
-  });
-
-  removedSprites.forEach(sprite => {
-    opacity(sprite, { to: 0 });
-  });
+  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1 }); });
+  removedSprites.forEach(sprite => { opacity(sprite, { to: 0 }); });
 }
 function * btnLeftTransition({ insertedSprites, removedSprites }) {
+  const transitionDirection = transitionsService.get('direction');
+
   insertedSprites.forEach(sprite => {
     currentBtnLeftSprite = sprite;
-    const transitionDirection = transitionsService.get('direction');
 
     if(transitionDirection === 'down'){
       sprite.startAtPixel({ x: window.outerWidth / 2 - sprite.finalBounds.width / 2 });
@@ -56,7 +54,6 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
   });
 
   removedSprites.forEach(sprite => {
-    let transitionDirection = transitionsService.get('direction');
     currentBtnLeftSprite = sprite;
 
     if(transitionDirection === 'up'){
@@ -66,6 +63,20 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
 
     opacity(sprite, { to: 0 });
   });
+}
+function * btnRightTransition({ insertedSprites, removedSprites }) {
+  removedSprites.forEach(sprite => {
+    opacity(sprite, { to: 0 });
+  });
+
+  // delay right button fade in until other transitions are done
+  if(insertedSprites){
+    yield timeout(300);
+
+    insertedSprites.forEach(sprite => {
+      opacity(sprite, { to: 1 });
+    });
+  }
 }
 function * titleTransition({ insertedSprites, removedSprites }) {
   const oldRouteName = transitionsService.get('oldRouteName');
