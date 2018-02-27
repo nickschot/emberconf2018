@@ -137,3 +137,8 @@ body.transitioning {
     }
   }
 }
+
+//TODO: this is necessary for guaranteeing ember-animated animation performance (especially on Android)
+.animated-orphans > *, .mobile-page {
+  will-change: transform, opacity;
+}

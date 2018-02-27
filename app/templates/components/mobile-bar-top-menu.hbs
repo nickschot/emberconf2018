@@ -3,25 +3,28 @@
     <div class="row">
       <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
         {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
-          {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
-            <div class="mobile-bar__icon-btn">
-              {{#if animatedBtn}}
-                {{#link-to animatedBtn.targetRoute class=(if animatedBtn.scaleIcon 'mobile-bar__icon-btn--scale-icon')}}
-                  {{material-icon animatedBtn.icon class='align-top'}}
-                {{/link-to}}
-              {{else}}
-                {{component menuToggleComponent}}
-                {{!--#mmw.toggle target='left'}}{{material-icon 'menu' class='align-top'}}{{/mmw.toggle--}}
+          <div class="d-flex">
+            {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
+              {{#if animatedBtn.icon}}
+                {{mobile-bar-btn
+                  targetRoute=animatedBtn.targetRoute
+                  action=animatedBtn.action
+                  icon=animatedBtn.icon
+                  scaleIcon=animatedBtn.scaleIcon
+                  class='mobile-bar__icon-btn'
+                }}
               {{/if}}
-            </div>
-          {{/animated-bind}}
-          {{#animated-bind btn use=btnLeftTransition duration=300 as |animatedBtn|}}
-            {{#if animatedBtn}}
-              {{#link-to animatedBtn.targetRoute class='mobile-bar__btn'}}
-                {{animatedBtn.text}}
-              {{/link-to}}
-            {{/if}}
-          {{/animated-bind}}
+            {{/animated-bind}}
+            {{#animated-bind btn use=btnLeftTransition duration=300 as |animatedBtn|}}
+              {{#if animatedBtn.text}}
+                {{mobile-bar-btn
+                  targetRoute=animatedBtn.targetRoute
+                  action=animatedBtn.action
+                  text=animatedBtn.text
+                }}
+              {{/if}}
+            {{/animated-bind}}
+          </div>
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-title" as |title|}}

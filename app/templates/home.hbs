@@ -46,6 +46,11 @@
       {{/mbw.mobile-bar}}
 
       {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
+        {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+          action=mmw.actions.toggle
+          icon='menu'
+        )}}
+
         {{#mbw.mobile-bar type='bottom' withShadow=false}}
             {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
               {{#navbar.content}}

@@ -27,7 +27,8 @@
   }
 }
 
-.mobile-bar__btn {
+.mobile-bar__btn a {
+  display: block;
   text-decoration: none!important;
   color: $blue!important;
 }
@@ -40,7 +41,7 @@
   color: #000;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
 }
 .mobile-bar__title--logo {
   color: $primary;
