@@ -76,6 +76,10 @@ body {
 }
 
 .carousel {
+  .mobile-pane__scroller {
+    will-change: unset;
+  }
+
   .mobile-pane__pane {
     position: relative;
 

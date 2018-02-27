@@ -33,20 +33,17 @@ function transition(){
   if(withinRoute){
     return function * ({ insertedSprites, removedSprites }) {
       insertedSprites.forEach(sprite => {
-        sprite.applyStyles({
-          zIndex: 2
-        });
-        sprite.startTranslatedBy(window.outerWidth, 0);
-        //sprite.startAtPixel({ x: window.outerWidth });
+        sprite.applyStyles({zIndex: 2});
+        sprite.startTranslatedBy(document.body.clientWidth, 0);
         move(sprite);
       });
 
       removedSprites.forEach(sprite => {
-        //sprite.endAtPixel({ x: window.outerWidth });
-        sprite.endTranslatedBy(window.outerWidth, 0);
-        //move(sprite);
+        sprite.applyStyles({zIndex: 2});
+        sprite.endTranslatedBy(document.body.clientWidth, 0);
+        move(sprite);
         //TODO: apply scroll
-        trackPan(sprite);
+        //trackPan(sprite);
       });
     }
 

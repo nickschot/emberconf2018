@@ -41,7 +41,7 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
     currentBtnLeftSprite = sprite;
 
     if(transitionDirection === 'down'){
-      sprite.startAtPixel({ x: window.outerWidth / 2 - sprite.finalBounds.width / 2 });
+      sprite.startAtPixel({ x: document.body.clientWidth / 2 - sprite.finalBounds.width / 2 });
       move(sprite);
     }
 
@@ -52,7 +52,7 @@ function * btnLeftTransition({ insertedSprites, removedSprites }) {
     currentBtnLeftSprite = sprite;
 
     if(transitionDirection === 'up'){
-      sprite.endAtPixel({ x: window.outerWidth / 2 - sprite.initialBounds.width / 2 });
+      sprite.endAtPixel({ x: document.body.clientWidth / 2 - sprite.initialBounds.width / 2 });
       move(sprite);
     }
 
@@ -88,7 +88,7 @@ function * titleTransition({ insertedSprites, removedSprites }) {
         sprite.startAtSprite(currentBtnLeftSprite);
         move(sprite);
       } else if(transitionDirection === 'down'){
-        sprite.startAtPixel({ x: window.outerWidth });
+        sprite.startAtPixel({ x: document.body.clientWidth });
         move(sprite);
       }
     }
@@ -101,7 +101,7 @@ function * titleTransition({ insertedSprites, removedSprites }) {
 
     if(withinRoute){
       if(transitionDirection === 'up'){
-        sprite.endAtPixel({ x: window.outerWidth });
+        sprite.endAtPixel({ x: document.body.clientWidth });
         move(sprite);
       } else if(transitionDirection === 'down' && currentBtnLeftSprite){
         sprite.endAtSprite(currentBtnLeftSprite);

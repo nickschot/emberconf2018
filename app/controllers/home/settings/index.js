@@ -25,13 +25,13 @@ function transition() {
   if (withinRoute) {
     return function * ({insertedSprites, receivedSprites, removedSprites}) {
       insertedSprites.forEach(sprite => {
-        sprite.startTranslatedBy(window.outerWidth / -3, 0);
+        sprite.startTranslatedBy(document.body.clientWidth / -3, 0);
         move(sprite);
       });
 
       removedSprites.forEach(sprite => {
         //sprite.endAtPixel({ x: window.outerWidth / -3 });
-        sprite.endTranslatedBy(window.outerWidth / -3, 0);
+        sprite.endTranslatedBy(document.body.clientWidth / -3, 0);
         //TODO: apply scroll
         move(sprite);
       });
