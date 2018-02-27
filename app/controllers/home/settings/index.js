@@ -12,7 +12,7 @@ export default Controller.extend({
   init(){
     this._super(...arguments);
 
-    transitionsService = this.get('transitions')
+    transitionsService = this.get('transitions');
   },
 });
 

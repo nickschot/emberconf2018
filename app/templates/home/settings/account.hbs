@@ -1,8 +1,10 @@
+
 {{scroll-to position=0 key='home.settings.account'}}
 
 {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
   targetRoute='home.settings.index'
-  icon='arrow_back'
+  icon='keyboard_arrow_left'
+  scaleIcon=true
   text='Settings'
 )}}
 {{to-elsewhere named='mobile-bar-top-title' send='Account'}}
@@ -11,32 +13,32 @@
   text='Save'
 )}}
 
-  {{#animated-bind 'post-route' rules=transition duration=300}}
-    <div class="mobile-page settings">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-6 offset-md-3">
-            <h1 class="mt-3 mb-0 d-none d-md-block">Account</h1>
+{{#animated-bind 'post-route' rules=transition duration=300}}
+  <div class="mobile-page settings">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 offset-md-3">
+          <h1 class="mt-3 mb-0 d-none d-md-block">Account</h1>
 
-            {{#bs-form formLayout='vertical' class="mt-5" as |form|}}
-              <div class="d-flex">
-                {{user-avatar picture='/img/tomster.png' class='user-avatar--large z-depth-1 mr-3'}}
-                <div style="flex-grow: 1;">
-                  {{form.element controlType="text" label="Name" property="name" required=true}}
-                </div>
+          {{#bs-form formLayout='vertical' class="mt-5" as |form|}}
+            <div class="d-flex">
+              {{user-avatar picture='/img/tomster.png' class='user-avatar--large z-depth-1 mr-3'}}
+              <div style="flex-grow: 1;">
+                {{form.element controlType="text" label="Name" property="name" required=true}}
               </div>
+            </div>
 
-              {{form.element controlType="date" label="Birthdate" property="birthdate" required=true class="mt-3"}}
+            {{form.element controlType="date" label="Birthdate" property="birthdate" required=true class="mt-3"}}
 
-              <hr class="mt-4 mb-3">
+            <hr class="mt-4 mb-3">
 
-              {{form.element controlType="email" label="Email" property="email" required=true}}
-              {{form.element controlType="password" label="Password" property="password" required=true}}
+            {{form.element controlType="email" label="Email" property="email" required=true}}
+            {{form.element controlType="password" label="Password" property="password" required=true}}
 
-              {{bs-button defaultText="Save" type="primary" buttonType="submit" class="d-none d-sm-block"}}
-            {{/bs-form}}
-          </div>
+            {{bs-button defaultText="Save" type="primary" buttonType="submit" class="d-none d-sm-block"}}
+          {{/bs-form}}
         </div>
       </div>
     </div>
-  {{/animated-bind}}
+  </div>
+{{/animated-bind}}

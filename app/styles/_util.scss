@@ -7,3 +7,26 @@
     backdrop-filter: $blurred-backdrop-filter;
   }
 }
+
+.img-responsive {
+  height: 0;
+  padding-bottom: 56.2%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.covering-img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  img {
+    visibility: hidden;
+  }
+}
+
+.rounded-large {
+  border-radius: 0.625rem;
+}

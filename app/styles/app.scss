@@ -58,15 +58,6 @@ body {
   }
 }
 
-.img-responsive {
-  height: 0;
-  padding-bottom: 56.2%;
-
-  img {
-    width: 100%;
-  }
-}
-
 .post {
   .card-text {
     font-size: 0.85rem;
@@ -74,40 +65,14 @@ body {
   }
 }
 
-/*.mobile-menu__toggle {
-  padding: 0 0.5rem;
-}*/
-
 .nav__item .item__link {
   font-size: 0.9em;
   font-weight: 400;
 }
 
-.mobile-page {
-  background: $body-bg;
-
-  @include media-breakpoint-down(sm){
-    min-height: 100vh;
-    box-shadow: $z-depth-3;
-  }
-}
-
 // carousel help classes
 .mobile-pane__pane .covering-img {
   height: 100%;
-}
-.covering-img {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  img {
-    visibility: hidden;
-  }
-}
-
-.rounded-large {
-  border-radius: 0.625rem;
 }
 
 .carousel {
@@ -133,21 +98,27 @@ body {
   }
 }
 
-
-.animated-orphans {
-  //max-width: 100vw;
-  //overflow-x: hidden;
-  //overflow-y: auto;
-  //position: absolute;
-  //top: 0;
-  //left: 0;
-}
 .animated-container.animated-page {
   height: 100vh;
   max-height: 100vh;
   width: 100vw;
   max-width: 100vw;
   overflow: hidden;
+}
+
+body.transitioning {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .mobile-page {
+    background: $body-bg;
+
+    @include media-breakpoint-down(sm){
+      min-height: 100vh;
+      box-shadow: $z-depth-3;
+    }
+  }
 }
 
 @include media-breakpoint-down(xs){
