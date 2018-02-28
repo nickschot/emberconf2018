@@ -30,9 +30,11 @@ export default Component.extend({
   }
 });
 
-function * btnLeftIconTransition({ insertedSprites, removedSprites }) {
-  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1 }); });
-  removedSprites.forEach(sprite => { opacity(sprite, { to: 0 }); });
+function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) {
+  removedSprites.forEach(sprite => { opacity(sprite, { to: 0, duration: duration / 2 }); });
+  yield timeout(duration * 0.4); // prevents glitching the btnLeftTransition
+  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1, duration: duration * 0.6 }); });
+
 }
 function * btnLeftTransition({ insertedSprites, removedSprites }) {
   const transitionDirection = transitionsService.get('direction');
@@ -84,6 +86,20 @@ function titleTransition(){
 
   if(withinRoute){
     return function * ({ insertedSprites, removedSprites }) {
+      removedSprites.forEach(sprite => {
+        currentTitleSprite = sprite;
+
+        if (transitionDirection === 'up') {
+          sprite.endAtPixel({x: document.body.clientWidth});
+          move(sprite);
+        } else if (transitionDirection === 'down' && currentBtnLeftSprite) {
+          sprite.endAtSprite(currentBtnLeftSprite);
+          move(sprite);
+        }
+
+        opacity(sprite, {to: 0});
+      });
+
       insertedSprites.forEach(sprite => {
         currentTitleSprite = sprite;
 
@@ -98,19 +114,6 @@ function titleTransition(){
         opacity(sprite, {from: 0, to: 1});
       });
 
-      removedSprites.forEach(sprite => {
-        currentTitleSprite = sprite;
-
-        if (transitionDirection === 'up') {
-          sprite.endAtPixel({x: document.body.clientWidth});
-          move(sprite);
-        } else if (transitionDirection === 'down' && currentBtnLeftSprite) {
-          sprite.endAtSprite(currentBtnLeftSprite);
-          move(sprite);
-        }
-
-        opacity(sprite, {to: 0});
-      });
     };
   } else {
     return function * ({ insertedSprites, removedSprites, duration }) {

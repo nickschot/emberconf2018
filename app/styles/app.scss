@@ -190,4 +190,15 @@ body.transitioning {
       margin-bottom: -1px;
     }
   }
+
+  // make the tabs share the full width on small screen
+  @include media-breakpoint-down(sm){
+    .nav__scroller {
+      display: flex;
+
+      li {
+        width: 50%;
+      }
+    }
+  }
 }

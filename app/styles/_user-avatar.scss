@@ -3,10 +3,9 @@
   height: 3rem;
   line-height: 3rem;
   text-align: center;
+
+  @extend .covering-img;
   background-color: #cff0fc;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 
   font-size: 1rem;
   color: rgba(255,255,255,0.8);
