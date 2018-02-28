@@ -121,10 +121,12 @@ body {
     line-height: 1.25rem;
   }
 
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-down(xs){
     margin-left: -$grid-gutter-width/2;
     margin-right: -$grid-gutter-width/2;
     border: none;
+
+    min-height: 100vh;
   }
 }
 
