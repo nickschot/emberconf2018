@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('settings', function(){
       this.route('account')
     });
+    this.route('contact');
   });
   this.route('post', {
     path: 'home/posts/:post_id'

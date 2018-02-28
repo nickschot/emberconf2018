@@ -1,0 +1,72 @@
+{{#animated-bind 'home.contact' use=transition duration=150}}
+  <div class="contact">
+    <div class="contact-map">
+      {{#leaflet-map
+         lat=lat
+         lng=lng
+         zoom=zoom
+         attributionControl=false
+
+         zoomControl=false
+         dragging=false
+         doubleClickZoom=false
+         boxZoom=false
+         touchZoom=false
+         scrollWheelZoom=false
+         tap=false
+      }}
+        {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+        {{marker-layer location=emberConfLocation}}
+      {{/leaflet-map}}
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+          <div class="card">
+            {{#mobile-pane activeIndex=pane as |mp|}}
+              <div class="card-header pt-1 px-2 pb-0 bg-primary z-depth-1">
+                {{mp.nav}}
+              </div>
+
+              {{#mp.scroller as |mps|}}
+                {{#mps.pane title="General"}}
+                  <div class="card-body">
+                    <h3 class="text-primary mb-3">Find us at</h3>
+
+                    <p>
+                      <h5 class="text-secondary">The Oregon Convention Center</h5>
+                      777 NE Martin Luther King Jr Blvd<br>
+                      Portland, OR 97232
+                    </p>
+                  </div>
+                {{/mps.pane}}
+                {{#mps.pane title="Contact us"}}
+                  <div class="card-body">
+                    {{#bs-form formLayout='vertical' as |form|}}
+                      {{form.element controlType="text" placeholder="Name" property="name" required=true}}
+                      {{form.element controlType="email" placeholder="Email" property="email" required=true}}
+
+                      {{form.element controlType="textarea" placeholder="Question" property="question" required=true}}
+
+                      {{bs-button defaultText="Send" type="primary" buttonType="submit" class="btn-block"}}
+                    {{/bs-form}}
+                  </div>
+                {{/mps.pane}}
+              {{/mp.scroller}}
+            {{/mobile-pane}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+          <div class="text-muted text-right mb-3">
+            <small>
+              Map by <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy;&nbsp;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy;&nbsp;<a href="https://carto.com/attribution">CARTO</a>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/animated-bind}}

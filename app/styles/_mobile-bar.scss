@@ -18,7 +18,7 @@
 
   a, div {
     display: block;
-    color: $blue;
+    color: $primary;
   }
 }
 .mobile-bar__icon-btn--scale-icon {
@@ -30,7 +30,7 @@
 .mobile-bar__btn a {
   display: block;
   text-decoration: none!important;
-  color: $blue!important;
+  color: $primary!important;
 }
 .mobile-bar__btn--right {
   position: absolute;

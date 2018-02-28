@@ -29,6 +29,9 @@
           </li>
           <li class="divider"></li>
           <li class="nav-item">
+            {{#mobile-menu.link-to "home.contact" class='nav-link'}}{{material-icon 'question_answer'}} Contact{{/mobile-menu.link-to}}
+          </li>
+          <li class="nav-item">
             {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
           </li>
         </ul>
@@ -65,6 +68,12 @@
                     {{#nav.link-to "home.posts" class='text-center'}}
                       {{material-icon 'archive' class='d-md-none'}}
                       <div>Archive</div>
+                    {{/nav.link-to}}
+                  {{/nav.item}}
+                  {{#nav.item}}
+                    {{#nav.link-to "home.contact" class='text-center'}}
+                      {{material-icon 'question_answer' class='d-md-none'}}
+                      <div>Contact</div>
                     {{/nav.link-to}}
                   {{/nav.item}}
                   {{#nav.item}}
