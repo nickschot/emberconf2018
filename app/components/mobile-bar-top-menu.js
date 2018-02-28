@@ -1,9 +1,9 @@
 import Component from '@ember/component';
-
 import { inject as service } from '@ember/service';
 import { computed, get } from '@ember/object';
-import { timeout } from 'ember-concurrency';
 
+import { Promise } from 'rsvp';
+import { timeout } from 'ember-concurrency'; //TODO: maybe import "wait" from ember-animated?
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
@@ -73,41 +73,53 @@ function * btnRightTransition({ insertedSprites, removedSprites }) {
     });
   }
 }
-function * titleTransition({ insertedSprites, removedSprites }) {
+
+function titleTransition(){
   const oldRouteName = transitionsService.get('oldRouteName');
   const newRouteName = transitionsService.get('newRouteName');
   const transitionDirection = transitionsService.get('direction');
 
+  //TODO: make this generic
   const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
 
-  insertedSprites.forEach(sprite => {
-    currentTitleSprite = sprite;
+  if(withinRoute){
+    return function * ({ insertedSprites, removedSprites }) {
+      insertedSprites.forEach(sprite => {
+        currentTitleSprite = sprite;
 
-    if(withinRoute){
-      if(currentBtnLeftSprite && transitionDirection === 'up'){
-        sprite.startAtSprite(currentBtnLeftSprite);
-        move(sprite);
-      } else if(transitionDirection === 'down'){
-        sprite.startAtPixel({ x: document.body.clientWidth });
-        move(sprite);
-      }
-    }
+        if (currentBtnLeftSprite && transitionDirection === 'up') {
+          sprite.startAtSprite(currentBtnLeftSprite);
+          move(sprite);
+        } else if (transitionDirection === 'down') {
+          sprite.startAtPixel({x: document.body.clientWidth});
+          move(sprite);
+        }
 
-    opacity(sprite, { from: 0, to: 1 });
-  });
+        opacity(sprite, {from: 0, to: 1});
+      });
 
-  removedSprites.forEach(sprite => {
-    currentTitleSprite = sprite;
+      removedSprites.forEach(sprite => {
+        currentTitleSprite = sprite;
 
-    if(withinRoute){
-      if(transitionDirection === 'up'){
-        sprite.endAtPixel({ x: document.body.clientWidth });
-        move(sprite);
-      } else if(transitionDirection === 'down' && currentBtnLeftSprite){
-        sprite.endAtSprite(currentBtnLeftSprite);
-        move(sprite);
-      }
-    }
-    opacity(sprite, { to: 0 });
-  });
+        if (transitionDirection === 'up') {
+          sprite.endAtPixel({x: document.body.clientWidth});
+          move(sprite);
+        } else if (transitionDirection === 'down' && currentBtnLeftSprite) {
+          sprite.endAtSprite(currentBtnLeftSprite);
+          move(sprite);
+        }
+
+        opacity(sprite, {to: 0});
+      });
+    };
+  } else {
+    return function * ({ insertedSprites, removedSprites, duration }) {
+      yield Promise.all(removedSprites.map(
+        sprite => opacity(sprite, { to: 0, duration: duration / 2 })
+      ));
+      insertedSprites.forEach(sprite => {
+        opacity(sprite, { from: 0, to: 1, duration: duration / 2 });
+      });
+    };
+  }
 }

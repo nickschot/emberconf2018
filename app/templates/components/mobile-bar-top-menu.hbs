@@ -28,7 +28,7 @@
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
-          {{#animated-bind title use=titleTransition duration=300 as |animatedTitle|}}
+          {{#animated-bind title rules=titleTransition duration=300 as |animatedTitle|}}
             {{#if animatedTitle}}
               <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
                 {{animatedTitle}}
