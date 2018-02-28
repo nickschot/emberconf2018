@@ -1,22 +1,25 @@
 {{#animated-bind 'home.posts' use=transition duration=150}}
-  <div class="container">
+  <div class="container posts">
     <div class="row">
-      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <div class="list-group">
-          {{#each model as |post|}}
-            {{#link-to 'post' post class="list-group-item" data-post-id=(concat "post-" post.id)}}
-              <div class="media">
-                <div class="mr-3" style="width: 30vw">
-                  <div class="img-responsive">
-                    <img data-page-image-id="{{post.id}}" class="img-fluid" src="{{post.headerImage}}" alt="Generic placeholder image">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <h1 class="display-4 text-primary mt-5 mb-2 d-none d-sm-block">Archive</h1>
+        <div class="card">
+          <div class="list-group list-group-flush">
+            {{#each model as |post|}}
+              {{#link-to 'post' post class="list-group-item list-group-item-action p-2 mb-sm-3" data-post-id=(concat "post-" post.id)}}
+                <div class="media d-flex align-items-stretch">
+                  <div class="post-img mb-sm-3">
+                    <div class="img-responsive">
+                      <img data-page-image-id="{{post.id}}" class="img-fluid" src="{{post.headerImage}}" alt="Generic placeholder image">
+                    </div>
+                  </div>
+                  <div class="media-body ml-3 ml-sm-0 d-flex flex-row align-items-center">
+                    <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
                   </div>
                 </div>
-                <div class="media-body">
-                  <div class="mt-0 font-weight-bold">{{post.title}}</div>
-                </div>
-              </div>
-            {{/link-to}}
-          {{/each}}
+              {{/link-to}}
+            {{/each}}
+          </div>
         </div>
       </div>
     </div>
