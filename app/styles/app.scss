@@ -208,8 +208,15 @@ body.transitioning {
   will-change: transform, opacity;
 }
 
+@include media-breakpoint-only(xs){
+  .mobile-page {
+    overflow: hidden;
+  }
+}
+
 //TODO: put this in the transition
-/*.mobile-page {
+/*
+.mobile-page {
   position: relative;
 }
 .mobile-page::after {

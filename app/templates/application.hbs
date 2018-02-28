@@ -1,3 +1,7 @@
+{{#if motion.isAnimating}}
+  {{set-body-class 'transitioning'}}
+{{/if}}
+
 {{animated-orphans}}
 
 {{outlet class="app"}}
