@@ -118,7 +118,7 @@ function titleTransition(){
   } else {
     return function * ({ insertedSprites, removedSprites, duration }) {
       yield Promise.all(removedSprites.map(
-        sprite => opacity(sprite, { to: 0, duration: duration / 2 })
+        sprite => opacity(sprite, { to: 0, duration: 0 })
       ));
       insertedSprites.forEach(sprite => {
         opacity(sprite, { from: 0, to: 1, duration: duration / 2 });

@@ -1,5 +1,5 @@
 @import "variables";
-@import "bootstrap";
+@import "vendor/bootstrap";
 
 // dependencies
 @import "ember-mobile-menu";
@@ -7,14 +7,14 @@
 @import "ember-mobile-bar";
 
 // utils
-@import "shadows";
-@import "util";
+@import "util/general";
+@import "util/shadows";
 
 // components
-@import "main-menu";
-@import "mobile-menu";
-@import "mobile-bar";
-@import "user-avatar";
+@import "components/main-menu";
+@import "components/mobile-menu";
+@import "components/mobile-bar";
+@import "components/user-avatar";
 
 body {
   @include media-breakpoint-down(sm){
@@ -60,11 +60,11 @@ body {
 .posts {
   .list-group {
     .list-group-item {
-
       h3 {
         color: #333;
         font-size: 0.75em;
         line-height: 1.2;
+        margin: 0;
       }
 
       .post-img {
@@ -264,11 +264,12 @@ body.transitioning {
     }
   }
 
-  // make the tabs share the full width on small screen
-  @include media-breakpoint-down(sm){
-    .nav__scroller {
-      display: flex;
+  .nav__scroller {
+    display: flex;
+    justify-content: center;
 
+    // make the tabs share the full width on small screen
+    @include media-breakpoint-down(sm){
       li {
         width: 50%;
       }

@@ -3,35 +3,36 @@
     <div class="mobile-page">
       {{#mobile-bar-wrapper as |mbw|}}
 
-          {{#mobile-pane-old slideableModels=modelCollection currentModel=model as |model|}}
-            <div class="container pan-recognizer-scroll">
-              <div class="row">
-                <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-                  <div class="card post" data-post-id="post-{{model.id}}">
-                    {{#if model.headerImage}}
-                      <div class="card-img-top img-responsive">
+        {{#mobile-pane-old slideableModels=modelCollection currentModel=model as |model|}}
+          <div class="container pan-recognizer-scroll">
+            <div class="row">
+              <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="card post" data-post-id="post-{{model.id}}">
+                  {{#if model.headerImage}}
+                    <div>
+                      <div class="img-responsive">
                         <img data-page-image-id="{{model.id}}" class="img-fluid" src="{{model.headerImage}}" alt="Generic placeholder image">
                       </div>
-                    {{/if}}
-                    <div class="card-body">
-                      <h4 class="card-title">{{model.title}}</h4>
-                      <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
-                        <img src="{{model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
-                        <div class="d-flex flex-column justify-content-center">
-                          <div>{{model.author.name}}</div>
-                          <div><small>{{moment-format model.published 'DD-MM-YYYY HH:mm'}}</small></div>
-                        </div>
-                      </h6>
-                      <p class="card-text">
-                        {{{model.bodyAsHtml}}}
-                      </p>
                     </div>
+                  {{/if}}
+                  <div class="card-body">
+                    <h4 class="card-title">{{model.title}}</h4>
+                    <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+                      <img src="{{model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
+                      <div class="d-flex flex-column justify-content-center">
+                        <div>{{model.author.name}}</div>
+                        <div><small>{{moment-format model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                      </div>
+                    </h6>
+                    <p class="card-text">
+                      {{{model.bodyAsHtml}}}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          {{/mobile-pane-old}}
-
+          </div>
+        {{/mobile-pane-old}}
 
         {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=false isOverlay=true withShadow=false}}
           <div class="container">

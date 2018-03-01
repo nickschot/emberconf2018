@@ -72,14 +72,16 @@
                 {{/mps.pane}}
                 {{#mps.pane title="Contact us"}}
                   <div class="card-body">
-                    {{#bs-form formLayout='vertical' as |form|}}
-                      {{form.element controlType="text" placeholder="Name" property="name" required=true}}
-                      {{form.element controlType="email" placeholder="Email" property="email" required=true}}
+                    <div class="col-12 col-md-8 offset-md-2">
+                      {{#bs-form formLayout='vertical' as |form|}}
+                        {{form.element controlType="text" placeholder="Name" property="name"}}
+                        {{form.element controlType="email" placeholder="Email" property="email"}}
 
-                      {{form.element controlType="textarea" placeholder="Question" property="question" required=true}}
+                        {{form.element controlType="textarea" placeholder="Question" property="question"}}
 
-                      {{bs-button defaultText="Send" type="primary" buttonType="submit" class="btn-block"}}
-                    {{/bs-form}}
+                        {{bs-button defaultText="Send" type="primary" buttonType="submit" class="btn-block"}}
+                      {{/bs-form}}
+                    </div>
                   </div>
                 {{/mps.pane}}
               {{/mp.scroller}}
