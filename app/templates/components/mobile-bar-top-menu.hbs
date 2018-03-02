@@ -4,7 +4,7 @@
       <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
         {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
           <div class="d-flex">
-            {{#animated-bind btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
+            {{#animated-value btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
               {{#if animatedBtn.icon}}
                 {{mobile-bar-btn
                   targetRoute=animatedBtn.targetRoute
@@ -14,8 +14,8 @@
                   class='mobile-bar__icon-btn'
                 }}
               {{/if}}
-            {{/animated-bind}}
-            {{#animated-bind btn use=btnLeftTransition duration=300 as |animatedBtn|}}
+            {{/animated-value}}
+            {{#animated-value btn use=btnLeftTransition duration=300 as |animatedBtn|}}
               {{#if animatedBtn.text}}
                 {{mobile-bar-btn
                   targetRoute=animatedBtn.targetRoute
@@ -23,12 +23,12 @@
                   text=animatedBtn.text
                 }}
               {{/if}}
-            {{/animated-bind}}
+            {{/animated-value}}
           </div>
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
-          {{#animated-bind title rules=titleTransition duration=300 as |animatedTitle|}}
+          {{#animated-value title rules=titleTransition duration=300 as |animatedTitle|}}
             {{#if animatedTitle}}
               <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
                 {{animatedTitle}}
@@ -38,13 +38,13 @@
                 EmberConf 2018
               </h1>
             {{/if}}
-          {{/animated-bind}}
+          {{/animated-value}}
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-btn-right" as |btn|}}
-          {{#animated-bind btn use=btnRightTransition duration=150 as |animatedBtn|}}
+          {{#animated-value btn use=btnRightTransition duration=150 as |animatedBtn|}}
             {{component animatedBtn class="mobile-bar__btn mobile-bar__btn--right"}}
-          {{/animated-bind}}
+          {{/animated-value}}
         {{/from-elsewhere}}
       </div>
     </div>

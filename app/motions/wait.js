@@ -1,5 +1,5 @@
-import Motion from 'ember-animated/motion';
-import { wait as timeout } from 'ember-animated/concurrency-helpers';
+import { Motion } from 'ember-animated';
+import { wait as timeout } from 'ember-animated';
 
 export default function wait(sprite, opts) {
   return new Wait(sprite, opts).run();

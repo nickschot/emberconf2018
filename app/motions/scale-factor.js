@@ -1,6 +1,4 @@
-import Motion from 'ember-animated/motion';
-import Tween from 'ember-animated/tween';
-import { rAF } from 'ember-animated/concurrency-helpers';
+import { Motion, Tween, rAF } from 'ember-animated';
 
 export default class ScaleFactor extends Motion {
   constructor(sprite, opts) {

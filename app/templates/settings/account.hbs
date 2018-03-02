@@ -1,5 +1,5 @@
 {{#animated-container}}
-  {{#animated-bind 'post-route' use=transition duration=200}}
+  {{#animated-value 'post-route' use=transition duration=200}}
     {{#mobile-bar-wrapper as |mbw|}}
       <div class="mobile-page settings">
         <div class="container">
@@ -42,5 +42,5 @@
         </div>
       {{/mbw.mobile-bar}}
     {{/mobile-bar-wrapper}}
-  {{/animated-bind}}
+  {{/animated-value}}
 {{/animated-container}}
