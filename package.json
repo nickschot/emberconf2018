@@ -19,7 +19,7 @@
   "devDependencies": {
     "bootstrap": "^4.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-animated": "git+https://github.com/ember-animation/ember-animated.git",
+    "ember-animated": "git+https://github.com/ember-animation/ember-animated.git#b9a254f",
     "ember-bootstrap": "^1.2.0",
     "ember-cli": "~3.0.0",
     "ember-cli-app-version": "^3.0.0",
