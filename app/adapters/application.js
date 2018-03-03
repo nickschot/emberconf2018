@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import config from 'ember-fastboot-blog/config/environment';
+import config from 'emberconf2018/config/environment';
 import AdapterFetch from 'ember-fetch/mixins/adapter-fetch';
 
 export default DS.JSONAPIAdapter.extend(AdapterFetch, {

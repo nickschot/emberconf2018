@@ -1,8 +1,8 @@
 {
-  "name": "ember-fastboot-blog",
+  "name": "emberconf2018",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for ember-fastboot-blog goes here",
+  "description": "Small description for emberconf2018 goes here",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -19,7 +19,7 @@
   "devDependencies": {
     "bootstrap": "^4.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-animated": "git+https://github.com/ember-animation/ember-animated.git",
+    "ember-animated": "git+https://github.com/ember-animation/ember-animated.git#b9a254f",
     "ember-bootstrap": "^1.2.0",
     "ember-cli": "~3.0.0",
     "ember-cli-app-version": "^3.0.0",

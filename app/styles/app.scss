@@ -17,6 +17,8 @@
 @import "components/parallax-element";
 @import "components/user-avatar";
 
+//TODO: clean up everything below
+
 body {
   @include media-breakpoint-down(sm){
     .memory-scroll {
