@@ -181,7 +181,7 @@ body.transitioning {
   height: 100vh;
   overflow: hidden;
 
-  .mobile-page {
+  .mobile-page__transformable {
     background: $body-bg;
 
     @include media-breakpoint-down(sm){
@@ -205,12 +205,12 @@ body.transitioning {
 }
 
 //TODO: this is necessary for guaranteeing ember-animated animation performance (especially on Android)
-.animated-orphans > *, .mobile-page {
+.animated-orphans > *, .mobile-page__transformable {
   will-change: transform, opacity;
 }
 
 @include media-breakpoint-only(xs){
-  .mobile-page {
+  .mobile-page__transformable {
     overflow: hidden;
   }
 }

@@ -1,5 +1,3 @@
-{{!--#pan-recognizer class='pan-recognizer'--}}
-  {{#animated-value 'home.settings' use=transition duration=150}}
-    {{outlet}}
-  {{/animated-value}}
-{{!--/pan-recognizer--}}
+{{#mobile-page route='home.settings' isRoot=true}}
+  {{outlet}}
+{{/mobile-page}}
