@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed, get, observer } from '@ember/object';
-import wait from 'ember-fastboot-blog/motions/wait';
+import wait from 'emberconf2018/motions/wait';
 
 export default Controller.extend({
   mobileBarBottomTransition,

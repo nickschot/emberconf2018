@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'ember-fastboot-blog',
+    modulePrefix: 'emberconf2018',
     environment,
     rootURL: '/',
     locationType: 'auto',

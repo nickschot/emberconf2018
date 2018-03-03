@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 
-import trackPan from 'ember-fastboot-blog/motions/track-pan';
+import trackPan from 'emberconf2018/motions/track-pan';
 
 export default Controller.extend({
   transition

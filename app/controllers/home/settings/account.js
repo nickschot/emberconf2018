@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-import trackPan from 'ember-fastboot-blog/motions/track-pan';
+import trackPan from 'emberconf2018/motions/track-pan';
 import move from 'ember-animated/motions/move';
 
 let transitionsService;
