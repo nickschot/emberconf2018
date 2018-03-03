@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
@@ -13,6 +14,7 @@ let elementId;
 export default Component.extend({
   transition,
   classNames: ['mobile-page'],
+  classNameBindings: ['isActive:mobile-page--active'],
 
   transitions: service(),
   router: service(),
@@ -30,22 +32,27 @@ export default Component.extend({
     router = this.get('router');
     transitions = this.get('transitions');
     elementId = this.get('elementId');
-  }
+  },
+
+  isActive: computed('router.currentRouteName', 'route', function(){
+    return this.get('router.currentRouteName') === this.get('route');
+  })
 });
 
 function transition(){
-  console.log('old: ', transitions.get('oldRouteName'));
-  console.log('new: ', transitions.get('newRouteName'));
-  //TODO: only transition when on the level of this route
+  //TODO: clean this up
   if(transitions.get('oldRouteName') && transitions.get('newRouteName')){
-    const oldRouteName = transitions.get('oldRouteName').slice(0, -6) === '.index'
+    const oldRouteName = transitions.get('oldRouteName').slice(-6) === '.index'
       ? transitions.get('oldRouteName').slice(0, -6)
       : transitions.get('oldRouteName');
-    const newRouteName = transitions.get('newRouteName').slice(0, -6) === '.index'
+    const newRouteName = transitions.get('newRouteName').slice(-6) === '.index'
       ? transitions.get('newRouteName').slice(0, -6)
       : transitions.get('newRouteName');
+    const currentRouteName = routeName.slice(-6) === '.index'
+      ? routeName.slice(0, -6)
+      : routeName;
 
-    if(oldRouteName === routeName || newRouteName === routeName){
+    if(oldRouteName === currentRouteName || newRouteName === currentRouteName){
       console.log('valid route, trying transition');
       if(isRoot){
         console.log('transitioning root', elementId);
@@ -69,7 +76,6 @@ function transition(){
             });
 
             removedSprites.forEach(sprite => {
-              console.log('removing', viewportWidth / -3, sprite);
               sprite.endTranslatedBy(viewportWidth / -3, 0);
               move(sprite);
             });

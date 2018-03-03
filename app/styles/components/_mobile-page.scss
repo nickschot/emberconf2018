@@ -1,0 +1,29 @@
+@include media-breakpoint-only(xs){
+  .mobile-page__transformable {
+    overflow: hidden;
+  }
+}
+
+@include media-breakpoint-down(sm){
+  body.transitioning {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    .mobile-page--active > .animated-container {
+      min-height: 100vh!important;
+    }
+
+    .mobile-page--active > .animated-container > .mobile-page__transformable,
+    .animated-orphans > .mobile-page__transformable {
+      background: $body-bg;
+      min-height: 100vh!important;
+      box-shadow: $z-depth-3;
+    }
+  }
+}
+
+// this is necessary for guaranteeing ember-animated animation performance (especially on Android)
+.animated-orphans > *, .mobile-page__transformable {
+  will-change: transform, opacity;
+}
