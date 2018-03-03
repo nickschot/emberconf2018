@@ -1,0 +1,32 @@
+.blurred-backdrop {
+  $blurred-backdrop-filter: saturate(180%) blur(20px);
+
+  @supports ((backdrop-filter: $blurred-backdrop-filter) or (-webkit-backdrop-filter: $blurred-backdrop-filter)) {
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: $blurred-backdrop-filter;
+    backdrop-filter: $blurred-backdrop-filter;
+  }
+}
+
+.img-responsive {
+  height: 0;
+  padding-bottom: 56.2%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.covering-img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  img {
+    visibility: hidden;
+  }
+}
+
+.rounded-large {
+  border-radius: 0.625rem;
+}

@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { computed } from 'ember-decorators/object';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
@@ -9,9 +9,8 @@ export default DS.Model.extend({
   published: DS.attr('date'),
 
   author: DS.belongsTo('author'),
-
-  @computed('body')
-  get bodyAsHtml(){
+  
+  bodyAsHtml: computed('body', function(){
     return this.get('body').replace(/(?:\r\n|\r|\n)/g, '<br />');
-  }
+  })
 });

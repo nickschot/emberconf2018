@@ -1,211 +1,40 @@
 @import "variables";
-@import "bootstrap";
-@import "side-menu";
-@import "gesture-slider";
+@import "vendor/bootstrap";
+
+// dependencies
+@import "ember-mobile-menu";
+@import "ember-mobile-pane";
+@import "ember-mobile-bar";
+
+// utils
+@import "util/general";
+@import "util/shadows";
+
+// components
+@import "components/main-menu";
+@import "components/mobile-menu";
+@import "components/mobile-bar";
+@import "components/parallax-element";
+@import "components/user-avatar";
 
 body {
   @include media-breakpoint-down(sm){
-    .container-top {
-      padding-top: 3.4rem;
-      padding-bottom: 3.1rem;
-    }
-
-    .list-group, .card {
-      margin-left: -16px;
-      margin-right: -16px;
-      border-radius: 0;
-    }
-
-    .list-group {
-      .list-group-item {
-        padding: 0.5rem;
-        color: #333;
-        font-size: 13px;
-        line-height: 13px;
-      }
-    }
-
-    .card {
-      position: relative;
-
-      &, .card-img-top {
-        border-radius: 0;
-      }
-    }
-
     .memory-scroll {
       height: 100vh;
       overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-y; // fix for https://github.com/html-next/ember-gestures/issues/104
+      //touch-action: pan-y; // fix for https://github.com/html-next/ember-gestures/issues/104
     }
   }
 
   @include media-breakpoint-up(md) {
-    padding-top: 5rem;
-  }
-}
 
-.btn-back {
-  z-index: 999;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-
-  height: 3.3rem;
-  width: 3.3rem;
-  line-height: 3.3rem;
-
-  .material-icons {
-    font-size: 24px;
-    color: #FFF;
   }
 }
 
 .material-icons {
   vertical-align: middle;
-  line-height: inherit;
-}
-
-#mobile-header-menu {
-  background: #FFF;
-  border-bottom: 1px solid $nav-tabs-border-color;
-  text-align: center;
-  display: block;
-
-  @include media-breakpoint-up(md){
-    display: none;
-  }
-
-  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-    background: rgba(255, 255, 255, 0.75);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
-  .navbar-brand {
-    margin: 0;
-  }
-
-  .side-menu-toggler {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    padding: 0.3rem 0.85rem;
-
-    text-decoration: none;
-    border-right: 1px solid $navbar-light-toggler-border-color;
-
-    .material-icons {
-      display: block;
-      font-size: 1.75rem;
-      line-height: 2.9rem;
-      color: #666;
-    }
-  }
-}
-
-#main-menu {
-  background: #FFF;
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-
-  @include media-breakpoint-down(sm){
-    bottom: 0;
-
-    padding: 0;
-    border-top: 1px solid $nav-tabs-border-color;
-
-    .container {
-      width: auto;
-    }
-
-    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-      background: rgba(255, 255, 255, 0.75);
-      -webkit-backdrop-filter: blur(10px);
-              backdrop-filter: blur(10px);
-    }
-
-    .nav-item a {
-      padding: 0.3rem 1rem 0 1rem;
-
-      .material-icons {
-        font-size: 1.75rem;
-        display: block;
-        line-height: 1.75rem;
-      }
-
-      div {
-        font-size: 0.7em;
-      }
-    }
-  }
-
-  @include media-breakpoint-up(md){
-    top: 0;
-    border-bottom: 1px solid $nav-tabs-border-color;
-  }
-}
-
-.side-menu-tray {
-  $side-menu-item-color: #333;
-  $side-menu-item-active-bg: #EEE;
-
-  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-    background: rgba(255, 255, 255, 0.9)!important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
-  .side-menu-header {
-    height: 8rem;
-    padding: 1rem;
-    background: #ec971f;
-    color: #FFF;
-    margin-bottom: 0.5rem;
-  }
-
-  .nav {
-    .nav-item a {
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: $side-menu-item-color;
-      line-height: 1.5rem;
-
-      padding: 0.75rem 0.75rem;
-
-      .material-icons {
-        margin-right: 1.5rem;
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        color: lighten($side-menu-item-color, 20%);
-      }
-
-      &.active {
-        background: $side-menu-item-active-bg;
-
-        @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-          background: rgba(darken($side-menu-item-active-bg, 10%), 0.5);
-        }
-
-        .material-icons {
-          color: $side-menu-item-color;
-        }
-      }
-    }
-
-    .divider {
-      margin: 0.5rem 0;
-      height: 0;
-      border-bottom: 1px solid $side-menu-item-active-bg;
-    }
-  }
 }
 
 .app {
@@ -229,12 +58,61 @@ body {
   }
 }
 
-.img-responsive {
-  height: 0;
-  padding-bottom: 56.2%;
+.posts {
+  .list-group {
+    .list-group-item {
+      h3 {
+        color: #333;
+        font-size: 0.75em;
+        line-height: 1.2;
+        margin: 0;
+      }
 
-  img {
-    width: 100%;
+      .post-img {
+        width: 30%;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xs){
+    .card {
+      border: none;
+    }
+  }
+
+  @include media-breakpoint-up(sm){
+    @include make-container();
+
+    .list-group{
+      @include make-row();
+      margin: 2px;
+      flex-direction: row;
+
+      .list-group-item {
+        @include make-col(4);
+        border: none;
+        padding: 1rem!important;
+
+        h3{
+          font-weight: normal;
+          font-size: 1em;
+        }
+
+        &:hover {
+          h3 {
+            color: $primary;
+          }
+        }
+
+        .media {
+          flex-direction: column;
+
+          .post-img {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -242,5 +120,160 @@ body {
   .card-text {
     font-size: 0.85rem;
     line-height: 1.25rem;
+  }
+
+  @include media-breakpoint-down(xs){
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+    border: none;
+
+    min-height: 100vh;
+  }
+}
+
+.nav__item .item__link {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+// carousel help classes
+.mobile-pane__pane .covering-img {
+  height: 100%;
+}
+
+.carousel {
+  .mobile-pane__scroller {
+    will-change: unset;
+  }
+
+  .mobile-pane__pane {
+    position: relative;
+
+    .carousel__heading {
+      position: absolute;
+      text-shadow: 1px 1px 5px rgba(0,0,0,1);
+
+      bottom: 3.5rem;
+      left: 2rem;
+
+      @include media-breakpoint-down(sm){
+        bottom: 2.5rem;
+        left: 1rem;
+
+        h3 {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}
+
+.animated-container.animated-page {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+body.transitioning {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .mobile-page {
+    background: $body-bg;
+
+    @include media-breakpoint-down(sm){
+      min-height: 100vh;
+      box-shadow: $z-depth-3;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs){
+  .list-group {
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+
+    .list-group-item {
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+    }
+  }
+}
+
+//TODO: this is necessary for guaranteeing ember-animated animation performance (especially on Android)
+.animated-orphans > *, .mobile-page {
+  will-change: transform, opacity;
+}
+
+@include media-breakpoint-only(xs){
+  .mobile-page {
+    overflow: hidden;
+  }
+}
+
+//TODO: put this in the transition
+/*
+.mobile-page {
+  position: relative;
+}
+.mobile-page::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.25);
+}*/
+
+.contact {
+  position: relative;
+  z-index: 0;
+
+  .contact-map {
+    height: 20rem;
+    position: relative;
+    z-index: 1;
+
+    .leaflet-container {
+      height: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, $body-bg 5%, transparentize($body-bg, 1) 50%);
+      z-index: 400;
+    }
+  }
+
+  .contact-map + .container {
+    position: relative;
+    margin-top: -6rem;
+    z-index: 2;
+
+    .mobile-pane__nav {
+      margin-bottom: -1px;
+    }
+  }
+
+  .nav__scroller {
+    display: flex;
+    justify-content: center;
+
+    // make the tabs share the full width on small screen
+    @include media-breakpoint-down(sm){
+      li {
+        width: 50%;
+      }
+    }
   }
 }

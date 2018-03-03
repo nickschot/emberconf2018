@@ -1,9 +1,17 @@
 @import "ember-bootstrap/functions";
-@import "ember-bootstrap/variables";
 
-$body-bg: #FAFBFC;
+$primary: #E04E39;
+
+$body-bg: #f5f6f7;
 $navbar-light-active-color: $primary;
 
-$list-group-active-border-color: $list-group-border-color;
-$list-group-active-color: $list-group-action-hover-color;
-$list-group-active-bg: $list-group-hover-bg;
+$ember-mobile-bar-bg: #FFF;
+$ember-mobile-bar-color: #333!important;
+
+$mobile-bar-border: 1px solid rgba(180,180,180,0.7);
+
+$mobile-pane-link-color: #FFF;
+$mobile-pane-active-link-color: #FFF;
+
+$mobile-pane-simple-indicator-bg: rgba(255,255,255,0.4);
+$mobile-pane-simple-indicator-active-bg: #FFF;

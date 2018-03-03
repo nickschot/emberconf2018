@@ -1,0 +1,16 @@
+{{#mobile-pane class="carousel rounded-large z-depth-1 mt-3" lazyRendering=false activeIndex=visiblePane as |mpn|}}
+  {{#mpn.scroller overScrollFactor=0 as |mpns|}}
+    {{#each safePanes as |pane|}}
+      {{#mpns.pane class="text-center"}}
+        <div class="covering-img" style="background-image:url('{{pane.image}}');">
+          <img class="img-fluid" src="{{pane.image}}">
+        </div>
+        <div class="carousel__heading">
+          <h3 class="text-white">{{pane.heading}}</h3>
+        </div>
+      {{/mpns.pane}}
+    {{/each}}
+  {{/mpn.scroller}}
+
+  {{mpn.simple-indicator}}
+{{/mobile-pane}}

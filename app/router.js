@@ -7,12 +7,22 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('posts', {
-    path: 'posts'
-  }, function() {
-    this.route('post', {
-      path: ':post_id'
+  this.route('home',function() {
+    this.route('posts', function(){
+      this.route('post', {
+        path: ':post_id'
+      })
     });
+    this.route('settings', function(){
+      this.route('account')
+    });
+    this.route('contact');
+  });
+
+  this.route('settings', {
+    path: 'settings'
+  }, function() {
+    this.route('account');
   });
 });
 

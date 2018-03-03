@@ -1,0 +1,55 @@
+{{#animated-container}}
+  <div class="container">
+    <div class="row">
+      <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
+        {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
+          <div class="d-flex">
+            {{#animated-value btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
+              {{#if animatedBtn.icon}}
+                {{mobile-bar-btn
+                  targetRoute=animatedBtn.targetRoute
+                  action=animatedBtn.action
+                  icon=animatedBtn.icon
+                  scaleIcon=animatedBtn.scaleIcon
+                  class='mobile-bar__icon-btn'
+                }}
+              {{/if}}
+            {{/animated-value}}
+            {{#animated-value btn use=btnLeftTransition duration=300 as |animatedBtn|}}
+              {{#if animatedBtn.text}}
+                {{mobile-bar-btn
+                  targetRoute=animatedBtn.targetRoute
+                  action=animatedBtn.action
+                  text=animatedBtn.text
+                }}
+              {{/if}}
+            {{/animated-value}}
+          </div>
+        {{/from-elsewhere}}
+
+        {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
+          {{#animated-value title rules=titleTransition duration=300 as |animatedTitle|}}
+            {{#if animatedTitle}}
+              <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
+                {{animatedTitle}}
+              </h1>
+            {{else}}
+              <h1 class="mobile-bar__title mobile-bar__title--logo h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
+                EmberConf 2018
+              </h1>
+            {{/if}}
+          {{/animated-value}}
+        {{/from-elsewhere}}
+
+        {{#from-elsewhere name="mobile-bar-top-btn-right" as |btn|}}
+          {{#animated-value btn use=btnRightTransition duration=150 as |animatedBtn|}}
+            {{component animatedBtn class="mobile-bar__btn mobile-bar__btn--right"}}
+          {{/animated-value}}
+        {{/from-elsewhere}}
+      </div>
+    </div>
+    <div class="row">
+      {{from-elsewhere name="mobile-bar-top-second-row"}}
+    </div>
+  </div>
+{{/animated-container}}

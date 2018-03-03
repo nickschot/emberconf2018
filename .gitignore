@@ -24,3 +24,6 @@ package.json.ember-try
 
 # development
 /.idea
+/concat-stats-for
+
+/public/img/tomster.png

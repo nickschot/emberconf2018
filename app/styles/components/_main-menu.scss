@@ -1,0 +1,40 @@
+// bottom bar
+#main-menu {
+  @include media-breakpoint-down(sm){
+    position: unset;
+    bottom: 0;
+
+    padding: 0;
+    background: none!important;
+
+    .container {
+      width: auto;
+    }
+
+    .nav-item a {
+      position: relative;
+      padding: 0.3rem 1rem 1rem 1rem;
+
+      .material-icons {
+        font-size: 1.75rem;
+        display: block;
+        line-height: 1.75rem;
+      }
+
+      div {
+        font-size: 0.7em;
+
+        // some trickery to keep the menu items the same width while keeping a centered label
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md){
+    top: 0;
+    border-bottom: 1px solid $nav-tabs-border-color;
+  }
+}

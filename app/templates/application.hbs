@@ -1,31 +1,7 @@
-{{#gesture-wrapper isOpen=sideMenuOpen as |side-menu|}}
-  {{#bs-navbar fluid=true position='fixed-top' class='navbar-expand' id='mobile-header-menu' as |navbar|}}
-    <span class="navbar-brand">My Brand</span>
-    {{#unless isFastBoot}}
-      <a {{action side-menu.toggle}} class="side-menu-toggler">{{material-icon 'menu'}}</a>
-    {{else}}
-      {{#link-to (query-params sideMenuOpen=sideMenuNewState) class='side-menu-toggler'}}{{material-icon 'menu'}}{{/link-to}}
-    {{/unless}}
-  {{/bs-navbar}}
+{{#if motion.isAnimating}}
+  {{set-body-class 'transitioning'}}
+{{/if}}
 
-  {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
-    {{#navbar.content}}
-      {{#navbar.nav as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "index" class='text-center'}}
-            {{material-icon 'home' size='lg' class='d-md-none'}}
-            <div>Home</div>
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "posts" class='text-center'}}
-            {{material-icon 'archive' size='lg' class='d-md-none'}}
-            <div>Archive</div>
-          {{/nav.link-to}}
-        {{/nav.item}}
-      {{/navbar.nav}}
-    {{/navbar.content}}
-  {{/bs-navbar}}
+{{animated-orphans}}
 
-  {{liquid-outlet enableGrowth=false class="app outlet"}}
-{{/gesture-wrapper}}
+{{outlet class="app"}}

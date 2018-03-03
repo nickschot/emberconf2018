@@ -1,0 +1,88 @@
+{{#mobile-menu-wrapper as |mmw|}}
+  {{#if menuEnabled}}
+    {{#mmw.mobile-menu as |mobile-menu|}}
+      <div class="mobile-menu__header d-flex flex-column justify-content-between">
+        <div class="header__text">
+          {{user-avatar
+            picture='/img/tomster.png'
+            class='z-depth-1'
+          }}
+        </div>
+        <div class="header__btn d-flex justify-content-between">
+          <div>
+            Tomster
+            <small class="d-block">tomster@example.com</small>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__body">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.index' class="nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
+          </li>
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.posts' class="nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
+          </li>
+          <li class="divider"></li>
+          <li class="nav-item">
+            {{#mobile-menu.link-to "home.contact" class='nav-link'}}{{material-icon 'question_answer'}} Contact{{/mobile-menu.link-to}}
+          </li>
+          <li class="nav-item">
+            {{#mobile-menu.link-to 'home.settings' class="nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
+          </li>
+        </ul>
+      </div>
+    {{/mmw.mobile-menu}}
+  {{/if}}
+
+  {{#animated-container class=(if motion.isAnimating 'animated-page')}}
+    {{#mobile-bar-wrapper as |mbw|}}
+
+      {{outlet}}
+
+      {{#mbw.mobile-bar type='top' withShadow=false}}
+        {{mobile-bar-top-menu}}
+      {{/mbw.mobile-bar}}
+
+      {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
+        {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+          action=mmw.actions.toggle
+          icon='menu'
+        )}}
+
+        {{#mbw.mobile-bar type='bottom' withShadow=false}}
+            {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
+              {{#navbar.content}}
+                {{#navbar.nav as |nav|}}
+                  {{#nav.item}}
+                    {{#nav.link-to "home.index" class='text-center'}}
+                      {{material-icon 'home' class='d-md-none'}}
+                      <div>Home</div>
+                    {{/nav.link-to}}
+                  {{/nav.item}}
+                  {{#nav.item}}
+                    {{#nav.link-to "home.posts" class='text-center'}}
+                      {{material-icon 'archive' class='d-md-none'}}
+                      <div>Archive</div>
+                    {{/nav.link-to}}
+                  {{/nav.item}}
+                  {{#nav.item}}
+                    {{#nav.link-to "home.contact" class='text-center'}}
+                      {{material-icon 'question_answer' class='d-md-none'}}
+                      <div>Contact</div>
+                    {{/nav.link-to}}
+                  {{/nav.item}}
+                  {{#nav.item}}
+                    {{#nav.link-to "home.settings" class='text-center'}}
+                      {{material-icon 'settings' class='d-md-none'}}
+                      <div>Settings</div>
+                    {{/nav.link-to}}
+                  {{/nav.item}}
+                {{/navbar.nav}}
+              {{/navbar.content}}
+            {{/bs-navbar}}
+        {{/mbw.mobile-bar}}
+      {{/animated-if}}
+    {{/mobile-bar-wrapper}}
+  {{/animated-container}}
+{{/mobile-menu-wrapper}}

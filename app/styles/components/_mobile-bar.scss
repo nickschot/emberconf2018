@@ -1,0 +1,49 @@
+.mobile-bar {
+  @extend .blurred-backdrop;
+
+  // make sure we are above animating mobile-pages but below any sidebars
+  z-index: 3;
+}
+
+.mobile-bar--top    {
+  border-bottom: $mobile-bar-border;
+}
+.mobile-bar--bottom {
+  border-top: $mobile-bar-border;
+  z-index: 1;
+}
+
+.mobile-bar__icon-btn {
+  width: 24px;
+
+  a, div {
+    display: block;
+    color: $primary;
+  }
+}
+.mobile-bar__icon-btn--scale-icon {
+  i.material-icons {
+    transform: scale(1.6);
+  }
+}
+
+.mobile-bar__btn a {
+  display: block;
+  text-decoration: none!important;
+  color: $primary!important;
+}
+.mobile-bar__btn--right {
+  position: absolute;
+  right: 0;
+}
+
+.mobile-bar__title {
+  color: #000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mobile-bar__title--logo {
+  color: $primary;
+  font-weight: normal!important;
+}
