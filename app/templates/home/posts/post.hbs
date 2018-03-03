@@ -13,29 +13,29 @@
         previousModel=previousModel
         currentModel=model
         nextModel=nextModel
-      as |mpModel|}}
+      as |mpis|}}
         <div class="container">
           <div class="row">
             <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-              <div class="card post" data-post-id="post-{{mpModel.id}}">
-                {{#if mpModel.headerImage}}
+              <div class="card post" data-post-id="post-{{mpis.model.id}}">
+                {{#if mpis.model.headerImage}}
                   <div>
                     <div class="img-responsive">
-                      <img data-page-image-id="{{mpModel.id}}" class="img-fluid" src="{{mpModel.headerImage}}" alt="Generic placeholder image">
+                      <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
                     </div>
                   </div>
                 {{/if}}
                 <div class="card-body">
-                  <h4 class="card-title">{{mpModel.title}}</h4>
+                  <h4 class="card-title">{{mpis.model.title}}</h4>
                   <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
-                    <img src="{{mpModel.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
+                    <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
                     <div class="d-flex flex-column justify-content-center">
-                      <div>{{mpModel.author.name}}</div>
-                      <div><small>{{moment-format mpModel.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                      <div>{{mpis.model.author.name}}</div>
+                      <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
                     </div>
                   </h6>
                   <p class="card-text">
-                    {{{mpModel.bodyAsHtml}}}
+                    {{{mpis.model.bodyAsHtml}}}
                   </p>
                 </div>
               </div>

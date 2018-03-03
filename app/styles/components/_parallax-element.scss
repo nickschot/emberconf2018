@@ -1,0 +1,7 @@
+.parallax-element {
+  overflow: hidden;
+
+  .parallax-image__transformable {
+    will-change: transform;
+  }
+}
