@@ -25,7 +25,7 @@ export default Component.extend({
   init(){
     this._super(...arguments);
 
-    transitionsService = get(this, 'transitions')
+    transitionsService = get(this, 'transitions');
   }
 });
 
