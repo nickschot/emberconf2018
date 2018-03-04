@@ -1,6 +1,6 @@
 // bottom bar
 #main-menu {
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-only(xs){
     position: unset;
     bottom: 0;
 
@@ -33,8 +33,7 @@
     }
   }
 
-  @include media-breakpoint-up(md){
-    top: 0;
-    border-bottom: 1px solid $nav-tabs-border-color;
+  @include media-breakpoint-up(sm){
+
   }
 }
