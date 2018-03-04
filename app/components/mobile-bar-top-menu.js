@@ -8,8 +8,6 @@ import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 import { printSprites } from 'ember-animated';
 
-let currentBtnLeftSprite;
-let currentTitleSprite;
 let transitionsService;
 
 export default Component.extend({
@@ -38,7 +36,7 @@ function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) 
 
 }
 function * btnLeftTransition({ receivedSprites, sentSprites }) {
-  printSprites(arguments[0])
+  printSprites(arguments[0]);
 
   receivedSprites.forEach(sprite => {
     opacity(sprite, { from: 0, to: 1 });
@@ -75,8 +73,10 @@ function titleTransition(){
   const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
 
   if(withinRoute){
+    const viewportWidth = document.body.clientWidth;
+
     return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {
-      printSprites(arguments[0])
+      printSprites(arguments[0]);
 
       receivedSprites.forEach(sprite => {
         opacity(sprite, { from: 0, to: 1 });
@@ -88,34 +88,20 @@ function titleTransition(){
         move(sprite);
       });
 
-      removedSprites.forEach(sprite => {
-        currentTitleSprite = sprite;
-
-        if (transitionDirection === 'up') {
-          sprite.endAtPixel({x: document.body.clientWidth});
+      if (transitionDirection === 'up') {
+        removedSprites.forEach(sprite => {
+          sprite.endAtPixel({x: viewportWidth});
           move(sprite);
-        } else if (transitionDirection === 'down' && currentBtnLeftSprite) {
-          sprite.endAtSprite(currentBtnLeftSprite);
+          opacity(sprite, {to: 0});
+        });
+      }
+      if (transitionDirection === 'down') {
+        insertedSprites.forEach(sprite => {
+          sprite.startAtPixel({x: viewportWidth});
           move(sprite);
-        }
-
-        opacity(sprite, {to: 0});
-      });
-
-      insertedSprites.forEach(sprite => {
-        currentTitleSprite = sprite;
-
-        if (currentBtnLeftSprite && transitionDirection === 'up') {
-          sprite.startAtSprite(currentBtnLeftSprite);
-          move(sprite);
-        } else if (transitionDirection === 'down') {
-          sprite.startAtPixel({x: document.body.clientWidth});
-          move(sprite);
-        }
-
-        opacity(sprite, {from: 0, to: 1});
-      });
-
+          opacity(sprite, {from: 0, to: 1});
+        });
+      }
     };
   } else {
     return function * ({ insertedSprites, removedSprites, duration }) {
