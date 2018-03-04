@@ -42,9 +42,11 @@
         {{outlet}}
       </div>
 
-      {{#mbw.mobile-bar type='top' withShadow=false}}
-        {{mobile-bar-top-menu}}
-      {{/mbw.mobile-bar}}
+      {{#if media.isXs}}
+        {{#mbw.mobile-bar type='top' withShadow=false}}
+          {{mobile-bar-top-menu}}
+        {{/mbw.mobile-bar}}
+      {{/if}}
 
       {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
         {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
@@ -52,34 +54,60 @@
           icon='menu'
         )}}
 
-        {{#mbw.mobile-bar type='bottom' withShadow=false}}
-          {{#bs-navbar fluid=false class='navbar-expand' id='main-menu' as |navbar|}}
+        {{#mbw.mobile-bar type=mainMenuPosition withShadow=false}}
+          {{#bs-navbar fluid=false backgroundColor='white' class='navbar-expand' id='main-menu' as |navbar|}}
+            <div class="navbar-header d-none d-sm-block">
+              <span class="navbar-brand text-primary mr-5">EmberConf 2018</span>
+            </div>
             {{#navbar.content}}
-              {{#navbar.nav as |nav|}}
+              {{#navbar.nav class="mr-auto" as |nav|}}
                 {{#nav.item}}
                   {{#nav.link-to "home.index" class='text-center'}}
-                    {{material-icon 'home' class='d-md-none'}}
+                    {{material-icon 'home' class='d-sm-none'}}
                     <div>Home</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
                 {{#nav.item}}
                   {{#nav.link-to "home.posts" class='text-center'}}
-                    {{material-icon 'archive' class='d-md-none'}}
+                    {{material-icon 'archive' class='d-sm-none'}}
                     <div>Archive</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
                 {{#nav.item}}
                   {{#nav.link-to "home.contact" class='text-center'}}
-                    {{material-icon 'question_answer' class='d-md-none'}}
+                    {{material-icon 'question_answer' class='d-sm-none'}}
                     <div>Contact</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
                 {{#nav.item}}
                   {{#nav.link-to "home.settings" class='text-center'}}
-                    {{material-icon 'settings' class='d-md-none'}}
+                    {{material-icon 'settings' class='d-sm-none'}}
                     <div>Settings</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
+              {{/navbar.nav}}
+
+              {{#navbar.nav class="d-none d-sm-block" as |nav|}}
+                {{#nav.dropdown as |dd|}}
+                  {{#dd.toggle class="py-0 dropdown-toggle--with-avatar"}}
+                    {{user-avatar
+                      name='Tomster'
+                      picture='/img/tomster.png'
+                      class='d-inline-block'
+                    }}
+                  {{/dd.toggle}}
+                  {{#dd.menu align='right' as |ddm|}}
+                    {{#ddm.item}}
+                      {{#ddm.link-to "home.settings.account"}}Account{{/ddm.link-to}}
+                    {{/ddm.item}}
+
+                    {{ddm.divider}}
+
+                    {{#ddm.item}}
+                      <a href="" class="dropdown-item">Logout</a>
+                    {{/ddm.item}}
+                  {{/dd.menu}}
+                {{/nav.dropdown}}
               {{/navbar.nav}}
             {{/navbar.content}}
           {{/bs-navbar}}

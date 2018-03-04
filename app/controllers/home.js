@@ -12,9 +12,16 @@ export default Controller.extend({
   /**
    * Enable the side menu only on first and second level routes (and third level "index" routes)
    */
-  menuEnabled: computed('router.currentRouteName', function(){
+  menuEnabled: computed('router.currentRouteName', 'media.isXs', function(){
     const routeParts = get(this, 'router.currentRouteName').split('.');
-    return routeParts.length < 3 || (routeParts.length === 3 && routeParts[2] === 'index');
+    return !this.get('media.isXs') || (routeParts.length < 3 || (routeParts.length === 3 && routeParts[2] === 'index'));
+  }),
+
+  /**
+   * Display the menu in the top bar on non-mobile screens
+   */
+  mainMenuPosition: computed('media.isXs', function(){
+    return this.get('media.isXs') ? 'bottom' : 'top';
   }),
 
   isTransitioning: observer('motion.isAnimating', function(){

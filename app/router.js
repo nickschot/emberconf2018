@@ -15,6 +15,8 @@ Router.map(function() {
     });
     this.route('settings', function(){
       this.route('account')
+      this.route('general');
+      this.route('notifications');
     });
     this.route('contact');
   });

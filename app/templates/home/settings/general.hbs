@@ -1,0 +1,18 @@
+{{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+  targetRoute='home.settings.index'
+  icon='keyboard_arrow_left'
+  scaleIcon=true
+  text='Settings'
+)}}
+{{to-elsewhere named='mobile-bar-top-title' send='General'}}
+
+{{#mobile-page route='home.settings.general'}}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="display-4 text-primary mb-0 d-none d-sm-block">General</h1>
+
+      </div>
+    </div>
+  </div>
+{{/mobile-page}}

@@ -1,3 +1,16 @@
 {{#mobile-page route='home.settings' isRoot=true}}
-  {{outlet}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+        <div class="row my-sm-5">
+          <div class="col-sm-4 d-none d-sm-block">
+            {{settings-menu}}
+          </div>
+          <div class="col-sm-8">
+            {{outlet}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {{/mobile-page}}
