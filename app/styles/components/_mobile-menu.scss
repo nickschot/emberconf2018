@@ -1,75 +1,20 @@
 .mobile-menu__tray {
-  $side-menu-item-color: #333;
-  $side-menu-item-active-bg: #EEE;
-
-  @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-    background: rgba(255, 255, 255, 0.9)!important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-
   .mobile-menu__header {
-    min-height: 10rem;
-    background: $primary;
-    color: #FFF;
-    margin-bottom: 0.5rem;
-
-    .header__text {
-      padding: 1rem;
-
-      .user-avatar {
-        width: 5rem;
-        height: 5rem;
-        line-height: 5rem;
-        font-size: 2rem;
-      }
-    }
-
-    .header__btn {
-      padding: 1rem;
-      color: #FFF;
-      text-decoration: none;
+    .user-avatar {
+      width: 5rem;
+      height: 5rem;
+      line-height: 5rem;
+      font-size: 2rem;
     }
   }
 
-  .nav {
-    .nav-item a {
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: $side-menu-item-color;
+  .mobile-menu__nav-item a {
+    .material-icons {
+      width: 2.5rem;
+      font-size: 1.5em;
       line-height: 1.5;
-
-      padding: 0.75rem 0.75rem;
-
-      &.nav-link.disabled {
-        color: $nav-link-disabled-color;
-      }
-
-      .material-icons {
-        width: 2.5rem;
-        font-size: 1.5em;
-        line-height: 1.5;
-        color: lighten($side-menu-item-color, 20%);
-        vertical-align: middle;
-      }
-
-      &.active {
-        background: $side-menu-item-active-bg;
-
-        @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
-          background: rgba(darken($side-menu-item-active-bg, 10%), 0.5);
-        }
-
-        .fa {
-          color: $side-menu-item-color;
-        }
-      }
-    }
-
-    .divider {
-      margin: 0.5rem 0;
-      height: 0;
-      border-bottom: 1px solid $side-menu-item-active-bg;
+      color: lighten($mobile-menu-item-color, 20%);
+      vertical-align: middle;
     }
   }
 }
