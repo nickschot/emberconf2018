@@ -14,7 +14,7 @@ export default Service.extend({
 
     // detect whether we are moving up or down the route hierarchy
     if(source.length === target.length){
-      const sourceIsIndex = source[source.length - 1 ] === 'index';
+      const sourceIsIndex = source[source.length - 1] === 'index';
       const targetIsIndex = target[target.length - 1] === 'index';
 
       if(sourceIsIndex === targetIsIndex){
@@ -38,6 +38,10 @@ export default Service.extend({
   withinRoute: computed('oldRouteName', 'newRouteName', function(){
     const oldRouteParts = this.get('oldRouteName').split('.');
     const newRouteParts = this.get('newRouteName').split('.');
+
+    //TODO: detect "root"
+    //if(oldRouteParts.slice(-1) === 'index') oldRouteParts.pop();
+    //if(newRouteParts.slice(-1) === 'index') newRouteParts.pop();
 
     oldRouteParts.pop();
     newRouteParts.pop();
