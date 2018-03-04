@@ -21,8 +21,6 @@
   }
 
   @include media-breakpoint-up(sm){
-    @include make-container();
-
     .list-group{
       @include make-row();
       margin: 2px;
