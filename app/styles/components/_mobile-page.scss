@@ -4,7 +4,7 @@
   }
 }
 
-@include media-breakpoint-down(sm){
+@include media-breakpoint-only(xs){
   body.transitioning {
     width: 100vw;
     height: 100vh;

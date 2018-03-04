@@ -5,11 +5,13 @@ import { computed } from '@ember/object';
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
+// shared variables
 let isRoot;
 let routeName;
+
+// shared services
 let router;
 let transitions;
-let elementId;
 
 export default Component.extend({
   transition,
@@ -27,16 +29,22 @@ export default Component.extend({
   init(){
     this._super(...arguments);
 
+    // set shared variables
     isRoot = this.get('isRoot');
     routeName = this.get('route');
+
+    // set shared services
     router = this.get('router');
     transitions = this.get('transitions');
-    elementId = this.get('elementId');
   },
 
   isActive: computed('router.currentRouteName', 'route', function(){
     return this.get('router.currentRouteName') === this.get('route');
-  })
+  }),
+
+  transitionsEnabled: computed('media.isXs', function(){
+    return this.get('media.isXs');
+  }),
 });
 
 function transition(){
@@ -54,8 +62,10 @@ function transition(){
 
     if(oldRouteName === currentRouteName || newRouteName === currentRouteName){
       console.log('valid route, trying transition');
+
       if(isRoot){
-        console.log('transitioning root', elementId);
+        console.log('transitioning root');
+
         // fade transition between pages
         return function * ({ insertedSprites }){
           insertedSprites.forEach(sprite => {
@@ -66,7 +76,8 @@ function transition(){
         const viewportWidth = document.body.clientWidth;
 
         if(transitions.get('direction') === 'down'){
-          console.log('transitioning down', elementId);
+          console.log('transitioning down');
+
           // slide new sprite left from outside of window
           return function * ({ insertedSprites, removedSprites }) {
             insertedSprites.forEach(sprite => {
@@ -81,7 +92,7 @@ function transition(){
             });
           };
         } else {
-          console.log('transitioning up', elementId);
+          console.log('transitioning up');
 
           return function * ({insertedSprites, removedSprites}) {
             // slide old sprite right

@@ -1,7 +1,11 @@
 {{#animated-container}}
-  {{#animated-value route rules=transition duration=duration}}
-    <div class="mobile-page__transformable">
-      {{yield}}
-    </div>
-  {{/animated-value}}
+  {{#if transitionsEnabled}}
+    {{#animated-value route rules=transition duration=duration}}
+      <div class="mobile-page__transformable">
+        {{yield}}
+      </div>
+    {{/animated-value}}
+  {{else}}
+    {{yield}}
+  {{/if}}
 {{/animated-container}}
