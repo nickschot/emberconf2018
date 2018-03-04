@@ -1,14 +1,14 @@
 .post {
-  .card-text {
-    font-size: 0.85rem;
-    line-height: 1.25rem;
-  }
-
-  @include media-breakpoint-down(xs){
+  @include media-breakpoint-only(xs){
     margin-left: -$grid-gutter-width/2;
     margin-right: -$grid-gutter-width/2;
     border: none;
 
     min-height: 100vh;
+
+    .card-text {
+      font-size: 0.85rem;
+      line-height: 1.25rem;
+    }
   }
 }
