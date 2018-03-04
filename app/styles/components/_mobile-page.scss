@@ -1,6 +1,10 @@
 @include media-breakpoint-only(xs){
   .mobile-page__transformable {
     overflow: hidden;
+
+    .container-fluid {
+      padding: 0;
+    }
   }
 }
 
