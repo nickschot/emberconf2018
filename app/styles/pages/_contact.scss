@@ -1,0 +1,47 @@
+.contact {
+  position: relative;
+  z-index: 0;
+
+  .contact-map {
+    height: 20rem;
+    position: relative;
+    z-index: 1;
+
+    .leaflet-container {
+      height: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, $body-bg 5%, transparentize($body-bg, 1) 50%);
+      z-index: 400;
+    }
+  }
+
+  .contact-map + .container {
+    position: relative;
+    margin-top: -6rem;
+    z-index: 2;
+
+    .mobile-pane__nav {
+      margin-bottom: -1px;
+    }
+  }
+
+  .nav__scroller {
+    display: flex;
+    justify-content: center;
+
+    // make the tabs share the full width on small screen
+    @include media-breakpoint-down(sm){
+      li {
+        width: 50%;
+      }
+    }
+  }
+}

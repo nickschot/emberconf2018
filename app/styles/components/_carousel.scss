@@ -1,0 +1,30 @@
+.mobile-pane__pane .covering-img {
+  height: 100%;
+}
+
+.carousel {
+  .mobile-pane__scroller {
+    will-change: unset;
+  }
+
+  .mobile-pane__pane {
+    position: relative;
+
+    .carousel__heading {
+      position: absolute;
+      text-shadow: 1px 1px 5px rgba(0,0,0,1);
+
+      bottom: 3.5rem;
+      left: 2rem;
+
+      @include media-breakpoint-down(sm){
+        bottom: 2.5rem;
+        left: 1rem;
+
+        h3 {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+}

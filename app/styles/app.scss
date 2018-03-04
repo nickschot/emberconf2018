@@ -11,29 +11,20 @@
 @import "util/shadows";
 
 // components
+@import "components/carousel";
 @import "components/main-menu";
 @import "components/mobile-menu";
 @import "components/mobile-bar";
+@import "components/mobile-page";
 @import "components/parallax-element";
 @import "components/user-avatar";
 
+// pages
+@import "pages/contact";
+@import "pages/posts";
+@import "pages/posts/post";
+
 //TODO: clean up everything below
-
-body {
-  @include media-breakpoint-down(sm){
-    .memory-scroll {
-      height: 100vh;
-      overflow-x: hidden;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      //touch-action: pan-y; // fix for https://github.com/html-next/ember-gestures/issues/104
-    }
-  }
-
-  @include media-breakpoint-up(md) {
-
-  }
-}
 
 .material-icons {
   vertical-align: middle;
@@ -49,148 +40,18 @@ body {
   }
 }
 
-.btn-link {
-  font-size: $font-size-lg;
-  text-decoration: none!important;
-  padding-left: 0;
-  padding-right: 0;
-
-  &:active {
-    opacity: 0.5;
-  }
-}
-
-.posts {
-  .list-group {
-    .list-group-item {
-      h3 {
-        color: #333;
-        font-size: 0.75em;
-        line-height: 1.2;
-        margin: 0;
-      }
-
-      .post-img {
-        width: 30%;
-      }
-    }
-  }
-
-  @include media-breakpoint-down(xs){
-    .card {
-      border: none;
-    }
-  }
-
-  @include media-breakpoint-up(sm){
-    @include make-container();
-
-    .list-group{
-      @include make-row();
-      margin: 2px;
-      flex-direction: row;
-
-      .list-group-item {
-        @include make-col(4);
-        border: none;
-        padding: 1rem!important;
-
-        h3{
-          font-weight: normal;
-          font-size: 1em;
-        }
-
-        &:hover {
-          h3 {
-            color: $primary;
-          }
-        }
-
-        .media {
-          flex-direction: column;
-
-          .post-img {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-}
-
-.post {
-  .card-text {
-    font-size: 0.85rem;
-    line-height: 1.25rem;
-  }
-
-  @include media-breakpoint-down(xs){
-    margin-left: -$grid-gutter-width/2;
-    margin-right: -$grid-gutter-width/2;
-    border: none;
-
-    min-height: 100vh;
-  }
-}
-
 .nav__item .item__link {
   font-size: 0.9em;
   font-weight: 400;
 }
 
-// carousel help classes
-.mobile-pane__pane .covering-img {
-  height: 100%;
-}
-
-.carousel {
-  .mobile-pane__scroller {
-    will-change: unset;
-  }
-
-  .mobile-pane__pane {
-    position: relative;
-
-    .carousel__heading {
-      position: absolute;
-      text-shadow: 1px 1px 5px rgba(0,0,0,1);
-
-      bottom: 3.5rem;
-      left: 2rem;
-
-      @include media-breakpoint-down(sm){
-        bottom: 2.5rem;
-        left: 1rem;
-
-        h3 {
-          font-size: 1.2em;
-        }
-      }
-    }
-  }
-}
-
+//TODO: see if this is still necessary
 .animated-container.animated-page {
   height: 100vh;
   max-height: 100vh;
   width: 100vw;
   max-width: 100vw;
   overflow: hidden;
-}
-
-body.transitioning {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-
-  .mobile-page {
-    background: $body-bg;
-
-    @include media-breakpoint-down(sm){
-      min-height: 100vh;
-      box-shadow: $z-depth-3;
-    }
-  }
 }
 
 @include media-breakpoint-down(xs){
@@ -206,16 +67,6 @@ body.transitioning {
   }
 }
 
-//TODO: this is necessary for guaranteeing ember-animated animation performance (especially on Android)
-.animated-orphans > *, .mobile-page {
-  will-change: transform, opacity;
-}
-
-@include media-breakpoint-only(xs){
-  .mobile-page {
-    overflow: hidden;
-  }
-}
 
 //TODO: put this in the transition
 /*
@@ -232,50 +83,10 @@ body.transitioning {
   background: rgba(0,0,0,0.25);
 }*/
 
-.contact {
-  position: relative;
-  z-index: 0;
-
-  .contact-map {
-    height: 20rem;
+// make sure the mobile-bar content is at the right z-index relative to a leaving bar
+.mobile-bar-wrapper > {
+  .mobile-bar__content {
     position: relative;
     z-index: 1;
-
-    .leaflet-container {
-      height: 100%;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(to top, $body-bg 5%, transparentize($body-bg, 1) 50%);
-      z-index: 400;
-    }
-  }
-
-  .contact-map + .container {
-    position: relative;
-    margin-top: -6rem;
-    z-index: 2;
-
-    .mobile-pane__nav {
-      margin-bottom: -1px;
-    }
-  }
-
-  .nav__scroller {
-    display: flex;
-    justify-content: center;
-
-    // make the tabs share the full width on small screen
-    @include media-breakpoint-down(sm){
-      li {
-        width: 50%;
-      }
-    }
   }
 }

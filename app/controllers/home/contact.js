@@ -1,9 +1,6 @@
 import Controller from '@ember/controller';
-import opacity from 'ember-animated/motions/opacity';
 
 export default Controller.extend({
-  transition,
-
   queryParams: ['pane'],
 
   pane: 0,
@@ -13,9 +10,3 @@ export default Controller.extend({
   zoom: 13,
   emberConfLocation: [45.528298, -122.662986],
 });
-
-function * transition({ insertedSprites }) {
-  insertedSprites.forEach(sprite => {
-    opacity(sprite, { from: 0, to: 1 });
-  });
-}

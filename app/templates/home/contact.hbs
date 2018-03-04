@@ -1,6 +1,6 @@
 {{to-elsewhere named='mobile-bar-top-title' send='Contact'}}
 
-{{#animated-value 'home.contact' use=transition duration=150}}
+{{#mobile-page route='home.contact' isRoot=true}}
   <div class="contact">
     <div class="contact-map">
       {{#leaflet-map
@@ -102,4 +102,4 @@
       </div>
     </div>
   </div>
-{{/animated-value}}
+{{/mobile-page}}

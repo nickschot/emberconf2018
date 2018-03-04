@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Service.extend({
   oldRouteName: '',
@@ -32,5 +33,15 @@ export default Service.extend({
     this.set('oldRouteName', sourceRouteName);
     this.set('newRouteName', targetRouteName);
     this.set('direction', transitionDirection);
-  }
+  },
+
+  withinRoute: computed('oldRouteName', 'newRouteName', function(){
+    const oldRouteParts = this.get('oldRouteName').split('.');
+    const newRouteParts = this.get('newRouteName').split('.');
+
+    oldRouteParts.pop();
+    newRouteParts.pop();
+
+    return oldRouteParts.length && newRouteParts.length && oldRouteParts.join('.') === newRouteParts.join('.');
+  })
 });

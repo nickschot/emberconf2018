@@ -30,6 +30,8 @@ export default Controller.extend({
 function mobileBarBottomTransition() {
   return function * ({removedSprites}) {
     removedSprites.forEach(sprite => {
+      // this zIndex is necessary to properly put the leaving bar between the previous and next page
+      sprite.applyStyles({zIndex: 0});
       wait(sprite);
     });
   };
