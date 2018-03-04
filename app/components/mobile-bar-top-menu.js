@@ -36,30 +36,18 @@ function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) 
   insertedSprites.forEach(sprite => { opacity(sprite, { to: 1, duration: duration * 0.6 }); });
 
 }
-function * btnLeftTransition({ insertedSprites, removedSprites }) {
-  const transitionDirection = transitionsService.get('direction');
+function * btnLeftTransition({ receivedSprites, sentSprites }) {
 
-  insertedSprites.forEach(sprite => {
-    currentBtnLeftSprite = sprite;
-
-    if(transitionDirection === 'down'){
-      sprite.startAtPixel({ x: document.body.clientWidth / 2 - sprite.finalBounds.width / 2 });
-      move(sprite);
-    }
-
-    opacity(sprite, { to: 1 });
+  receivedSprites.forEach(sprite => {
+    opacity(sprite, { from: 0, to: 1 });
+    move(sprite);
   });
 
-  removedSprites.forEach(sprite => {
-    currentBtnLeftSprite = sprite;
-
-    if(transitionDirection === 'up'){
-      sprite.endAtPixel({ x: document.body.clientWidth / 2 - sprite.initialBounds.width / 2 });
-      move(sprite);
-    }
-
+  sentSprites.forEach(sprite => {
     opacity(sprite, { to: 0 });
+    move(sprite);
   });
+
 }
 function * btnRightTransition({ insertedSprites, removedSprites }) {
   removedSprites.forEach(sprite => {
@@ -85,7 +73,18 @@ function titleTransition(){
   const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
 
   if(withinRoute){
-    return function * ({ insertedSprites, removedSprites }) {
+    return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {
+
+      receivedSprites.forEach(sprite => {
+        opacity(sprite, { from: 0, to: 1 });
+        move(sprite);
+      });
+
+      sentSprites.forEach(sprite => {
+        opacity(sprite, { to: 0 });
+        move(sprite);
+      });
+
       removedSprites.forEach(sprite => {
         currentTitleSprite = sprite;
 
