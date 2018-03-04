@@ -65,14 +65,8 @@ function * btnRightTransition({ insertedSprites, removedSprites }) {
 }
 
 function titleTransition(){
-  const oldRouteName = transitionsService.get('oldRouteName');
-  const newRouteName = transitionsService.get('newRouteName');
-  const transitionDirection = transitionsService.get('direction');
-
-  //TODO: make this generic
-  const withinRoute = oldRouteName.startsWith('home.settings') && newRouteName.startsWith('home.settings');
-
-  if(withinRoute){
+  if(transitionsService.get('withinRoute')){
+    const transitionDirection = transitionsService.get('direction');
     const viewportWidth = document.body.clientWidth;
 
     return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {

@@ -10,6 +10,7 @@
     height: 100vh;
     overflow: hidden;
 
+    //TODO: this is unnecessary if we disable growth on the container
     .mobile-page--active > .animated-container {
       min-height: 100vh!important;
     }

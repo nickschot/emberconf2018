@@ -60,6 +60,7 @@ function transition(){
       ? routeName.slice(0, -6)
       : routeName;
 
+    // see if the change was on the level of this component's controller/route
     if(oldRouteName === currentRouteName || newRouteName === currentRouteName){
       console.log('valid route, trying transition');
 
