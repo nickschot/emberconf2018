@@ -6,6 +6,7 @@ import { Promise } from 'rsvp';
 import { timeout } from 'ember-concurrency'; //TODO: maybe import "wait" from ember-animated?
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
+import { printSprites } from 'ember-animated';
 
 let currentBtnLeftSprite;
 let currentTitleSprite;
@@ -37,6 +38,7 @@ function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) 
 
 }
 function * btnLeftTransition({ receivedSprites, sentSprites }) {
+  printSprites(arguments[0])
 
   receivedSprites.forEach(sprite => {
     opacity(sprite, { from: 0, to: 1 });
@@ -74,6 +76,7 @@ function titleTransition(){
 
   if(withinRoute){
     return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {
+      printSprites(arguments[0])
 
       receivedSprites.forEach(sprite => {
         opacity(sprite, { from: 0, to: 1 });
