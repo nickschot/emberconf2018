@@ -1,4 +1,8 @@
 {{to-elsewhere named='mobile-bar-top-title' send='Archive'}}
+{{to-elsewhere named='mobile-bar-top-btn-right' send=(component 'mobile-bar-btn'
+  action=(action 'createNewPost')
+  text='New'
+)}}
 
 {{#mobile-page route='home.posts.index'}}
   <div class="container posts">

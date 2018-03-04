@@ -1,0 +1,30 @@
+{{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+  targetRoute='home.posts.index'
+  text='Cancel'
+)}}
+{{to-elsewhere named='mobile-bar-top-title' send='New post'}}
+{{to-elsewhere named='mobile-bar-top-btn-right' send=(component 'mobile-bar-btn'
+  action=(action 'save')
+  text='Save'
+)}}
+
+{{#mobile-page route='home.posts.new' isNew=true}}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 offset-md-3">
+        <h1 class="mt-3 mb-0 d-none d-md-block">New post</h1>
+
+        {{#bs-form formLayout='vertical' class="mt-5" as |form|}}
+          {{form.element controlType="text" label="Title" property="title"}}
+          {{form.element controlType="textarea" label="Body" property="body"}}
+
+          <hr class="mt-4 mb-3">
+
+          {{form.element controlType="date" label="Publish on" property="publish_on" class="mt-3"}}
+
+          {{bs-button defaultText="Save" type="primary" buttonType="submit" class="d-none d-sm-block"}}
+        {{/bs-form}}
+      </div>
+    </div>
+  </div>
+{{/mobile-page}}
