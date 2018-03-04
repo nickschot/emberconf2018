@@ -6,33 +6,71 @@
 )}}
 {{to-elsewhere named='mobile-bar-top-title' send='Post'}}
 
-{{#mobile-page route='home.posts.post'}}
+{{#mobile-page route='home.posts.post' class="post"}}
   {{#mobile-pane as |mp|}}
     {{#mp.infinite-scroller
       previousModel=previousModel
       currentModel=model
       nextModel=nextModel
     as |mpis|}}
+
+      {{!-- full width desktop header with image, titel and author --}}
+      <div class="desktop-header d-none d-sm-block">
+        {{#if mpis.model.headerImage}}
+          <div class="desktop-header-img">
+            <div class="img-responsive">
+              <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
+            </div>
+          </div>
+        {{/if}}
+
+        <div class="desktop-header__overlay d-flex align-items-end">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="p-3">
+                  <h2 class="text-white">{{mpis.model.title}}</h2>
+                  <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+                    <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3 z-depth-1" width="50" height="50">
+                    <div class="d-flex flex-column justify-content-center text-white">
+                      <div>{{mpis.model.author.name}}</div>
+                      <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                    </div>
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-            <div class="card post" data-post-id="post-{{mpis.model.id}}">
-              {{#if mpis.model.headerImage}}
-                <div>
-                  <div class="img-responsive">
-                    <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
+            <div class="card mb-sm-5" data-post-id="post-{{mpis.model.id}}">
+
+              {{!-- mobile header with image, titel and author --}}
+              <div class="mobile-header d-sm-none">
+                {{#if mpis.model.headerImage}}
+                  <div>
+                    <div class="img-responsive">
+                      <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
+                    </div>
                   </div>
+                {{/if}}
+                <div class="card-body pb-0">
+                  <h2 class="card-title h4">{{mpis.model.title}}</h2>
+                  <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+                    <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
+                    <div class="d-flex flex-column justify-content-center">
+                      <div>{{mpis.model.author.name}}</div>
+                      <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                    </div>
+                  </h6>
                 </div>
-              {{/if}}
-              <div class="card-body">
-                <h4 class="card-title">{{mpis.model.title}}</h4>
-                <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
-                  <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
-                  <div class="d-flex flex-column justify-content-center">
-                    <div>{{mpis.model.author.name}}</div>
-                    <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
-                  </div>
-                </h6>
+              </div>
+
+              {{!-- main article --}}
+              <div class="card-body pt-0 pt-sm-4">
                 <p class="card-text">
                   {{{mpis.model.bodyAsHtml}}}
                 </p>

@@ -1,14 +1,41 @@
 .post {
+  .desktop-header {
+    position: relative;
+    height: 20rem;
+    overflow: hidden;
+
+    .desktop-header-img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+
+    .desktop-header__overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+
+      h2, h6 {
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.33);
+      }
+    }
+  }
+
   @include media-breakpoint-only(xs){
-    margin-left: -$grid-gutter-width/2;
-    margin-right: -$grid-gutter-width/2;
-    border: none;
+    .card {
+      margin-left: -$grid-gutter-width/2;
+      margin-right: -$grid-gutter-width/2;
+      border: none;
 
-    min-height: 100vh;
+      min-height: 100vh;
 
-    .card-text {
-      font-size: 0.85rem;
-      line-height: 1.25rem;
+      .card-text {
+        font-size: 0.85rem;
+        line-height: 1.25rem;
+      }
     }
   }
 }
