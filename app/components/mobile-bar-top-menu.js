@@ -32,7 +32,7 @@ export default Component.extend({
 function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) {
   removedSprites.forEach(sprite => { opacity(sprite, { to: 0, duration: duration / 2 }); });
   yield timeout(duration * 0.4); // prevents glitching the btnLeftTransition
-  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1, duration: duration * 0.6 }); });
+  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1, duration: duration / 2 }); });
 
 }
 function * btnLeftTransition({ receivedSprites, sentSprites }) {
