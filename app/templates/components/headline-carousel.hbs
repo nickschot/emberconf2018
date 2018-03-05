@@ -2,12 +2,14 @@
   {{#mpn.scroller overScrollFactor=0 as |mpns|}}
     {{#each posts as |post|}}
       {{#mpns.pane class="text-center"}}
-        <div class="img-responsive" {{!--style="background-image:url('{{post.headerImage}}');"--}}>
-          {{responsive-image image=post.headerImage}}
-        </div>
-        <div class="carousel__heading">
-          <h3 class="text-white">{{post.title}}</h3>
-        </div>
+        {{#link-to 'home.posts.post' post}}
+          <div class="img-responsive" {{!--style="background-image:url('{{post.headerImage}}');"--}}>
+            {{responsive-image image=post.headerImage}}
+          </div>
+          <div class="carousel__heading">
+            <h3 class="text-white">{{post.title}}</h3>
+          </div>
+        {{/link-to}}
       {{/mpns.pane}}
     {{/each}}
   {{/mpn.scroller}}
