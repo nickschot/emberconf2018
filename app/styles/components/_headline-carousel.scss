@@ -15,6 +15,7 @@
     .carousel__heading {
       position: absolute;
       text-shadow: 1px 1px 5px rgba(0,0,0,1);
+      text-align: left;
 
       bottom: 3.5rem;
       left: 2rem;
@@ -29,8 +30,11 @@
       }
     }
 
-    .covering-img {
-      height: 100%;
+    img {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }

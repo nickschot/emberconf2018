@@ -1,12 +1,12 @@
 {{#mobile-pane lazyRendering=false activeIndex=visiblePane as |mpn|}}
   {{#mpn.scroller overScrollFactor=0 as |mpns|}}
-    {{#each safePanes as |pane|}}
+    {{#each posts as |post|}}
       {{#mpns.pane class="text-center"}}
-        <div class="covering-img" style="background-image:url('{{pane.image}}');">
-          <img class="img-fluid" src="{{pane.image}}">
+        <div class="img-responsive" {{!--style="background-image:url('{{post.headerImage}}');"--}}>
+          {{responsive-image image=post.headerImage}}
         </div>
         <div class="carousel__heading">
-          <h3 class="text-white">{{pane.heading}}</h3>
+          <h3 class="text-white">{{post.title}}</h3>
         </div>
       {{/mpns.pane}}
     {{/each}}

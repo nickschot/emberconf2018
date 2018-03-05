@@ -20,7 +20,7 @@
           {{#if mpis.model.headerImage}}
             <div class="desktop-header-img">
               <div class="img-responsive">
-                <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
+                {{responsive-image image=mpis.model.headerImage lazy=false}}
               </div>
             </div>
           {{/if}}
@@ -54,7 +54,7 @@
                   {{#if mpis.model.headerImage}}
                     <div style="overflow: hidden;">
                       <div class="img-responsive">
-                        <img data-page-image-id="{{mpis.model.id}}" class="img-fluid" src="{{mpis.model.headerImage}}" alt="Generic placeholder image">
+                        {{responsive-image image=mpis.model.headerImage lazy=false}}
                       </div>
                     </div>
                   {{/if}}

@@ -16,13 +16,7 @@ module.exports = function(defaults) {
       extensions: ['js']
     },
 
-    'ember-bootstrap': {
-      bootstrapVersion: 4,
-      importBootstrapFont: false,
-      importBootstrapCSS: false,
-      whitelist: ['bs-collapse', 'bs-navbar', 'bs-form', 'bs-dropdown']
-    },
-
+    // exclude leaflet images
     fingerprint: {
       exclude: [
         'images/layers-2x.png',
@@ -31,6 +25,28 @@ module.exports = function(defaults) {
         'images/marker-icon.png',
         'images/marker-shadow.png'
       ]
+    },
+
+    'ember-bootstrap': {
+      bootstrapVersion: 4,
+      importBootstrapFont: false,
+      importBootstrapCSS: false,
+      whitelist: ['bs-collapse', 'bs-navbar', 'bs-form', 'bs-dropdown']
+    },
+
+    'responsive-image': {
+      sourceDir: 'assets/images/generate',
+      destinationDir: 'assets/images/responsive',
+      quality: 80,
+      supportedWidths: [2048, 1536, 1080, 750, 640],
+      removeSourceDir: true,
+      justCopy: false,
+      extensions: ['jpg', 'jpeg', 'png', 'gif'],
+      lqip: {
+        type: 'remote',
+        width: 150,
+        quality: 50
+      }
     }
   });
 

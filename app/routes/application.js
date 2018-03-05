@@ -10,9 +10,9 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "id":"1",
           "type":"post",
           "attributes":{
-            "title":"Reprehenderit laboriosam aut excepturi inventore voluptas voluptas dignissimos veritatis.",
+            "title":"The carousel is on a loop.",
             "body":"Unde et qui quasi. Aperiam id voluptatem maiores atque dolor facere ut eum. Assumenda iste laboriosam ipsam quis minus et sed sunt. Odio consectetur nihil. Sunt nemo id eos mollitia ut nobis. Distinctio alias consequuntur sit sapiente beatae.\n \rEnim tenetur reiciendis qui. Inventore est libero aut et aut est. Adipisci nesciunt dolorem id.\n \rQuia culpa at recusandae in quibusdam velit. Quo hic molestiae dicta eligendi. Et quia laborum ducimus. Dolorem nulla aut illo error. Quas nesciunt blanditiis quia. Dolor atque ipsa.\n \rOmnis est inventore cupiditate. Repudiandae quo id sint dolorum officiis corporis quibusdam sint esse. Adipisci voluptatem velit nisi asperiores porro corporis.",
-            "headerImage":"/img/pixabay/cars.jpg",
+            "headerImage":"pocket-watch.jpg",
             "published":"2014-06-26T22:00:00.000Z"
           },
           "relationships":{
@@ -34,9 +34,9 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "id":"2",
           "type":"post",
           "attributes":{
-            "title":"Reprehenderit officiis eaque et quia.",
+            "title":"What's under the hood?",
             "body":"Inventore aut nobis quam consequuntur animi corporis dolores quae. Amet possimus quia voluptas omnis. Culpa accusamus odit et.\n \rQui temporibus odio sed doloribus consequuntur. Quos quidem et mollitia. Sint et ut id vel. Aut quia hic error non repudiandae cumque. Earum eligendi vel qui ut error consectetur. Quia voluptas pariatur esse itaque.\n \rVelit nostrum libero omnis enim. Ipsa ut qui. Saepe magnam quidem velit sapiente. Quis ea ut impedit molestiae omnis consequatur non ex alias.\n \rUt hic eum consequuntur ullam. Cumque sint dolor placeat quos sed. Ex sequi dolor aliquid sint. Voluptas ut fuga at.\n \rError dolorem ipsam aut rem error nihil eius eos. Aut cum rerum ullam repellendus. Sunt aperiam dolorum a ut animi qui cupiditate. Natus odit reiciendis reiciendis saepe temporibus eos fuga. Et illum necessitatibus voluptas expedita sit mollitia. Et quia enim qui sint autem.\n \rTotam fugit sit dolor iusto. Tenetur quod sint. Distinctio dolores ducimus voluptatem quis dolores commodi amet. Voluptatem dolores quam delectus.\n \rEt odit blanditiis. Est odit eaque vero in. Molestiae dolor vero perferendis minus corrupti laborum occaecati. Quo officia dolor ut quaerat labore impedit omnis aperiam ut.",
-            "headerImage":"https://fakeimg.pl/350x200/bf689e/",
+            "headerImage":"cars.jpg",
             "published":"2016-05-18T22:00:00.000Z"
           },
           "relationships":{
@@ -58,9 +58,9 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "id":"3",
           "type":"post",
           "attributes":{
-            "title":"Voluptatem dolores quis.",
+            "title":"Through a lens.",
             "body":"Non laboriosam rerum mollitia incidunt voluptatem eveniet eius. Asperiores hic quis id aut molestias voluptatem. Nisi ex doloremque. Vero qui facere quo pariatur. Dolorem est nam. Deleniti quisquam eos sunt praesentium ullam qui velit.\n \rCumque quas placeat et quidem consequatur non facilis incidunt. Ea vel aperiam voluptatem rerum officia magnam nam sed ut. Fugiat nostrum repellat hic id. Repellendus in unde quia qui dolorem ut ipsam voluptatem iusto. Consectetur et optio est dolores. Quod distinctio dolorem libero odio possimus.\n \rError rem deleniti modi non. Non maiores repellat. Harum a quas debitis quia.\n \rVeniam eum ut dolores totam repellendus ut ut. Voluptate quidem consequatur. Fugiat voluptas qui est. Non et ab. Repudiandae aperiam debitis earum rerum labore qui aut.\n \rOmnis omnis et facere. Hic et architecto voluptatem. Et quo placeat. Eveniet quos vero sapiente eius dolorum ut excepturi dicta odio. Voluptatem sint quaerat. Dolore itaque excepturi sed velit ipsa sequi quibusdam sequi veritatis.",
-            "headerImage":"https://fakeimg.pl/350x200/839e6e/",
+            "headerImage":"lens.jpg",
             "published":"2012-11-25T23:00:00.000Z"
           },
           "relationships":{
@@ -84,7 +84,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "attributes":{
             "title":"Ad voluptate ipsum suscipit.",
             "body":"Dolor ut at officiis id. Et eum architecto beatae nemo. Facere doloribus dolorem aut hic temporibus labore non. Exercitationem molestiae saepe nihil sit saepe.\n \rVelit voluptate voluptas voluptas minima laborum repudiandae exercitationem officia est. Rem rerum consectetur. Nihil esse at ad non molestiae.\n \rEx non eligendi eius perferendis commodi quo consequatur. Magnam quis rerum consequuntur. Et unde a ducimus autem eos omnis exercitationem recusandae et. Reprehenderit laborum expedita ut velit in. Sit blanditiis non.",
-            "headerImage":"https://fakeimg.pl/350x200/583fbc/",
+            "headerImage":"road.jpg",
             "published":"2014-03-15T23:00:00.000Z"
           },
           "relationships":{
