@@ -1,10 +1,12 @@
-.mobile-pane__pane .covering-img {
-  height: 100%;
-}
+.headline-carousel {
 
-.carousel {
-  .mobile-pane__scroller {
-    will-change: unset;
+  &, & > .mobile-pane {
+    border-radius: 0.625rem;
+  }
+
+  // fixes rounded-corner overflow issue w/ rounded-corners + will-change on safari
+  .mobile-pane {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 
   .mobile-pane__pane {
@@ -25,6 +27,10 @@
           font-size: 1.2em;
         }
       }
+    }
+
+    .covering-img {
+      height: 100%;
     }
   }
 }

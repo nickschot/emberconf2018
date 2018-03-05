@@ -4,6 +4,8 @@ import EmberObject, { get, set, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
+  classNames: ['headline-carousel'],
+
   // public
   panes: null,
   carouselTimeout: 5000,

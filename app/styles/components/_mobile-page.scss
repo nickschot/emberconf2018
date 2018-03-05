@@ -31,5 +31,5 @@
 
 // this is necessary for guaranteeing ember-animated animation performance (especially on Android)
 .animated-orphans > *, .mobile-page__transformable {
-  will-change: transform, opacity;
+  will-change: transform, opacity, z-index;
 }
