@@ -30,81 +30,91 @@ export default Component.extend({
 });
 
 function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) {
-  removedSprites.forEach(sprite => { opacity(sprite, { to: 0, duration: duration / 2 }); });
-  yield timeout(duration * 0.4); // prevents glitching the btnLeftTransition
-  insertedSprites.forEach(sprite => { opacity(sprite, { to: 1, duration: duration * 0.6 }); });
-
+  if(!transitionsService.get('switchingContext')) {
+    removedSprites.forEach(sprite => {
+      opacity(sprite, {to: 0, duration: duration / 2});
+    });
+    yield timeout(duration * 0.4); // prevents glitching the btnLeftTransition
+    insertedSprites.forEach(sprite => {
+      opacity(sprite, {to: 1, duration: duration * 0.6});
+    });
+  }
 }
 function * btnLeftTransition({ receivedSprites, sentSprites }) {
-  printSprites(arguments[0]);
+  if(!transitionsService.get('switchingContext')) {
+    printSprites(arguments[0]);
 
-  receivedSprites.forEach(sprite => {
-    opacity(sprite, { from: 0, to: 1 });
-    move(sprite);
-  });
+    receivedSprites.forEach(sprite => {
+      opacity(sprite, {from: 0, to: 1});
+      move(sprite);
+    });
 
-  sentSprites.forEach(sprite => {
-    opacity(sprite, { to: 0 });
-    move(sprite);
-  });
-
+    sentSprites.forEach(sprite => {
+      opacity(sprite, {to: 0});
+      move(sprite);
+    });
+  }
 }
 function * btnRightTransition({ insertedSprites, removedSprites }) {
-  removedSprites.forEach(sprite => {
-    opacity(sprite, { to: 0 });
-  });
-
-  // delay right button fade in until other transitions are done
-  if(insertedSprites){
-    yield timeout(300);
-
-    insertedSprites.forEach(sprite => {
-      opacity(sprite, { to: 1 });
+  if(!transitionsService.get('switchingContext')) {
+    removedSprites.forEach(sprite => {
+      opacity(sprite, {to: 0});
     });
+
+    // delay right button fade in until other transitions are done
+    if (insertedSprites) {
+      yield timeout(300);
+
+      insertedSprites.forEach(sprite => {
+        opacity(sprite, {to: 1});
+      });
+    }
   }
 }
 
 function titleTransition(){
-  if(transitionsService.get('withinRoute')){
-    const transitionDirection = transitionsService.get('direction');
-    const viewportWidth = document.body.clientWidth;
+  if(!transitionsService.get('switchingContext')){
+    if(transitionsService.get('withinRoute')){
+      const transitionDirection = transitionsService.get('direction');
+      const viewportWidth = document.body.clientWidth;
 
-    return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {
-      printSprites(arguments[0]);
+      return function * ({ insertedSprites, removedSprites, receivedSprites, sentSprites }) {
+        printSprites(arguments[0]);
 
-      receivedSprites.forEach(sprite => {
-        opacity(sprite, { from: 0, to: 1 });
-        move(sprite);
-      });
-
-      sentSprites.forEach(sprite => {
-        opacity(sprite, { to: 0 });
-        move(sprite);
-      });
-
-      if (transitionDirection === 'up') {
-        removedSprites.forEach(sprite => {
-          sprite.endAtPixel({x: viewportWidth});
+        receivedSprites.forEach(sprite => {
+          opacity(sprite, { from: 0, to: 1 });
           move(sprite);
-          opacity(sprite, {to: 0});
         });
-      }
-      if (transitionDirection === 'down') {
+
+        sentSprites.forEach(sprite => {
+          opacity(sprite, { to: 0 });
+          move(sprite);
+        });
+
+        if (transitionDirection === 'up') {
+          removedSprites.forEach(sprite => {
+            sprite.endAtPixel({x: viewportWidth});
+            move(sprite);
+            opacity(sprite, {to: 0});
+          });
+        }
+        if (transitionDirection === 'down') {
+          insertedSprites.forEach(sprite => {
+            sprite.startAtPixel({x: viewportWidth});
+            move(sprite);
+            opacity(sprite, {from: 0, to: 1});
+          });
+        }
+      };
+    } else {
+      return function * ({ insertedSprites, removedSprites, duration }) {
+        yield Promise.all(removedSprites.map(
+          sprite => opacity(sprite, { to: 0, duration: 0 })
+        ));
         insertedSprites.forEach(sprite => {
-          sprite.startAtPixel({x: viewportWidth});
-          move(sprite);
-          opacity(sprite, {from: 0, to: 1});
+          opacity(sprite, { from: 0, to: 1, duration: duration / 2 });
         });
-      }
-    };
-  } else {
-    return function * ({ insertedSprites, removedSprites, duration }) {
-      yield Promise.all(removedSprites.map(
-        sprite => opacity(sprite, { to: 0, duration: 0 })
-      ));
-      insertedSprites.forEach(sprite => {
-        opacity(sprite, { from: 0, to: 1, duration: duration / 2 });
-      });
-    };
+      };
+    }
   }
 }

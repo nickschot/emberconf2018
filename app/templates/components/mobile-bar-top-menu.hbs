@@ -3,42 +3,46 @@
     <div class="row">
       <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
         {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
-          <div class="d-flex">
-            {{#animated-value btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
-              {{#if animatedBtn.icon}}
-                {{mobile-bar-btn
-                  targetRoute=animatedBtn.targetRoute
-                  action=animatedBtn.action
-                  icon=animatedBtn.icon
-                  scaleIcon=animatedBtn.scaleIcon
-                  class='mobile-bar__icon-btn'
-                }}
-              {{/if}}
-            {{/animated-value}}
-            {{#animated-value btn key="text" group="bar-top-titles" use=btnLeftTransition duration=300 as |animatedBtn|}}
-              {{#if animatedBtn.text}}
-                {{mobile-bar-btn
-                  targetRoute=animatedBtn.targetRoute
-                  action=animatedBtn.action
-                  text=animatedBtn.text
-                }}
-              {{/if}}
-            {{/animated-value}}
-          </div>
+          {{#if btn}}{{!-- TODO: this is necessary because the below breaks when btn is undefined--}}
+            <div class="d-flex">
+              {{#animated-value btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
+                {{#if animatedBtn.icon}}
+                  {{mobile-bar-btn
+                    targetRoute=animatedBtn.targetRoute
+                    action=animatedBtn.action
+                    icon=animatedBtn.icon
+                    scaleIcon=animatedBtn.scaleIcon
+                    class='mobile-bar__icon-btn'
+                  }}
+                {{/if}}
+              {{/animated-value}}
+              {{#animated-value btn key="text" group="bar-top-titles" use=btnLeftTransition duration=300 as |animatedBtn|}}
+                {{#if animatedBtn.text}}
+                  {{mobile-bar-btn
+                    targetRoute=animatedBtn.targetRoute
+                    action=animatedBtn.action
+                    text=animatedBtn.text
+                  }}
+                {{/if}}
+              {{/animated-value}}
+            </div>
+          {{/if}}
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
-          {{#animated-value title group="bar-top-titles" rules=titleTransition duration=300 as |animatedTitle|}}
-            {{#if animatedTitle}}
-              <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
-                {{animatedTitle}}
-              </h1>
-            {{else}}
-              <h1 class="mobile-bar__title mobile-bar__title--logo h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
-                EmberConf 2018
-              </h1>
-            {{/if}}
-          {{/animated-value}}
+          {{#if title}}
+            {{#animated-value title group="bar-top-titles" rules=titleTransition duration=300 as |animatedTitle|}}
+              {{#if animatedTitle}}
+                <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
+                  {{animatedTitle}}
+                </h1>
+              {{else}}
+                <h1 class="mobile-bar__title mobile-bar__title--logo h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
+                  EmberConf 2018
+                </h1>
+              {{/if}}
+            {{/animated-value}}
+          {{/if}}
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-btn-right" as |btn|}}

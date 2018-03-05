@@ -4,9 +4,11 @@ import { computed } from '@ember/object';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
+import wait from 'emberconf2018/motions/wait';
 
 // shared variables
 let isRoot;
+let isNew;
 let routeName;
 
 // shared services
@@ -24,12 +26,14 @@ export default Component.extend({
   route: '',
   duration: 300,
   isRoot: false,
+  isNew: false,
 
   init(){
     this._super(...arguments);
 
     // set shared variables
     isRoot = this.get('isRoot');
+    isNew = this.get('isNew');
     routeName = this.get('route');
 
     // set shared services
@@ -62,49 +66,76 @@ function transition(){
     if(oldRouteName === currentRouteName || newRouteName === currentRouteName){
       console.log('valid route, trying transition');
 
-      if(isRoot){
-        console.log('transitioning root');
+      if(transitions.get('switchingContext')){
+        if(isNew) {
+          const viewportHeight = document.body.clientHeight;
 
-        // fade transition between pages
-        return function * ({ insertedSprites }){
-          insertedSprites.forEach(sprite => {
-            opacity(sprite, { from: 0, to: 1 });
-          });
-        };
-      } else if(transitions.get('withinRoute')){
-        const viewportWidth = document.body.clientWidth;
-
-        if(transitions.get('direction') === 'down'){
-          console.log('transitioning down');
-
-          // slide new sprite left from outside of window
           return function * ({ insertedSprites, removedSprites }) {
             insertedSprites.forEach(sprite => {
-              sprite.applyStyles({zIndex: 2});
-              sprite.startTranslatedBy(viewportWidth, 0);
+              sprite.applyStyles({zIndex: 2 });
+
+              sprite.startTranslatedBy(0, viewportHeight);
               move(sprite);
             });
 
             removedSprites.forEach(sprite => {
-              sprite.endTranslatedBy(viewportWidth / -3, 0);
+              sprite.applyStyles({zIndex: 2});
+
+              sprite.endTranslatedBy(0, viewportHeight);
               move(sprite);
             });
           };
         } else {
-          console.log('transitioning up');
+          return function * ({ insertedSprites, removedSprites }) {
+            insertedSprites.forEach(sprite => wait(sprite));
+            removedSprites.forEach(sprite => wait(sprite))
+          }
+        }
+      } else {
+        if(isRoot) {
+          console.log('transitioning root');
 
-          return function * ({insertedSprites, removedSprites}) {
-            // slide old sprite right
+          // fade transition between pages
+          return function * ({ insertedSprites }){
             insertedSprites.forEach(sprite => {
-              sprite.startTranslatedBy(viewportWidth / -3, 0);
-              move(sprite);
+              opacity(sprite, { from: 0, to: 1 });
             });
+          };
+        } else if(transitions.get('withinRoute')){
+          const viewportWidth = document.body.clientWidth;
 
-            removedSprites.forEach(sprite => {
-              sprite.applyStyles({zIndex: 2});
-              sprite.endTranslatedBy(viewportWidth, 0);
-              move(sprite);
-            });
+          if(transitions.get('direction') === 'down'){
+            console.log('transitioning down');
+
+            // slide new sprite left from outside of window
+            return function * ({ insertedSprites, removedSprites }) {
+              insertedSprites.forEach(sprite => {
+                sprite.applyStyles({zIndex: 2});
+                sprite.startTranslatedBy(viewportWidth, 0);
+                move(sprite);
+              });
+
+              removedSprites.forEach(sprite => {
+                sprite.endTranslatedBy(viewportWidth / -3, 0);
+                move(sprite);
+              });
+            };
+          } else {
+            console.log('transitioning up');
+
+            return function * ({ insertedSprites, removedSprites }) {
+              // slide old sprite right
+              insertedSprites.forEach(sprite => {
+                sprite.startTranslatedBy(viewportWidth / -3, 0);
+                move(sprite);
+              });
+
+              removedSprites.forEach(sprite => {
+                sprite.applyStyles({zIndex: 2});
+                sprite.endTranslatedBy(viewportWidth, 0);
+                move(sprite);
+              });
+            }
           }
         }
       }

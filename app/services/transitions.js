@@ -47,5 +47,10 @@ export default Service.extend({
     newRouteParts.pop();
 
     return oldRouteParts.length && newRouteParts.length && oldRouteParts.join('.') === newRouteParts.join('.');
-  })
+  }),
+
+  switchingContext: computed('oldRouteName', 'newRouteName', function(){
+    // TODO: make this configurable and generic
+    return this.get('oldRouteName').endsWith('.new') || this.get('newRouteName').endsWith('.new');
+  }),
 });
