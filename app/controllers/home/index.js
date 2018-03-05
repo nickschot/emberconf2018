@@ -4,6 +4,8 @@ export default Controller.extend({
   panes: null,
 
   init(){
+    this._super(...arguments);
+
     this.set('panes', [
       {
         heading: 'This carousel is on a loop.',

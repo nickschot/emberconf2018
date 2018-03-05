@@ -10,7 +10,6 @@ let isRoot;
 let routeName;
 
 // shared services
-let router;
 let transitions;
 
 export default Component.extend({
@@ -34,7 +33,6 @@ export default Component.extend({
     routeName = this.get('route');
 
     // set shared services
-    router = this.get('router');
     transitions = this.get('transitions');
   },
 

@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed, get } from '@ember/object';
+import { get } from '@ember/object';
 
 import { Promise } from 'rsvp';
 import { timeout } from 'ember-concurrency'; //TODO: maybe import "wait" from ember-animated?
