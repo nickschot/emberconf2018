@@ -46,7 +46,7 @@
 
       {{!-- show the top bar only on mobile --}}
       {{#if media.isXs}}
-        {{#mbw.mobile-bar type='top' withShadow=false}}
+        {{#mbw.mobile-bar type='top'}}
           {{mobile-bar-top-menu}}
         {{/mbw.mobile-bar}}
       {{/if}}
@@ -58,7 +58,7 @@
           icon='menu'
         )}}
 
-        {{#mbw.mobile-bar type=mainMenuPosition withShadow=false}}
+        {{#mbw.mobile-bar type=mainMenuPosition}}
           {{#bs-navbar fluid=false backgroundColor='white' class='navbar-expand' id='main-menu' as |navbar|}}
             <div class="navbar-header d-none d-sm-block">
               <span class="navbar-brand text-primary mr-5">EmberConf 2018</span>
