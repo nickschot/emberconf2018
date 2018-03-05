@@ -1,7 +1,7 @@
 {{#animated-container}}
   {{#if transitionsEnabled}}
     {{#animated-value route rules=transition duration=duration initialInsertion=true}}
-      <div class="mobile-page__transformable">
+      <div class="mobile-page__transformable {{if isActive 'mobile-page__transformable--active'}}">
         {{yield}}
       </div>
     {{/animated-value}}

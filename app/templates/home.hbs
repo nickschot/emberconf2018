@@ -1,4 +1,6 @@
 {{#mobile-menu-wrapper as |mmw|}}
+
+  {{!-- show side menu when main menu is enabled --}}
   {{#if menuEnabled}}
     {{#mmw.mobile-menu as |mobile-menu|}}
       <div class="mobile-menu__header d-flex flex-column justify-content-between">
@@ -42,12 +44,14 @@
         {{outlet}}
       </div>
 
+      {{!-- show the top bar only on mobile --}}
       {{#if media.isXs}}
         {{#mbw.mobile-bar type='top' withShadow=false}}
           {{mobile-bar-top-menu}}
         {{/mbw.mobile-bar}}
       {{/if}}
 
+      {{!-- show the main menu bar when enabled, moves to top on larger screens --}}
       {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
         {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
           action=mmw.actions.toggle

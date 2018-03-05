@@ -1,4 +1,8 @@
 @include media-breakpoint-only(xs){
+  .mobile-page__transformable--active {
+    background: $body-bg;
+  }
+
   .mobile-page__transformable {
     overflow: hidden;
 
@@ -6,9 +10,7 @@
       padding: 0;
     }
   }
-}
 
-@include media-breakpoint-only(xs){
   body.transitioning {
     width: 100vw;
     height: 100vh;
@@ -21,7 +23,6 @@
 
     .mobile-page--active > .animated-container > .mobile-page__transformable,
     .animated-orphans > .mobile-page__transformable {
-      background: $body-bg;
       min-height: 100vh!important;
       box-shadow: $z-depth-3;
     }
