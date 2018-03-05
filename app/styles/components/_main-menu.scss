@@ -1,5 +1,17 @@
 // bottom bar
 #main-menu {
+  .dropdown-menu {
+    @extend .mt-1;
+  }
+  .user-avatar {
+    @extend .z-depth-1;
+    transition: box-shadow $transition-duration;
+
+    &:hover {
+      @extend .z-depth-2;
+    }
+  }
+
   @include media-breakpoint-only(xs){
     position: unset;
     bottom: 0;
