@@ -9,6 +9,7 @@ import move from 'ember-animated/motions/move';
 import { printSprites } from 'ember-animated';
 
 let transitionsService;
+let duration;
 
 export default Component.extend({
   btnLeftIconTransition,
@@ -20,11 +21,13 @@ export default Component.extend({
   motion: service('-ea-motion'),
   transitions: service(),
 
-  menuToggleComponent: null,
+  // public
+  duration: 400,
 
   init(){
     this._super(...arguments);
 
+    duration = get(this, 'duration');
     transitionsService = get(this, 'transitions');
   }
 });
@@ -56,7 +59,7 @@ function * btnRightTransition({ insertedSprites, removedSprites }) {
 
   // delay right button fade in until other transitions are done
   if(insertedSprites){
-    yield timeout(300);
+    yield timeout(duration);
 
     insertedSprites.forEach(sprite => {
       opacity(sprite, { to: 1 });

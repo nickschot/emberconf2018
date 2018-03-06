@@ -22,7 +22,7 @@ export default Component.extend({
 
   // public
   route: '',
-  duration: 300,
+  duration: 400,
   isRoot: false,
 
   init(){
@@ -48,6 +48,7 @@ export default Component.extend({
 function transition(){
   //TODO: clean this up
   if(transitions.get('oldRouteName') && transitions.get('newRouteName')){
+    console.log('AM TRANSITIONING');
     const oldRouteName = transitions.get('oldRouteName').slice(-6) === '.index'
       ? transitions.get('oldRouteName').slice(0, -6)
       : transitions.get('oldRouteName');
@@ -66,9 +67,11 @@ function transition(){
         console.log('transitioning root');
 
         // fade transition between pages
-        return function * ({ insertedSprites }){
+        return function * ({ removedSprites, insertedSprites, duration }){
+          yield removedSprites.map(sprite => opacity(sprite, { to: 0, duration: duration / 4}));
+
           insertedSprites.forEach(sprite => {
-            opacity(sprite, { from: 0, to: 1 });
+            opacity(sprite, { from: 0, to: 1, duration: duration / 2 });
           });
         };
       } else if(transitions.get('withinRoute')){

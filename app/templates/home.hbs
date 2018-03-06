@@ -46,19 +46,19 @@
 
       {{!-- show the top bar only on mobile --}}
       {{#if media.isXs}}
-        {{#mbw.mobile-bar type='top'}}
+        {{#mbw.mobile-bar type='top' isLocked=true}}
           {{mobile-bar-top-menu}}
         {{/mbw.mobile-bar}}
       {{/if}}
 
       {{!-- show the main menu bar when enabled, moves to top on larger screens --}}
-      {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
+      {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=400}}
         {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
           action=mmw.actions.toggle
           icon='menu'
         )}}
 
-        {{#mbw.mobile-bar type=mainMenuPosition}}
+        {{#mbw.mobile-bar type=mainMenuPosition isLocked=true}}
           {{#bs-navbar fluid=true backgroundColor='white' class='navbar-expand' id='main-menu' as |navbar|}}
             <div class="navbar-header d-none d-sm-block">
               <span class="navbar-brand text-primary mr-5">EmberConf 2018</span>

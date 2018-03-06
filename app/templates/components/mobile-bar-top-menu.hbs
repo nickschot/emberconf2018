@@ -4,7 +4,7 @@
       <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
         {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
           <div class="d-flex">
-            {{#animated-value btn use=btnLeftIconTransition duration=300 as |animatedBtn|}}
+            {{#animated-value btn use=btnLeftIconTransition duration=duration as |animatedBtn|}}
               {{#if animatedBtn.icon}}
                 {{mobile-bar-btn
                   targetRoute=animatedBtn.targetRoute
@@ -15,7 +15,7 @@
                 }}
               {{/if}}
             {{/animated-value}}
-            {{#animated-value btn key="text" group="bar-top-titles" use=btnLeftTransition duration=300 as |animatedBtn|}}
+            {{#animated-value btn key="text" group="bar-top-titles" use=btnLeftTransition duration=duration as |animatedBtn|}}
               {{#if animatedBtn.text}}
                 {{mobile-bar-btn
                   targetRoute=animatedBtn.targetRoute
@@ -28,7 +28,7 @@
         {{/from-elsewhere}}
 
         {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
-          {{#animated-value title group="bar-top-titles" rules=titleTransition duration=300 as |animatedTitle|}}
+          {{#animated-value title group="bar-top-titles" rules=titleTransition duration=duration as |animatedTitle|}}
             {{#if animatedTitle}}
               <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
                 {{animatedTitle}}
