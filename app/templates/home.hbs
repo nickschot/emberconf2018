@@ -65,26 +65,26 @@
             </div>
             {{#navbar.content}}
               {{#navbar.nav class="mx-auto ml-sm-0" as |nav|}}
-                {{#nav.item}}
+                {{#nav.item onClick=(action 'scrollToTop'  'home.index')}}
                   {{#nav.link-to "home.index" class='text-center'}}
                     {{material-icon 'home' class='d-sm-none'}}
                     <div>Home</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item}}
-                  {{#nav.link-to "home.posts" class='text-center'}}
+                {{#nav.item onClick=(action 'scrollToTop' 'home.posts.index')}}
+                  {{#nav.link-to "home.posts.index" class='text-center'}}
                     {{material-icon 'archive' class='d-sm-none'}}
                     <div>Archive</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item}}
+                {{#nav.item onClick=(action 'scrollToTop' 'home.contact')}}
                   {{#nav.link-to "home.contact" class='text-center'}}
                     {{material-icon 'question_answer' class='d-sm-none'}}
                     <div>Contact</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item}}
-                  {{#nav.link-to "home.settings" class='text-center'}}
+                {{#nav.item onClick=(action 'scrollToTop' 'home.settings.index')}}
+                  {{#nav.link-to "home.settings.index" class='text-center'}}
                     {{material-icon 'settings' class='d-sm-none'}}
                     <div>Settings</div>
                   {{/nav.link-to}}

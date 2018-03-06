@@ -2,12 +2,14 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed, get, observer } from '@ember/object';
 import wait from 'emberconf2018/motions/wait';
+import { task } from 'ember-concurrency';
 
 export default Controller.extend({
   mobileBarBottomTransition,
 
   router: service(),
   motion: service('-ea-motion'),
+  scroller: service(),
 
   /**
    * Enable the side menu only on first and second level routes (and third level "index" routes)
@@ -31,7 +33,20 @@ export default Controller.extend({
     } else {
       document.documentElement.style.overflow = '';
     }
-  })
+  }),
+
+  actions: {
+    scrollToTop(routeName){
+      if(routeName === this.get('router.currentRouteName')){
+        this.get('scroll').perform();
+      }
+    }
+  },
+
+  scroll: task(function *() {
+    const documentElement = document.scrollingElement || document.documentElement;
+    yield this.get('scroller').scrollToElement(documentElement, { duration: 400 });
+  }),
 });
 
 function mobileBarBottomTransition() {
