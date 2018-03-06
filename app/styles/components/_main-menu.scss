@@ -1,5 +1,7 @@
 // bottom bar
 #main-menu {
+  background: none!important;
+
   .dropdown-menu {
     @extend .mt-1;
   }
@@ -15,13 +17,9 @@
   @include media-breakpoint-only(xs){
     position: unset;
     bottom: 0;
-
     padding: 0;
-    background: none!important;
 
-    .container {
-      width: auto;
-    }
+    border-top: $mobile-bar-border;
 
     .nav-item a {
       position: relative;
@@ -46,6 +44,6 @@
   }
 
   @include media-breakpoint-up(sm){
-
+    border-bottom: $mobile-bar-border;
   }
 }

@@ -17,6 +17,8 @@ export default Component.extend({
   titleTransition,
   btnRightTransition,
 
+  classNames: ['mobile-toolbar-top'],
+
   router: service(),
   motion: service('-ea-motion'),
   transitions: service(),

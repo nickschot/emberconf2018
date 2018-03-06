@@ -1,15 +1,14 @@
 .mobile-bar {
-  @extend .blurred-backdrop;
-
   // make sure we are above animating mobile-pages but below any sidebars
   z-index: 3;
+
+  // add iOS style blur when available
+  @extend .blurred-backdrop;
 }
 
-.mobile-bar--top    {
-  border-bottom: $mobile-bar-border;
-}
+//TODO: this expects the mobile bar to be removed when transitioning "down" the hierarchy
 .mobile-bar--bottom {
-  border-top: $mobile-bar-border;
+  // bottom mobile bar is below the incoming mobile-page
   z-index: 1;
 }
 
