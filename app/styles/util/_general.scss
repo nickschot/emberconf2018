@@ -30,3 +30,7 @@
 .rounded-large {
   border-radius: 0.625rem;
 }
+
+[data-ember-action], a, button, input, .link {
+  cursor: pointer;
+}
