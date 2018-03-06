@@ -8,7 +8,7 @@
         <div class="card">
           <div class="list-group list-group-flush">
             {{#each model as |post|}}
-              {{#link-to 'home.posts.post' post class="list-group-item list-group-item-action p-2 mb-sm-3" data-post-id=(concat "post-" post.id)}}
+              {{#link-to 'home.posts.post' post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
                 <div class="media d-flex align-items-stretch">
                   <div class="post-img mb-sm-3">
                     <div class="img-responsive">

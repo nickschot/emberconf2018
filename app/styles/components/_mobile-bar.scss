@@ -1,3 +1,11 @@
+// make sure the mobile-bar content is at the right z-index relative to a leaving bar
+.mobile-bar-wrapper > {
+  .mobile-bar__content {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .mobile-bar {
   // make sure we are above animating mobile-pages but below any sidebars
   z-index: 3;

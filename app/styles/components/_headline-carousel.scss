@@ -37,4 +37,14 @@
       transform: translateY(-50%);
     }
   }
+
+  @include media-breakpoint-only(xs){
+    border-radius: 0;
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+
+    .mobile-pane {
+      border-radius: 0;
+    }
+  }
 }

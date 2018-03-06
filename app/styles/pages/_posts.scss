@@ -1,6 +1,8 @@
 .posts {
   .list-group {
     .list-group-item {
+      border-radius: 0!important;
+
       h3 {
         color: #333;
         font-size: 0.75em;
@@ -15,9 +17,12 @@
     }
   }
 
-  @include media-breakpoint-down(xs){
+  @include media-breakpoint-only(xs){
     .card {
       border: none;
+      border-radius: 0;
+      margin-left: -$grid-gutter-width/2;
+      margin-right: -$grid-gutter-width/2;
     }
   }
 

@@ -1,0 +1,14 @@
+.settings-menu {
+  @include media-breakpoint-only(xs){
+    .list-group {
+      margin-left: -$grid-gutter-width/2;
+      margin-right: -$grid-gutter-width/2;
+
+      .list-group-item {
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+      }
+    }
+  }
+}
