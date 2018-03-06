@@ -2,7 +2,7 @@
 
   {{!-- show side menu when main menu is enabled --}}
   {{#if menuEnabled}}
-    {{#mmw.mobile-menu as |mobile-menu|}}
+    {{#mmw.mobile-menu as |mm|}}
       <div class="mobile-menu__header d-flex flex-column justify-content-between">
         <div class="header__text">
           {{user-avatar
@@ -20,17 +20,17 @@
       <div class="mobile-menu__body">
         <ul class="mobile-menu__nav">
           <li class="mobile-menu__nav-item">
-            {{#mobile-menu.link-to 'home.index' class="mobile-menu__nav-link"}}{{material-icon 'home'}} Home{{/mobile-menu.link-to}}
+            {{#mm.link-to 'home.index' class="mobile-menu__nav-link"}}{{material-icon 'home'}} Home{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-item">
-            {{#mobile-menu.link-to 'home.posts' class="mobile-menu__nav-link"}}{{material-icon 'archive'}} Archive{{/mobile-menu.link-to}}
+            {{#mm.link-to 'home.posts' class="mobile-menu__nav-link"}}{{material-icon 'archive'}} Archive{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-divider"></li>
           <li class="mobile-menu__nav-item">
-            {{#mobile-menu.link-to "home.contact" class='mobile-menu__nav-link'}}{{material-icon 'question_answer'}} Contact{{/mobile-menu.link-to}}
+            {{#mm.link-to "home.contact" class='mobile-menu__nav-link'}}{{material-icon 'question_answer'}} Contact{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-item">
-            {{#mobile-menu.link-to 'home.settings' class="mobile-menu__nav-link"}}{{material-icon 'settings'}} Settings{{/mobile-menu.link-to}}
+            {{#mm.link-to 'home.settings' class="mobile-menu__nav-link"}}{{material-icon 'settings'}} Settings{{/mm.link-to}}
           </li>
         </ul>
       </div>
