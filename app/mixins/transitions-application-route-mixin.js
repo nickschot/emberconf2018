@@ -9,17 +9,17 @@ export default Mixin.create({
     willTransition(transition){
       this._super(...arguments);
 
-      console.log('will transition', window.scrollY);
-
       const sourceRouteName = this.get('router.currentRouteName');
       const targetRouteName = transition.targetName;
+
+      //TODO: store/reset scroll state depending on direction
 
       this.get('transitions').setRoutes(sourceRouteName, targetRouteName);
     },
     didTransition(transition){
       this._super(...arguments);
 
-      console.log('did transition', window.scrollY);
+      //TODO: restore scroll state depending on direction
     }
   }
 });
