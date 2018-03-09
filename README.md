@@ -3,6 +3,14 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+## Resources referred to in the EmberConf 2018 presentation
+
+### Keeping performance up
+* [Loader components](https://emberway.io/skeleton-screen-loading-in-ember-js-2f7ac2384d63)
+* [Async model hook](https://engineering.linkedin.com/blog/2016/12/ember-concurrency--or--how-i-learned-to-stop-worrying-and-love-t)
+* [vertical-collection](https://github.com/html-next/vertical-collection)
+* [smoke-and-mirrors](https://github.com/runspired/smoke-and-mirrors)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
