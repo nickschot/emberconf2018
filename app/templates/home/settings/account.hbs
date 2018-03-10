@@ -1,14 +1,14 @@
 
 {{scroll-to position=0 key='home.settings.account'}}
 
-{{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+{{to-elsewhere named='top-toolbar-btn-left' send=(hash
   targetRoute='home.settings.index'
   icon='keyboard_arrow_left'
   scaleIcon=true
   text='Settings'
 )}}
-{{to-elsewhere named='mobile-bar-top-title' send='Account'}}
-{{to-elsewhere named='mobile-bar-top-btn-right' send=(component 'mobile-bar-btn'
+{{to-elsewhere named='top-toolbar-title' send='Account'}}
+{{to-elsewhere named='top-toolbar-btn-right' send=(component 'mobile-bar-btn'
   action=(action 'save')
   text='Save'
 )}}

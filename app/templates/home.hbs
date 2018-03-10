@@ -50,13 +50,13 @@
       {{!-- show the top bar only on mobile --}}
       {{#if media.isXs}}
         {{#mbw.mobile-bar type='top' isLocked=true}}
-          {{mobile-bar-top-menu}}
+          {{top-toolbar}}
         {{/mbw.mobile-bar}}
       {{/if}}
 
       {{!-- show the main menu bar when enabled, moves to top on larger screens --}}
       {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=400}}
-        {{to-elsewhere named='mobile-bar-top-btn-left' send=(hash
+        {{to-elsewhere named='top-toolbar-btn-left' send=(hash
           action=mmw.actions.toggle
           icon='menu'
         )}}

@@ -1,16 +1,14 @@
-.mobile-toolbar-top {
+.top-toolbar {
   border-bottom: $mobile-bar-border;
-}
 
-.mobile-bar__btn {
-  will-change: transform, opacity;
-}
+  .mobile-bar__btn {
+    will-change: transform, opacity;
+  }
 
-.mobile-bar__title {
-  will-change: transform, opacity, color;
-}
+  .mobile-bar__title {
+    will-change: transform, opacity, color;
+  }
 
-.mobile-toolbar-top {
   .mobile-pane__nav {
     .nav__scroller {
       li.nav__item a.item__link {

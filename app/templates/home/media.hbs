@@ -1,9 +1,9 @@
-{{to-elsewhere named='mobile-bar-top-title' send='Media'}}
+{{to-elsewhere named='top-toolbar-title' send='Media'}}
 
 {{#mobile-page route='home.media' isRoot=true}}
   {{#mobile-pane activeIndex=pane as |mp|}}
 
-    {{to-elsewhere named='mobile-bar-top-second-row' send=mp.nav}}
+    {{to-elsewhere named='top-toolbar-second-row' send=mp.nav}}
 
     {{#mp.scroller as |mps|}}
       {{#mps.pane title="All"}}

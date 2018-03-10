@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
-        {{#from-elsewhere name="mobile-bar-top-btn-left" as |btn|}}
+        {{#from-elsewhere name="top-toolbar-btn-left" as |btn|}}
           <div class="d-flex">
             {{#animated-value btn use=btnLeftIconTransition duration=duration as |animatedBtn|}}
               {{#if animatedBtn.icon}}
@@ -15,7 +15,7 @@
                 }}
               {{/if}}
             {{/animated-value}}
-            {{#animated-value btn key="text" group="bar-top-titles" use=btnLeftTransition duration=duration as |animatedBtn|}}
+            {{#animated-value btn key="text" group="top-toolbar-titles" use=btnLeftTransition duration=duration as |animatedBtn|}}
               {{#if animatedBtn.text}}
                 {{mobile-bar-btn
                   targetRoute=animatedBtn.targetRoute
@@ -27,8 +27,8 @@
           </div>
         {{/from-elsewhere}}
 
-        {{#from-elsewhere name="mobile-bar-top-title" as |title|}}
-          {{#animated-value title group="bar-top-titles" rules=titleTransition duration=duration as |animatedTitle|}}
+        {{#from-elsewhere name="top-toolbar-title" as |title|}}
+          {{#animated-value title group="top-toolbar-titles" rules=titleTransition duration=duration as |animatedTitle|}}
             {{#if animatedTitle}}
               <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
                 {{animatedTitle}}
@@ -41,7 +41,7 @@
           {{/animated-value}}
         {{/from-elsewhere}}
 
-        {{#from-elsewhere name="mobile-bar-top-btn-right" as |btn|}}
+        {{#from-elsewhere name="top-toolbar-btn-right" as |btn|}}
           {{#animated-value btn use=btnRightTransition duration=150 as |animatedBtn|}}
             {{component animatedBtn class="mobile-bar__btn mobile-bar__btn--right"}}
           {{/animated-value}}
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="row">
-      {{from-elsewhere name="mobile-bar-top-second-row"}}
+      {{from-elsewhere name="top-toolbar-second-row"}}
     </div>
   </div>
 {{/animated-container}}
