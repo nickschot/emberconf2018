@@ -9,3 +9,17 @@
 .mobile-bar__title {
   will-change: transform, opacity, color;
 }
+
+.mobile-toolbar-top {
+  .mobile-pane__nav {
+    .nav__scroller {
+      li.nav__item a.item__link {
+        color: $primary;
+      }
+    }
+
+    .nav__indicator {
+      background: $primary;
+    }
+  }
+}

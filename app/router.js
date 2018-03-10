@@ -19,6 +19,7 @@ Router.map(function() {
       this.route('notifications');
     });
     this.route('contact');
+    this.route('media');
   });
 
   this.route('settings', {

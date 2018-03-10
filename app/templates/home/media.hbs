@@ -1,0 +1,51 @@
+{{to-elsewhere named='mobile-bar-top-title' send='Media'}}
+
+{{#mobile-page route='home.media' isRoot=true}}
+  {{#mobile-pane activeIndex=pane as |mp|}}
+
+    {{to-elsewhere named='mobile-bar-top-second-row' send=mp.nav}}
+
+    {{#mp.scroller as |mps|}}
+      {{#mps.pane title="All"}}
+        <div class="col-12">
+          <div class="card my-3 rounded-0">
+            <div style="height: 60vh"></div>
+          </div>
+        </div>
+      {{/mps.pane}}
+      {{#mps.pane title="Movies"}}
+        {{#mobile-pane as |mp|}}
+          {{headline-carousel class="z-depth-1 mt-sm-3" posts=model}}
+        {{/mobile-pane}}
+      {{/mps.pane}}
+      {{#mps.pane title="Music"}}
+        <div class="col-12">
+          <div class="card my-3">
+            <div style="height: 60vh"></div>
+          </div>
+        </div>
+      {{/mps.pane}}
+      {{#mps.pane title="Games"}}
+        <div class="col-12">
+          <div class="card my-3">
+            <div style="height: 60vh"></div>
+          </div>
+        </div>
+      {{/mps.pane}}
+      {{#mps.pane title="Books"}}
+        <div class="col-12">
+          <div class="card my-3">
+            <div style="height: 60vh"></div>
+          </div>
+        </div>
+      {{/mps.pane}}
+      {{#mps.pane title="News"}}
+        <div class="col-12">
+          <div class="card my-3">
+            <div style="height: 60vh"></div>
+          </div>
+        </div>
+      {{/mps.pane}}
+    {{/mp.scroller}}
+  {{/mobile-pane}}
+{{/mobile-page}}
