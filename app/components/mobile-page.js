@@ -120,7 +120,7 @@ function transition(){
               sprite.applyStyles({zIndex: 2});
 
               sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
-              sprite.startTranslatedBy(-1 * viewportWidth, 0);
+              sprite.startTranslatedBy(-1 * viewportWidth, previousScroll);
 
               move(sprite);
             });
