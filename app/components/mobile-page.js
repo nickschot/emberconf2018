@@ -11,6 +11,7 @@ let routeName;
 
 // shared services
 let transitions;
+let memoryScroll;
 
 export default Component.extend({
   transition,
@@ -19,6 +20,7 @@ export default Component.extend({
 
   transitions: service(),
   router: service(),
+  memoryScroll: service(),
 
   // public
   route: '',
@@ -34,6 +36,7 @@ export default Component.extend({
 
     // set shared services
     transitions = this.get('transitions');
+    memoryScroll = this.get('memoryScroll');
   },
 
   isActive: computed('router.currentRouteName', 'route', function(){
@@ -89,25 +92,41 @@ function transition(){
             });
 
             removedSprites.forEach(sprite => {
-              sprite.endTranslatedBy(viewportWidth / -3, 0);
+              const previousScroll = memoryScroll[transitions.get('oldRouteName')];
+
+              sprite.endTranslatedBy(viewportWidth / -3, -1 * previousScroll);
+              sprite.startTranslatedBy(viewportWidth / 3, previousScroll);
+
               move(sprite);
             });
           };
         } else {
           console.log('transitioning up');
 
+          const previousScroll = memoryScroll[transitions.get('oldRouteName')];
+          const newScroll = memoryScroll[transitions.get('newRouteName')];
+
           return function * ({insertedSprites, removedSprites}) {
             // slide old sprite right
+
             insertedSprites.forEach(sprite => {
-              sprite.startTranslatedBy(viewportWidth / -3, 0);
+              sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
+              sprite.endTranslatedBy(viewportWidth / 3, 0);
+
               move(sprite);
             });
 
             removedSprites.forEach(sprite => {
               sprite.applyStyles({zIndex: 2});
-              sprite.endTranslatedBy(viewportWidth, 0);
+
+              sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
+              sprite.startTranslatedBy(-1 * viewportWidth, 0);
+
               move(sprite);
             });
+
+            //console.log('setting scroll', newScroll);
+            //document.scrollingElement.scrollTop = newScroll;
           }
         }
 

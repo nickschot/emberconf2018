@@ -6,6 +6,8 @@ export default Service.extend({
   newRouteName: '',
   direction: '',
 
+  previousScroll: 0,
+
   setRoutes(sourceRouteName, targetRouteName){
     const source = sourceRouteName.split('.');
     const target = targetRouteName.split('.');

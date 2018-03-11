@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Mixin.create({
   router: service(),
   transitions: service(),
+  memoryScroll: service(),
 
   actions: {
     willTransition(transition){
@@ -15,11 +16,10 @@ export default Mixin.create({
       //TODO: store/reset scroll state depending on direction
 
       this.get('transitions').setRoutes(sourceRouteName, targetRouteName);
-    },
-    didTransition(transition){
-      this._super(...arguments);
 
-      //TODO: restore scroll state depending on direction
+      //TODO: include model id's
+      console.log('saving scroll for ', sourceRouteName, document.scrollingElement.scrollTop);
+      this.get('memoryScroll')[sourceRouteName] = document.scrollingElement.scrollTop;
     }
   }
 });
