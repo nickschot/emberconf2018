@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
@@ -8,10 +8,12 @@ import move from 'ember-animated/motions/move';
 // shared variables
 let isRoot;
 let routeName;
+let isTransitioning;
 
 // shared services
 let transitions;
 let memoryScroll;
+let motion;
 
 export default Component.extend({
   transition,
@@ -21,6 +23,7 @@ export default Component.extend({
   transitions: service(),
   router: service(),
   memoryScroll: service(),
+  motion: service('-ea-motion'),
 
   // public
   route: '',
@@ -37,6 +40,7 @@ export default Component.extend({
     // set shared services
     transitions = this.get('transitions');
     memoryScroll = this.get('memoryScroll');
+    motion = this.get('motion');
   },
 
   isActive: computed('router.currentRouteName', 'route', function(){
@@ -46,6 +50,14 @@ export default Component.extend({
   transitionsEnabled: computed('media.isXs', function(){
     return this.get('media.isXs');
   }),
+
+  isTransitionDone: observer('motion.isAnimating', function(){
+    if(isTransitioning && !this.get('motion.isAnimating')){
+      //TODO: this needs to happen in the same frame as the removal of the styles on the inserted element
+      isTransitioning = false;
+      document.scrollingElement.scrollTop = memoryScroll[transitions.get('newRouteName')];
+    }
+  })
 });
 
 function transition(){
@@ -109,6 +121,10 @@ function transition(){
           return function * ({insertedSprites, removedSprites}) {
             // slide old sprite right
 
+            if(insertedSprites.length){
+              isTransitioning = true;
+            }
+
             insertedSprites.forEach(sprite => {
               sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
               sprite.endTranslatedBy(viewportWidth / 3, 0);
@@ -124,9 +140,6 @@ function transition(){
 
               move(sprite);
             });
-
-            //console.log('setting scroll', newScroll);
-            //document.scrollingElement.scrollTop = newScroll;
           }
         }
 
