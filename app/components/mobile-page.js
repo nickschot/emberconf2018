@@ -5,6 +5,8 @@ import { computed } from '@ember/object';
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
+import $ from 'jquery';
+
 import { Promise } from 'rsvp';
 
 // shared variables
@@ -54,8 +56,8 @@ export default Component.extend({
 });
 
 function transition(){
-  //TODO: clean this up
   if(transitions.get('oldRouteName') && transitions.get('newRouteName')){
+    //TODO: clean this up
     const oldRouteName = transitions.get('oldRouteName').slice(-6) === '.index'
       ? transitions.get('oldRouteName').slice(0, -6)
       : transitions.get('oldRouteName');
@@ -158,15 +160,13 @@ function transition(){
   }
 }
 
+//TODO: remove jQuery usage
 function lockBody(){
-  document.body.style.height    = '100vh';
-  document.body.style.width     = '100vw';
-  document.body.style.overflow  = 'hidden';
+  $(document.body).addClass('transitioning');
+
 }
 function unlockBody(){
-  document.body.style.height    = null;
-  document.body.style.width     = null;
-  document.body.style.overflow  = null;
+  $(document.body).removeClass('transitioning');
 }
 
 function restoreScroll(){
