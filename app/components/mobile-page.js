@@ -1,14 +1,15 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
+import { Promise } from 'rsvp';
+
 // shared variables
 let isRoot;
 let routeName;
-let isTransitioning;
 
 // shared services
 let transitions;
@@ -49,14 +50,6 @@ export default Component.extend({
 
   transitionsEnabled: computed('media.isXs', function(){
     return this.get('media.isXs');
-  }),
-
-  isTransitionDone: observer('motion.isAnimating', function(){
-    if(isTransitioning && !this.get('motion.isAnimating')){
-      //TODO: this needs to happen in the same frame as the removal of the styles on the inserted element
-      isTransitioning = false;
-      document.scrollingElement.scrollTop = memoryScroll[transitions.get('newRouteName')];
-    }
   })
 });
 
@@ -83,11 +76,20 @@ function transition(){
 
         // fade transition between pages
         return function * ({ removedSprites, insertedSprites, duration }){
+          if(insertedSprites.length){
+            lockBody();
+          }
+          //TODO: fix scroll state handling
           yield removedSprites.map(sprite => opacity(sprite, { to: 0, duration: duration / 4}));
 
-          insertedSprites.forEach(sprite => {
-            opacity(sprite, { from: 0, to: 1, duration: duration / 2 });
-          });
+          yield insertedSprites.map(sprite =>
+            opacity(sprite, { from: 0, to: 1, duration: duration / 2 })
+          );
+
+          if(insertedSprites.length){
+            unlockBody();
+            restoreScroll();
+          }
         };
       } else if(transitions.get('withinRoute')){
         const viewportWidth = document.body.clientWidth;
@@ -97,11 +99,9 @@ function transition(){
 
           // slide new sprite left from outside of window
           return function * ({ insertedSprites, removedSprites }) {
-            insertedSprites.forEach(sprite => {
-              sprite.applyStyles({zIndex: 2});
-              sprite.startTranslatedBy(viewportWidth, 0);
-              move(sprite);
-            });
+            if(insertedSprites.length){
+              lockBody();
+            }
 
             removedSprites.forEach(sprite => {
               const previousScroll = memoryScroll[transitions.get('oldRouteName')];
@@ -111,6 +111,17 @@ function transition(){
 
               move(sprite);
             });
+
+            yield Promise.all(insertedSprites.map(sprite => {
+              sprite.applyStyles({zIndex: 2});
+              sprite.startTranslatedBy(viewportWidth, 0);
+
+              return move(sprite);
+            }));
+
+            if(insertedSprites.length){
+              unlockBody();
+            }
           };
         } else {
           console.log('transitioning up');
@@ -122,24 +133,31 @@ function transition(){
             // slide old sprite right
 
             if(insertedSprites.length){
-              isTransitioning = true;
+              lockBody();
             }
 
-            insertedSprites.forEach(sprite => {
-              sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
-              sprite.endTranslatedBy(viewportWidth / 3, 0);
+            yield Promise.all(
+              removedSprites.map(sprite => {
+                sprite.applyStyles({zIndex: 2});
 
-              move(sprite);
-            });
+                sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
+                sprite.startTranslatedBy(-1 * viewportWidth, previousScroll);
 
-            removedSprites.forEach(sprite => {
-              sprite.applyStyles({zIndex: 2});
+                return move(sprite);
+              }).concat(
+                insertedSprites.map(sprite => {
+                  sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
+                  sprite.endTranslatedBy(viewportWidth / 3, 0);
 
-              sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
-              sprite.startTranslatedBy(-1 * viewportWidth, previousScroll);
+                  return move(sprite);
+                })
+              )
+            );
 
-              move(sprite);
-            });
+            if(insertedSprites.length){
+              unlockBody();
+              restoreScroll();
+            }
           }
         }
 
@@ -147,4 +165,22 @@ function transition(){
       }
     }
   }
+}
+
+function lockBody(){
+  document.body.style.height    = '100vh';
+  document.body.style.width     = '100vw';
+  document.body.style.overflow  = 'hidden';
+}
+function unlockBody(){
+  document.body.style.height    = null;
+  document.body.style.width     = null;
+  document.body.style.overflow  = null;
+}
+
+function restoreScroll(){
+  //TODO: check if we can find a better solution to this timeout
+  setTimeout(() => {
+    document.scrollingElement.scrollTop = memoryScroll[transitions.get('newRouteName')];
+  }, 0);
 }
