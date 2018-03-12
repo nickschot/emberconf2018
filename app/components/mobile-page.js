@@ -56,7 +56,6 @@ export default Component.extend({
 function transition(){
   //TODO: clean this up
   if(transitions.get('oldRouteName') && transitions.get('newRouteName')){
-    console.log('AM TRANSITIONING');
     const oldRouteName = transitions.get('oldRouteName').slice(-6) === '.index'
       ? transitions.get('oldRouteName').slice(0, -6)
       : transitions.get('oldRouteName');
@@ -69,11 +68,7 @@ function transition(){
 
     // see if the change was on the level of this component's controller/route
     if(oldRouteName === currentRouteName || newRouteName === currentRouteName){
-      console.log('valid route, trying transition');
-
       if(isRoot){
-        console.log('transitioning root');
-
         // fade transition between pages
         return function * ({ removedSprites, insertedSprites, duration }){
           if(insertedSprites.length){
@@ -95,8 +90,6 @@ function transition(){
         const viewportWidth = document.body.clientWidth;
 
         if(transitions.get('direction') === 'down'){
-          console.log('transitioning down');
-
           // slide new sprite left from outside of window
           return function * ({ insertedSprites, removedSprites }) {
             if(insertedSprites.length){
@@ -124,8 +117,6 @@ function transition(){
             }
           };
         } else {
-          console.log('transitioning up');
-
           const previousScroll = memoryScroll[transitions.get('oldRouteName')];
           const newScroll = memoryScroll[transitions.get('newRouteName')];
 
