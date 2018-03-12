@@ -6,14 +6,14 @@
       <div class="mobile-menu__header d-flex flex-column justify-content-between">
         <div class="header__text">
           {{user-avatar
-            picture='/img/tomster.png'
+            picture='/img/avatar_placeholder.png'
             class='z-depth-1'
           }}
         </div>
         <div class="header__btn d-flex justify-content-between">
           <div>
-            Tomster
-            <small class="d-block">tomster@example.com</small>
+            John Doe
+            <small class="d-block">info@example.com</small>
           </div>
         </div>
       </div>
@@ -104,8 +104,8 @@
                 {{#nav.dropdown as |dd|}}
                   {{#dd.toggle class="py-0 dropdown-toggle--with-avatar"}}
                     {{user-avatar
-                      name='Tomster'
-                      picture='/img/tomster.png'
+                      name='Avatar'
+                      picture='/img/avatar_placeholder.png'
                       class='d-inline-block'
                     }}
                   {{/dd.toggle}}
