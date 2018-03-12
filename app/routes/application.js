@@ -613,7 +613,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Yesenia Larson",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/geshan/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/2"
@@ -624,7 +624,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Vilma Powlowski",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/anatolinicolae/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/6"
@@ -635,7 +635,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Norene Dickens",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/kevinjohndayy/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/3"
@@ -646,7 +646,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Raphael Kub",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/allfordesign/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/7"
@@ -657,7 +657,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Ernestina Rempel",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/salleedesign/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/10"
@@ -668,7 +668,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Peyton Wiza",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/4"
@@ -679,7 +679,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Bartholome Schmidt",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/batsirai/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/1"
@@ -690,7 +690,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Hollie Johnson",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/bassamology/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/5"
@@ -701,7 +701,7 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
           "type":"author",
           "attributes":{
             "name":"Oma Bartoletti",
-            "avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/johannesneu/128.jpg"
+            "avatar":"/img/avatar_placeholder.png"
           },
           "links":{
             "self":"http://localhost:4000/authors/9"
