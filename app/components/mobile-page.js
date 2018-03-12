@@ -77,7 +77,9 @@ function transition(){
             lockBody();
           }
           //TODO: fix scroll state handling
-          yield removedSprites.map(sprite => opacity(sprite, { to: 0, duration: duration / 4}));
+          yield removedSprites.map(sprite =>
+            opacity(sprite, { to: 0, duration: duration / 4})
+          );
 
           yield insertedSprites.map(sprite =>
             opacity(sprite, { from: 0, to: 1, duration: duration / 2 })
