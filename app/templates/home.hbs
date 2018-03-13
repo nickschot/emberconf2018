@@ -6,7 +6,7 @@
       <div class="mobile-menu__header d-flex flex-column justify-content-between">
         <div class="header__text">
           {{user-avatar
-            picture='/img/avatar_placeholder.png'
+            picture=(concat router.rootURL 'img/avatar_placeholder.png')
             class='z-depth-1'
           }}
         </div>
@@ -105,7 +105,7 @@
                   {{#dd.toggle class="py-0 dropdown-toggle--with-avatar"}}
                     {{user-avatar
                       name='Avatar'
-                      picture='/img/avatar_placeholder.png'
+                      picture=(concat router.rootURL 'img/avatar_placeholder.png')
                       class='d-inline-block'
                     }}
                   {{/dd.toggle}}

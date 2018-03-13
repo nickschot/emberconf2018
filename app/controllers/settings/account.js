@@ -1,8 +1,11 @@
 import Controller from '@ember/controller';
 
 import trackPan from 'emberconf2018/motions/track-pan';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+  router: service(),
+
   transition
 });
 
