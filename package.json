@@ -4,7 +4,7 @@
   "private": true,
   "description": "Small description for emberconf2018 goes here",
   "license": "MIT",
-  "author": "",
+  "author": "Nick Schot <nickschot@webhub.nl>",
   "directories": {
     "doc": "doc",
     "test": "tests"
