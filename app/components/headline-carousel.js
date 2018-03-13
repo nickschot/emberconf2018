@@ -17,8 +17,8 @@ export default Component.extend({
     while(true){
       yield timeout(get(this, 'carouselTimeout'));
 
-      const panesLength = get(this, 'panes.length');
-      const newPane = (get(this, 'visiblePane') + 1) % panesLength;
+      const postsLength = get(this, 'posts.length');
+      const newPane = (get(this, 'visiblePane') + 1) % postsLength;
       set(this, 'visiblePane', newPane);
     }
   }).restartable(),
