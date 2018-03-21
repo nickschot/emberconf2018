@@ -8,7 +8,8 @@ module.exports = function(defaults) {
     // Add options here
 
     vendorFiles: {
-      //'jquery.js': null,
+      'jquery.js': null,
+      'app-shims.js': null
     },
 
     sourcemaps: {

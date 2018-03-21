@@ -164,11 +164,11 @@ function transition(){
 
 //TODO: remove jQuery usage
 function lockBody(){
-  $(document.body).addClass('transitioning');
+  document.body.classList.add('transitioning');
 
 }
 function unlockBody(){
-  $(document.body).removeClass('transitioning');
+  document.body.classList.remove('transitioning');
 }
 
 function restoreScroll(){
