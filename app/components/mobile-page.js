@@ -5,8 +5,6 @@ import { computed } from '@ember/object';
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 
-import $ from 'jquery';
-
 import { Promise } from 'rsvp';
 
 // shared variables
@@ -16,7 +14,6 @@ let routeName;
 // shared services
 let transitions;
 let memoryScroll;
-let motion;
 
 export default Component.extend({
   transition,
@@ -26,11 +23,10 @@ export default Component.extend({
   transitions: service(),
   router: service(),
   memoryScroll: service(),
-  motion: service('-ea-motion'),
 
   // public
   route: '',
-  duration: 400,
+  duration: 300,
   isRoot: false,
 
   init(){
@@ -43,7 +39,6 @@ export default Component.extend({
     // set shared services
     transitions = this.get('transitions');
     memoryScroll = this.get('memoryScroll');
-    motion = this.get('motion');
   },
 
   isActive: computed('router.currentRouteName', 'route', function(){

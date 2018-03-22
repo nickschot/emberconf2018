@@ -55,7 +55,7 @@
       {{/if}}
 
       {{!-- show the main menu bar when enabled, moves to top on larger screens --}}
-      {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=400}}
+      {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
         {{to-elsewhere named='top-toolbar-btn-left' send=(hash
           action=mmw.actions.toggle
           icon='menu'

@@ -1,5 +1,6 @@
 .top-toolbar {
   border-bottom: $mobile-bar-border;
+  overflow: hidden;
 
   .mobile-bar__btn {
     will-change: transform, opacity;

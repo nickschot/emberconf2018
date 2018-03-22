@@ -24,7 +24,7 @@ export default Component.extend({
   transitions: service(),
 
   // public
-  duration: 400,
+  duration: 300,
 
   init(){
     this._super(...arguments);

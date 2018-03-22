@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
-import EmberObject, { get, set, computed } from '@ember/object';
-import { htmlSafe } from '@ember/string';
+import { get, set } from '@ember/object';
 
 export default Component.extend({
   classNames: ['headline-carousel'],

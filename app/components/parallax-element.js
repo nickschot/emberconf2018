@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { observer } from '@ember/object';
 import RespondsToScroll from 'ember-responds-to/mixins/responds-to-scroll';
 import getWindowWidth from 'ember-mobile-core/utils/get-window-width';
 
