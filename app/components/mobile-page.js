@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
+import { easeOut } from 'ember-animated/easings/cosine';
 
 import { Promise } from 'rsvp';
 
@@ -95,21 +96,22 @@ function transition(){
               lockBody();
             }
 
-            removedSprites.forEach(sprite => {
-              const previousScroll = memoryScroll[transitions.get('oldRouteName')];
+            yield Promise.all([
+              ...removedSprites.map(sprite => {
+                const previousScroll = memoryScroll[transitions.get('oldRouteName')];
 
-              sprite.endTranslatedBy(viewportWidth / -3, -1 * previousScroll);
-              sprite.startTranslatedBy(viewportWidth / 3, previousScroll);
+                sprite.endTranslatedBy(viewportWidth / -3, -1 * previousScroll);
+                sprite.startTranslatedBy(viewportWidth / 3, previousScroll);
 
-              move(sprite);
-            });
+                return move(sprite, { easing: easeOut });
+              }),
+              ...insertedSprites.map(sprite => {
+                sprite.applyStyles({zIndex: 2});
+                sprite.startTranslatedBy(viewportWidth, 0);
 
-            yield Promise.all(insertedSprites.map(sprite => {
-              sprite.applyStyles({zIndex: 2});
-              sprite.startTranslatedBy(viewportWidth, 0);
-
-              return move(sprite);
-            }));
+                return move(sprite, { easing: easeOut });
+              })
+            ]);
 
             if(insertedSprites.length){
               unlockBody();
@@ -126,23 +128,22 @@ function transition(){
               lockBody();
             }
 
-            yield Promise.all(
-              removedSprites.map(sprite => {
+            yield Promise.all([
+              ...removedSprites.map(sprite => {
                 sprite.applyStyles({zIndex: 2});
 
                 sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
                 sprite.startTranslatedBy(-1 * viewportWidth, previousScroll);
 
-                return move(sprite);
-              }).concat(
-                insertedSprites.map(sprite => {
-                  sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
-                  sprite.endTranslatedBy(viewportWidth / 3, 0);
+                return move(sprite, { easing: easeOut });
+              }),
+              ...insertedSprites.map(sprite => {
+                sprite.startTranslatedBy(viewportWidth / -3, -1 * newScroll);
+                sprite.endTranslatedBy(viewportWidth / 3, 0);
 
-                  return move(sprite);
-                })
-              )
-            );
+                return move(sprite, { easing: easeOut });
+              })
+            ]);
 
             if(insertedSprites.length){
               unlockBody();
