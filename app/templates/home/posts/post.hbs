@@ -1,85 +1,122 @@
-{{to-elsewhere named='top-toolbar-btn-left' send=(hash
-  targetRoute='home.posts.index'
-  icon='keyboard_arrow_left'
-  scaleIcon=true
-  text='Archive'
-)}}
-{{to-elsewhere named='top-toolbar-title' send='Post'}}
-
-{{#mobile-page route='home.posts.post'}}
-    {{#mobile-pane-infinite
-      previousModel=previousModel
-      currentModel=model
-      nextModel=nextModel
-
-      onChange=(action "toPost")
-    as |mpis|}}
-      <div class="post">
-        {{!-- full width desktop header with image, titel and author --}}
-        <div class="desktop-header d-none d-sm-block">
-          {{#if mpis.model.headerImage}}
-            <div class="desktop-header-img">
-              <div class="img-responsive">
-                {{responsive-image image=mpis.model.headerImage lazy=false}}
-              </div>
-            </div>
-          {{/if}}
-
-          <div class="desktop-header__overlay d-flex align-items-end">
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                  <div class="p-3">
-                    <h2 class="text-white">{{mpis.model.title}}</h2>
-                    <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
-                      <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3 z-depth-1" width="50" height="50">
-                      <div class="d-flex flex-column justify-content-center text-white">
-                        <div>{{mpis.model.author.name}}</div>
-                        <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
-                      </div>
-                    </h6>
-                  </div>
-                </div>
-              </div>
+<ToElsewhere
+  @named="top-toolbar-btn-left"
+  @send={{hash
+    targetRoute="home.posts.index"
+    icon="keyboard_arrow_left"
+    scaleIcon=true
+    text="Archive"
+  }}
+/>
+<ToElsewhere @named="top-toolbar-title" @send="Post" />
+<MobilePage @route="home.posts.post">
+  <MobilePaneInfinite
+    @previousModel={{previousModel}}
+    @currentModel={{model}}
+    @nextModel={{nextModel}}
+    @onChange={{action "toPost"}} as |mpis|
+  >
+    <div class="post">
+      {{! full width desktop header with image, titel and author }}
+      <div class="desktop-header d-none d-sm-block">
+        {{#if mpis.model.headerImage}}
+          <div class="desktop-header-img">
+            <div class="img-responsive">
+              <ResponsiveImage
+                @image={{mpis.model.headerImage}}
+                @lazy={{false}}
+              />
             </div>
           </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-              <div class="card mb-sm-5">
-
-                {{!-- mobile header with image, titel and author --}}
-                <div class="mobile-header d-sm-none">
-                  {{#if mpis.model.headerImage}}
-                    <div style="overflow: hidden;">
-                      <div class="img-responsive">
-                        {{responsive-image image=mpis.model.headerImage}}
+        {{/if}}
+        <div class="desktop-header__overlay d-flex align-items-end">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="p-3">
+                  <h2 class="text-white">
+                    {{mpis.model.title}}
+                  </h2>
+                  <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+                    <img
+                      src={{mpis.model.author.avatar}}
+                      alt="Avatar"
+                      class="rounded-circle mr-3 z-depth-1"
+                      width="50"
+                      height="50"
+                    />
+                    <div
+                      class="d-flex flex-column justify-content-center text-white"
+                    >
+                      <div>
+                        {{mpis.model.author.name}}
+                      </div>
+                      <div>
+                        <small>
+                          {{moment-format
+                            mpis.model.published
+                            "DD-MM-YYYY HH:mm"
+                          }}
+                        </small>
                       </div>
                     </div>
-                  {{/if}}
-                  <div class="card-body pb-0">
-                    <h2 class="card-title h4">{{mpis.model.title}}</h2>
-                    <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
-                      <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
-                      <div class="d-flex flex-column justify-content-center">
-                        <div>{{mpis.model.author.name}}</div>
-                        <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
-                      </div>
-                    </h6>
-                  </div>
-                </div>
-
-                {{!-- main article --}}
-                <div class="card-body pt-0 pt-sm-4">
-                  <p class="card-text">
-                    {{{mpis.model.bodyAsHtml}}}
-                  </p>
+                  </h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  {{/mobile-pane-infinite}}
-{{/mobile-page}}
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="card mb-sm-5">
+              {{! mobile header with image, titel and author }}
+              <div class="mobile-header d-sm-none">
+                {{#if mpis.model.headerImage}}
+                  <div style="overflow: hidden;">
+                    <div class="img-responsive">
+                      <ResponsiveImage @image={{mpis.model.headerImage}} />
+                    </div>
+                  </div>
+                {{/if}}
+                <div class="card-body pb-0">
+                  <h2 class="card-title h4">
+                    {{mpis.model.title}}
+                  </h2>
+                  <h6 class="card-subtitle mt-1 mb-3 text-muted d-inline-flex">
+                    <img
+                      src={{mpis.model.author.avatar}}
+                      alt="Avatar"
+                      class="rounded-circle mr-3"
+                      width="50"
+                      height="50"
+                    />
+                    <div class="d-flex flex-column justify-content-center">
+                      <div>
+                        {{mpis.model.author.name}}
+                      </div>
+                      <div>
+                        <small>
+                          {{moment-format
+                            mpis.model.published
+                            "DD-MM-YYYY HH:mm"
+                          }}
+                        </small>
+                      </div>
+                    </div>
+                  </h6>
+                </div>
+              </div>
+              {{! main article }}
+              <div class="card-body pt-0 pt-sm-4">
+                <p class="card-text">
+                  {{{mpis.model.bodyAsHtml}}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </MobilePaneInfinite>
+</MobilePage>

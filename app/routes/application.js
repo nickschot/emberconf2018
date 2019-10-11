@@ -1,10 +1,12 @@
+import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
 import TransitionsApplicationRouteMixin from '../mixins/transitions-application-route-mixin';
 
-export default Route.extend(TransitionsApplicationRouteMixin, {
-  model(){
+@classic
+export default class ApplicationRoute extends Route.extend(TransitionsApplicationRouteMixin) {
+  model() {
     // load dummy data into store so we can normally use ember-data
-    this.get('store').push({
+    this.store.push({
       "data": [
         {
           "id":"1",
@@ -710,4 +712,4 @@ export default Route.extend(TransitionsApplicationRouteMixin, {
       ]
     });
   }
-});
+}

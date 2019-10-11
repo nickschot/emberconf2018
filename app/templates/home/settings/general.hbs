@@ -1,18 +1,21 @@
-{{to-elsewhere named='top-toolbar-btn-left' send=(hash
-  targetRoute='home.settings.index'
-  icon='keyboard_arrow_left'
-  scaleIcon=true
-  text='Settings'
-)}}
-{{to-elsewhere named='top-toolbar-title' send='General'}}
-
-{{#mobile-page route='home.settings.general'}}
+<ToElsewhere
+  @named="top-toolbar-btn-left"
+  @send={{hash
+    targetRoute="home.settings.index"
+    icon="keyboard_arrow_left"
+    scaleIcon=true
+    text="Settings"
+  }}
+/>
+<ToElsewhere @named="top-toolbar-title" @send="General" />
+<MobilePage @route="home.settings.general">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="display-4 text-primary mb-0 d-none d-sm-block">General</h1>
-
+        <h1 class="display-4 text-primary mb-0 d-none d-sm-block">
+          General
+        </h1>
       </div>
     </div>
   </div>
-{{/mobile-page}}
+</MobilePage>

@@ -1,27 +1,32 @@
+import classic from 'ember-classic-decorator';
+import { action, computed } from '@ember/object';
 import Controller from '@ember/controller';
 
-import { computed } from '@ember/object';
+@classic
+export default class PostController extends Controller {
+  @computed('modelCollection.[]', 'model')
+  get currentModelIndex() {
+    return this.modelCollection.indexOf(this.model);
+  }
 
-export default Controller.extend({
-  currentModelIndex: computed('modelCollection.[]', 'model', function(){
-    return this.get('modelCollection').indexOf(this.get('model'));
-  }),
-  previousModel: computed('modelCollection.[]', 'currentModelIndex', function(){
-    return this.get('currentModelIndex') > 0
-      ? this.get('modelCollection').objectAt(this.get('currentModelIndex') - 1)
+  @computed('modelCollection.[]', 'currentModelIndex')
+  get previousModel() {
+    return this.currentModelIndex > 0
+      ? this.modelCollection.objectAt(this.currentModelIndex - 1)
       : null;
-  }),
-  nextModel: computed('modelCollection.[]', 'currentModelIndex', function(){
-    return this.get('currentModelIndex') + 1 < this.get('modelCollection.length')
-      ? this.get('modelCollection').objectAt(this.get('currentModelIndex') + 1)
-      : null;
-  }),
+  }
 
-  actions: {
-    toPost(model){
-      if(model){
-        this.transitionToRoute('home.posts.post', model);
-      }
+  @computed('modelCollection.[]', 'currentModelIndex')
+  get nextModel() {
+    return this.currentModelIndex + 1 < this.get('modelCollection.length')
+      ? this.modelCollection.objectAt(this.currentModelIndex + 1)
+      : null;
+  }
+
+  @action
+  toPost(model) {
+    if(model){
+      this.transitionToRoute('home.posts.post', model);
     }
   }
-});
+}

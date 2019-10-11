@@ -1,14 +1,17 @@
+import classic from 'ember-classic-decorator';
+import { classNames, attributeBindings } from '@ember-decorators/component';
 import Component from '@ember/component';
-import { computed, get } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 
-export default Component.extend({
-  classNames: ['user-avatar', 'rounded-circle'],
-  attributeBindings: ['style'],
+@classic
+@classNames('user-avatar', 'rounded-circle')
+@attributeBindings('style')
+export default class UserAvatar extends Component {
+  picture = '';
 
-  picture: '',
-
-  style: computed('picture', function(){
+  @computed('picture')
+  get style() {
     return htmlSafe(`background-image: url('${get(this, 'picture')}');`);
-  })
-});
+  }
+}

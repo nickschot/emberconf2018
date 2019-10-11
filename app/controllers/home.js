@@ -10,6 +10,7 @@ export default Controller.extend({
   router: service(),
   motion: service('-ea-motion'),
   scroller: service(),
+  media: service(),
 
   /**
    * Enable the side menu only on first and second level routes (and third level "index" routes)
@@ -38,14 +39,14 @@ export default Controller.extend({
   actions: {
     scrollToTop(routeName){
       if(routeName === this.get('router.currentRouteName')){
-        this.get('scroll').perform();
+        this.scroll.perform();
       }
     }
   },
 
   scroll: task(function *() {
     const documentElement = document.scrollingElement || document.documentElement;
-    yield this.get('scroller').scrollToElement(documentElement, { duration: 400 });
+    yield this.scroller.scrollToElement(documentElement, { duration: 400 });
   }),
 });
 

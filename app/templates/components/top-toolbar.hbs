@@ -1,55 +1,83 @@
-{{#animated-container}}
+<AnimatedContainer>
   <div class="container">
     <div class="row">
-      <div class="m-3 d-flex align-items-center w-100" style="position: relative; min-height: 25px;">
-        {{#from-elsewhere name="top-toolbar-btn-left" as |btn|}}
+      <div
+        class="m-3 d-flex align-items-center w-100"
+        style="position: relative; min-height: 25px;"
+      >
+        <FromElsewhere @name="top-toolbar-btn-left" as |btn|>
           <div class="d-flex">
-            {{#animated-value btn use=btnLeftIconTransition duration=duration as |animatedBtn|}}
+            {{#animated-value
+              btn
+              use=btnLeftIconTransition
+              duration=duration as |animatedBtn|
+            }}
               {{#if animatedBtn.icon}}
-                {{mobile-bar-btn
-                  targetRoute=animatedBtn.targetRoute
-                  action=animatedBtn.action
-                  icon=animatedBtn.icon
-                  scaleIcon=animatedBtn.scaleIcon
-                  class='mobile-bar__icon-btn'
-                }}
+                <MobileBarBtn
+                  @targetRoute={{animatedBtn.targetRoute}}
+                  @action={{animatedBtn.action}}
+                  @icon={{animatedBtn.icon}}
+                  @scaleIcon={{animatedBtn.scaleIcon}}
+                  class="mobile-bar__icon-btn"
+                />
               {{/if}}
             {{/animated-value}}
-            {{#animated-value btn key="text" group="top-toolbar-titles" use=btnLeftTransition duration=duration as |animatedBtn|}}
+            {{#animated-value
+              btn
+              key="text"
+              group="top-toolbar-titles"
+              use=btnLeftTransition
+              duration=duration as |animatedBtn|
+            }}
               {{#if animatedBtn.text}}
-                {{mobile-bar-btn
-                  targetRoute=animatedBtn.targetRoute
-                  action=animatedBtn.action
-                  text=animatedBtn.text
-                }}
+                <MobileBarBtn
+                  @targetRoute={{animatedBtn.targetRoute}}
+                  @action={{animatedBtn.action}}
+                  @text={{animatedBtn.text}}
+                />
               {{/if}}
             {{/animated-value}}
           </div>
-        {{/from-elsewhere}}
-
-        {{#from-elsewhere name="top-toolbar-title" as |title|}}
-          {{#animated-value title group="top-toolbar-titles" rules=titleTransition duration=duration as |animatedTitle|}}
+        </FromElsewhere>
+        <FromElsewhere @name="top-toolbar-title" as |title|>
+          {{#animated-value
+            title
+            group="top-toolbar-titles"
+            rules=titleTransition
+            duration=duration as |animatedTitle|
+          }}
             {{#if animatedTitle}}
-              <h1 class="mobile-bar__title h6 mb-0 font-weight-normal" style="line-height: 1.5;">
+              <h1
+                class="mobile-bar__title h6 mb-0 font-weight-normal"
+                style="line-height: 1.5;"
+              >
                 {{animatedTitle}}
               </h1>
             {{else}}
-              <h1 class="mobile-bar__title mobile-bar__title--logo h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap">
+              <h1
+                class="mobile-bar__title mobile-bar__title--logo h4 font-weight-light d-inline-block align-middle mb-0 text-nowrap"
+              >
                 EmberConf 2018
               </h1>
             {{/if}}
           {{/animated-value}}
-        {{/from-elsewhere}}
-
-        {{#from-elsewhere name="top-toolbar-btn-right" as |btn|}}
-          {{#animated-value btn use=btnRightTransition duration=150 as |animatedBtn|}}
-            {{component animatedBtn class="mobile-bar__btn mobile-bar__btn--right"}}
+        </FromElsewhere>
+        <FromElsewhere @name="top-toolbar-btn-right" as |btn|>
+          {{#animated-value
+            btn
+            use=btnRightTransition
+            duration=150 as |animatedBtn|
+          }}
+            {{component
+              animatedBtn
+              class="mobile-bar__btn mobile-bar__btn--right"
+            }}
           {{/animated-value}}
-        {{/from-elsewhere}}
+        </FromElsewhere>
       </div>
     </div>
     <div class="row">
-      {{from-elsewhere name="top-toolbar-second-row"}}
+      <FromElsewhere @name="top-toolbar-second-row" />
     </div>
   </div>
-{{/animated-container}}
+</AnimatedContainer>

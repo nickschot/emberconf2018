@@ -15,11 +15,11 @@ export default Mixin.create({
 
       //TODO: store/reset scroll state depending on direction
 
-      this.get('transitions').setRoutes(sourceRouteName, targetRouteName);
+      this.transitions.setRoutes(sourceRouteName, targetRouteName);
 
       //TODO: include model id's
       console.log('saving scroll for ', sourceRouteName, document.scrollingElement.scrollTop);
-      this.get('memoryScroll')[sourceRouteName] = document.scrollingElement.scrollTop;
+      this.memoryScroll[sourceRouteName] = document.scrollingElement.scrollTop;
     }
   }
 });

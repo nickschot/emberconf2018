@@ -7,11 +7,6 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
 
-    vendorFiles: {
-      'jquery.js': null,
-      //'app-shims.js': null
-    },
-
     sourcemaps: {
       enabled: EmberApp.env() !== 'production',
       extensions: ['js']
