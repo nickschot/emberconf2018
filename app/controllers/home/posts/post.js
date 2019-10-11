@@ -16,4 +16,12 @@ export default Controller.extend({
       ? this.get('modelCollection').objectAt(this.get('currentModelIndex') + 1)
       : null;
   }),
+
+  actions: {
+    toPost(model){
+      if(model){
+        this.transitionToRoute('home.posts.post', model);
+      }
+    }
+  }
 });

@@ -7,13 +7,13 @@
 {{to-elsewhere named='top-toolbar-title' send='Post'}}
 
 {{#mobile-page route='home.posts.post'}}
-  {{#mobile-pane as |mp|}}
-    {{#mp.infinite-scroller
+    {{#mobile-pane-infinite
       previousModel=previousModel
       currentModel=model
       nextModel=nextModel
-    as |mpis|}}
 
+      onChange=(action "toPost")
+    as |mpis|}}
       <div class="post">
         {{!-- full width desktop header with image, titel and author --}}
         <div class="desktop-header d-none d-sm-block">
@@ -81,6 +81,5 @@
           </div>
         </div>
       </div>
-    {{/mp.infinite-scroller}}
-  {{/mobile-pane}}
+  {{/mobile-pane-infinite}}
 {{/mobile-page}}
