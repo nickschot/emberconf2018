@@ -1,6 +1,6 @@
-{{to-elsewhere named='top-toolbar-title' send='Archive'}}
+{{to-elsewhere named="top-toolbar-title" send="Archive"}}
 
-{{#mobile-page route='home.posts.index'}}
+{{#mobile-page route="home.posts.index"}}
   <div class="container posts">
     <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1">
@@ -8,7 +8,7 @@
         <div class="card">
           <div class="list-group list-group-flush">
             {{#each model as |post|}}
-              {{#link-to 'home.posts.post' post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
+              {{#link-to "home.posts.post" post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
                 <div class="media d-flex align-items-stretch">
                   <div class="post-img mb-sm-3">
                     <div class="img-responsive">

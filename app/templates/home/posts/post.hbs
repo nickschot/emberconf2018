@@ -1,12 +1,12 @@
-{{to-elsewhere named='top-toolbar-btn-left' send=(hash
-  targetRoute='home.posts.index'
-  icon='keyboard_arrow_left'
+{{to-elsewhere named="top-toolbar-btn-left" send=(hash
+  targetRoute="home.posts.index"
+  icon="keyboard_arrow_left"
   scaleIcon=true
-  text='Archive'
+  text="Archive"
 )}}
-{{to-elsewhere named='top-toolbar-title' send='Post'}}
+{{to-elsewhere named="top-toolbar-title" send="Post"}}
 
-{{#mobile-page route='home.posts.post'}}
+{{#mobile-page route="home.posts.post"}}
     {{#mobile-pane-infinite
       previousModel=previousModel
       currentModel=model
@@ -35,7 +35,7 @@
                       <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3 z-depth-1" width="50" height="50">
                       <div class="d-flex flex-column justify-content-center text-white">
                         <div>{{mpis.model.author.name}}</div>
-                        <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                        <div><small>{{moment-format mpis.model.published "DD-MM-YYYY HH:mm"}}</small></div>
                       </div>
                     </h6>
                   </div>
@@ -64,7 +64,7 @@
                       <img src="{{mpis.model.author.avatar}}" alt="Avatar" class="rounded-circle mr-3" width="50" height="50">
                       <div class="d-flex flex-column justify-content-center">
                         <div>{{mpis.model.author.name}}</div>
-                        <div><small>{{moment-format mpis.model.published 'DD-MM-YYYY HH:mm'}}</small></div>
+                        <div><small>{{moment-format mpis.model.published "DD-MM-YYYY HH:mm"}}</small></div>
                       </div>
                     </h6>
                   </div>

@@ -1,4 +1,4 @@
-{{#mobile-page route='home.index' isRoot=true}}
+{{#mobile-page route="home.index" isRoot=true}}
   <div class="container posts">
     <div class="row">
       <div class="col-12 col-lg-6 offset-lg-1">
@@ -11,7 +11,7 @@
         <div class="card rounded-large">
           <div class="list-group list-group-flush">
             {{#each model as |post|}}
-              {{#link-to 'home.posts.post' post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
+              {{#link-to "home.posts.post" post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
                 <div class="media d-flex align-items-stretch">
                   <div class="post-img mb-sm-3">
                     <div class="img-responsive">

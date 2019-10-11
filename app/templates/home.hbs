@@ -6,8 +6,8 @@
       <div class="mobile-menu__header d-flex flex-column justify-content-between">
         <div class="header__text">
           {{user-avatar
-            picture=(concat router.rootURL 'img/avatar_placeholder.png')
-            class='z-depth-1'
+            picture=(concat router.rootURL "img/avatar_placeholder.png")
+            class="z-depth-1"
           }}
         </div>
         <div class="header__btn d-flex justify-content-between">
@@ -20,27 +20,27 @@
       <div class="mobile-menu__body">
         <ul class="mobile-menu__nav">
           <li class="mobile-menu__nav-item">
-            {{#mm.link-to 'home.index' class="mobile-menu__nav-link"}}{{material-icon 'home'}} Home{{/mm.link-to}}
+            {{#mm.link-to "home.index" class="mobile-menu__nav-link"}}{{material-icon "home"}} Home{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-item">
-            {{#mm.link-to 'home.posts' class="mobile-menu__nav-link"}}{{material-icon 'archive'}} Archive{{/mm.link-to}}
+            {{#mm.link-to "home.posts" class="mobile-menu__nav-link"}}{{material-icon "archive"}} Archive{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-item">
-            {{#mm.link-to 'home.media' class="mobile-menu__nav-link"}}{{material-icon 'play_arrow'}} Media{{/mm.link-to}}
+            {{#mm.link-to "home.media" class="mobile-menu__nav-link"}}{{material-icon "play_arrow"}} Media{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-divider"></li>
           <li class="mobile-menu__nav-item">
-            {{#mm.link-to "home.contact" class='mobile-menu__nav-link'}}{{material-icon 'question_answer'}} Contact{{/mm.link-to}}
+            {{#mm.link-to "home.contact" class="mobile-menu__nav-link"}}{{material-icon "question_answer"}} Contact{{/mm.link-to}}
           </li>
           <li class="mobile-menu__nav-item">
-            {{#mm.link-to 'home.settings' class="mobile-menu__nav-link"}}{{material-icon 'settings'}} Settings{{/mm.link-to}}
+            {{#mm.link-to "home.settings" class="mobile-menu__nav-link"}}{{material-icon "settings"}} Settings{{/mm.link-to}}
           </li>
         </ul>
       </div>
     {{/mmw.mobile-menu}}
   {{/if}}
 
-  {{#animated-container class=(if motion.isAnimating 'animated-page')}}
+  {{#animated-container class=(if motion.isAnimating "animated-page")}}
     {{#mobile-bar-wrapper as |mbw|}}
 
       <div class="mobile-bar__content">
@@ -49,52 +49,52 @@
 
       {{!-- show the top bar only on mobile --}}
       {{#if media.isXs}}
-        {{#mbw.mobile-bar type='top' isLocked=true}}
+        {{#mbw.mobile-bar type="top" isLocked=true}}
           {{top-toolbar}}
         {{/mbw.mobile-bar}}
       {{/if}}
 
       {{!-- show the main menu bar when enabled, moves to top on larger screens --}}
       {{#animated-if menuEnabled rules=mobileBarBottomTransition duration=300}}
-        {{to-elsewhere named='top-toolbar-btn-left' send=(hash
+        {{to-elsewhere named="top-toolbar-btn-left" send=(hash
           action=mmw.actions.toggle
-          icon='menu'
+          icon="menu"
         )}}
 
         {{#mbw.mobile-bar type=mainMenuPosition isLocked=true}}
-          {{#bs-navbar fluid=true backgroundColor='white' class='navbar-expand' id='main-menu' as |navbar|}}
+          {{#bs-navbar fluid=true backgroundColor="white" class="navbar-expand" id="main-menu" as |navbar|}}
             <div class="navbar-header d-none d-sm-block">
               <span class="navbar-brand text-primary mr-5">EmberConf 2018</span>
             </div>
             {{#navbar.content}}
               {{#navbar.nav class="mx-auto ml-sm-0" as |nav|}}
-                {{#nav.item onClick=(action 'scrollToTop'  'home.index')}}
-                  {{#nav.link-to "home.index" class='text-center'}}
-                    {{material-icon 'home' class='d-sm-none'}}
+                {{#nav.item onClick=(action "scrollToTop"  "home.index")}}
+                  {{#nav.link-to "home.index" class="text-center"}}
+                    {{material-icon "home" class="d-sm-none"}}
                     <div>Home</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item onClick=(action 'scrollToTop' 'home.posts.index')}}
-                  {{#nav.link-to "home.posts.index" class='text-center'}}
-                    {{material-icon 'archive' class='d-sm-none'}}
+                {{#nav.item onClick=(action "scrollToTop" "home.posts.index")}}
+                  {{#nav.link-to "home.posts.index" class="text-center"}}
+                    {{material-icon "archive" class="d-sm-none"}}
                     <div>Archive</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item onClick=(action 'scrollToTop' 'home.media')}}
-                  {{#nav.link-to "home.media" class='text-center'}}
-                    {{material-icon 'play_arrow' class='d-sm-none'}}
+                {{#nav.item onClick=(action "scrollToTop" "home.media")}}
+                  {{#nav.link-to "home.media" class="text-center"}}
+                    {{material-icon "play_arrow" class="d-sm-none"}}
                     <div>Media</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item onClick=(action 'scrollToTop' 'home.contact')}}
-                  {{#nav.link-to "home.contact" class='text-center'}}
-                    {{material-icon 'question_answer' class='d-sm-none'}}
+                {{#nav.item onClick=(action "scrollToTop" "home.contact")}}
+                  {{#nav.link-to "home.contact" class="text-center"}}
+                    {{material-icon "question_answer" class="d-sm-none"}}
                     <div>Contact</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
-                {{#nav.item onClick=(action 'scrollToTop' 'home.settings.index')}}
-                  {{#nav.link-to "home.settings.index" class='text-center'}}
-                    {{material-icon 'settings' class='d-sm-none'}}
+                {{#nav.item onClick=(action "scrollToTop" "home.settings.index")}}
+                  {{#nav.link-to "home.settings.index" class="text-center"}}
+                    {{material-icon "settings" class="d-sm-none"}}
                     <div>Settings</div>
                   {{/nav.link-to}}
                 {{/nav.item}}
@@ -104,12 +104,12 @@
                 {{#nav.dropdown as |dd|}}
                   {{#dd.toggle class="py-0 dropdown-toggle--with-avatar"}}
                     {{user-avatar
-                      name='Avatar'
-                      picture=(concat router.rootURL 'img/avatar_placeholder.png')
-                      class='d-inline-block'
+                      name="Avatar"
+                      picture=(concat router.rootURL "img/avatar_placeholder.png")
+                      class="d-inline-block"
                     }}
                   {{/dd.toggle}}
-                  {{#dd.menu align='right' as |ddm|}}
+                  {{#dd.menu align="right" as |ddm|}}
                     {{#ddm.item}}
                       {{#ddm.link-to "home.settings.account"}}Account{{/ddm.link-to}}
                     {{/ddm.item}}

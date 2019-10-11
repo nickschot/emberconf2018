@@ -1,5 +1,5 @@
 {{#animated-container}}
-  {{#animated-value 'post-route' use=transition duration=200}}
+  {{#animated-value "post-route" use=transition duration=200}}
     {{#mobile-bar-wrapper as |mbw|}}
       <div class="mobile-page settings">
         <div class="container">
@@ -10,9 +10,9 @@
           </div>
           <div class="row">
             <div class="col-xs-12 col-md-6 offset-md-3">
-              {{#bs-form formLayout='vertical' as |form|}}
+              {{#bs-form formLayout="vertical" as |form|}}
                 <div class="d-flex">
-                  {{user-avatar picture=(concat router.rootURL 'img/avatar_placeholder.png') class='user-avatar--large z-depth-1 mr-3'}}
+                  {{user-avatar picture=(concat router.rootURL "img/avatar_placeholder.png") class="user-avatar--large z-depth-1 mr-3"}}
                   <div style="flex-grow: 1;">
                     {{form.element controlType="text" label="Name" property="name" required=true}}
                   </div>
@@ -32,11 +32,11 @@
         </div>
       </div>
 
-      {{#mbw.mobile-bar type='top' collapsibleHeight=57 isLocked=true isOverlay=false}}
+      {{#mbw.mobile-bar type="top" collapsibleHeight=57 isLocked=true isOverlay=false}}
         <div class="container">
           <div class="row">
             <div class="mx-2 my-3 d-flex align-items-center">
-              {{mobile-bar-btn targetRoute='home.settings' icon='arrow_back'}}
+              {{mobile-bar-btn targetRoute="home.settings" icon="arrow_back"}}
             </div>
           </div>
         </div>

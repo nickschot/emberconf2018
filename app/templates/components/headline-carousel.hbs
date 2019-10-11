@@ -2,7 +2,7 @@
   {{#mpn.scroller overScrollFactor=0 as |mpns|}}
     {{#each posts as |post|}}
       {{#mpns.pane class="text-center"}}
-        <div class="img-responsive" {{!--style="background-image:url('{{post.headerImage}}');"--}}>
+        <div class="img-responsive" {{!--style="background-image:url("{{post.headerImage}}");"--}}>
           {{responsive-image image=post.headerImage}}
         </div>
         <div class="carousel__heading">

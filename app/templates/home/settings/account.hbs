@@ -1,24 +1,24 @@
-{{to-elsewhere named='top-toolbar-btn-left' send=(hash
-  targetRoute='home.settings.index'
-  icon='keyboard_arrow_left'
+{{to-elsewhere named="top-toolbar-btn-left" send=(hash
+  targetRoute="home.settings.index"
+  icon="keyboard_arrow_left"
   scaleIcon=true
-  text='Settings'
+  text="Settings"
 )}}
-{{to-elsewhere named='top-toolbar-title' send='Account'}}
-{{to-elsewhere named='top-toolbar-btn-right' send=(component 'mobile-bar-btn'
-  action=(action 'save')
-  text='Save'
+{{to-elsewhere named="top-toolbar-title" send="Account"}}
+{{to-elsewhere named="top-toolbar-btn-right" send=(component "mobile-bar-btn"
+  action=(action "save")
+  text="Save"
 )}}
 
-{{#mobile-page route='home.settings.account'}}
+{{#mobile-page route="home.settings.account"}}
   <div class="container">
     <div class="row">
       <div class="col-12">
         <h1 class="display-4 text-primary mb-0 d-none d-sm-block">Account</h1>
 
-        {{#bs-form formLayout='vertical' class="mt-5" as |form|}}
+        {{#bs-form formLayout="vertical" class="mt-5" as |form|}}
           <div class="d-flex">
-            {{user-avatar picture=(concat router.rootURL 'img/avatar_placeholder.png') class='user-avatar--large z-depth-1 mr-3'}}
+            {{user-avatar picture=(concat router.rootURL "img/avatar_placeholder.png") class="user-avatar--large z-depth-1 mr-3"}}
             <div style="flex-grow: 1;">
               {{form.element controlType="text" label="Name" property="name"}}
             </div>
