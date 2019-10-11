@@ -1,4 +1,4 @@
-<MobilePane @lazyRendering={{false}} @activeIndex={{visiblePane}} as |mpn|>
+<MobilePane @lazyRendering={{false}} @activeIndex={{visiblePane}} @onChange={{action (mut visiblePane)}} as |mpn|>
   <mpn.scroller @overScrollFactor={{0}} as |mpns|>
     {{#each posts as |post|}}
       <mpns.pane class="text-center">
