@@ -11,6 +11,6 @@ export default DS.Model.extend({
   author: DS.belongsTo('author'),
   
   bodyAsHtml: computed('body', function(){
-    return this.get('body').replace(/(?:\r\n|\r|\n)/g, '<br />');
+    return this.body.replace(/(?:\r\n|\r|\n)/g, '<br />');
   })
 });

@@ -20,14 +20,14 @@ export default Component.extend(PanRecognizer, {
 
     if(!(x === 0 && y === 0)){
       if(x < 30 /*&& get(this, 'router.currentRouteName') === 'settings.account'*/){
-        set(get(this, 'trackPan'), 'panning', true);
-        set(get(this, 'trackPan'), 'previousRoute', 'post');
-        set(get(this, 'trackPan'), 'targetRoute', 'home.settings');
-        set(get(this, 'trackPan'), 'scrollY', window.scrollY);
+        set(this.trackPan, 'panning', true);
+        set(this.trackPan, 'previousRoute', 'post');
+        set(this.trackPan, 'targetRoute', 'home.settings');
+        set(this.trackPan, 'scrollY', window.scrollY);
 
         //TODO: set some target from somewhere
-        const transition = get(this, 'router').transitionTo('home.settings');
-        set(get(this, 'trackPan'), 'transition', transition);
+        const transition = this.router.transitionTo('home.settings');
+        set(this.trackPan, 'transition', transition);
       }
     }
   },
@@ -38,14 +38,14 @@ export default Component.extend(PanRecognizer, {
     } = e.originalEvent.gesture;
 
     if (get(this, 'trackPan.panning')) {
-      set(get(this, 'trackPan'), 'dx', deltaX);
+      set(this.trackPan, 'dx', deltaX);
     }
   },
 
   panEnd(e){
     if(get(this, 'trackPan.panning')) {
-      set(get(this, 'trackPan'), 'panning', false);
-      set(get(this, 'trackPan'), 'dx', 0);
+      set(this.trackPan, 'panning', false);
+      set(this.trackPan, 'dx', 0);
     }
   }
 });

@@ -38,8 +38,8 @@ export default Service.extend({
   },
 
   withinRoute: computed('oldRouteName', 'newRouteName', function(){
-    const oldRouteParts = this.get('oldRouteName').split('.');
-    const newRouteParts = this.get('newRouteName').split('.');
+    const oldRouteParts = this.oldRouteName.split('.');
+    const newRouteParts = this.newRouteName.split('.');
 
     //TODO: detect "root"
     //if(oldRouteParts.slice(-1) === 'index') oldRouteParts.pop();

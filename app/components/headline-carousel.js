@@ -14,10 +14,10 @@ export default Component.extend({
 
   changePane: task(function * (){
     while(true){
-      yield timeout(get(this, 'carouselTimeout'));
+      yield timeout(this.carouselTimeout);
 
       const postsLength = get(this, 'posts.length');
-      const newPane = (get(this, 'visiblePane') + 1) % postsLength;
+      const newPane = (this.visiblePane + 1) % postsLength;
       set(this, 'visiblePane', newPane);
     }
   }).restartable(),
@@ -25,21 +25,21 @@ export default Component.extend({
   didInsertElement(){
     this._super(...arguments);
 
-    get(this, 'changePane').perform();
+    this.changePane.perform();
   },
 
   // pause carousel when hovering with mouse or touching the carousel
   mouseEnter(){
-    get(this, 'changePane').cancelAll();
+    this.changePane.cancelAll();
   },
   mouseLeave(){
-    get(this, 'changePane').perform();
+    this.changePane.perform();
   },
 
   touchStart(){
-    get(this, 'changePane').cancelAll();
+    this.changePane.cancelAll();
   },
   touchEnd(){
-    get(this, 'changePane').perform();
+    this.changePane.perform();
   }
 });

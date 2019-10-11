@@ -35,16 +35,16 @@ export default Component.extend({
     this._super(...arguments);
 
     // set shared variables
-    isRoot = this.get('isRoot');
-    routeName = this.get('route');
+    isRoot = this.isRoot;
+    routeName = this.route;
 
     // set shared services
-    transitions = this.get('transitions');
-    memoryScroll = this.get('memoryScroll');
+    transitions = this.transitions;
+    memoryScroll = this.memoryScroll;
   },
 
   isActive: computed('router.currentRouteName', 'route', function(){
-    return this.get('router.currentRouteName') === this.get('route');
+    return this.get('router.currentRouteName') === this.route;
   }),
 
   transitionsEnabled: computed('media.isXs', function(){
@@ -159,7 +159,6 @@ function transition(){
   }
 }
 
-//TODO: remove jQuery usage
 function lockBody(){
   document.body.classList.add('transitioning');
 

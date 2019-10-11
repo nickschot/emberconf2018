@@ -10,19 +10,19 @@ export default Component.extend(RespondsToScroll, {
   },
 
   _updateParallax(){
-    const elementRect = this.get('element').getBoundingClientRect();
+    const elementRect = this.element.getBoundingClientRect();
     const windowWidth = getWindowWidth();
 
     // do the parallax effect only when the element is horizontally in the viewport
     if((elementRect.left >= 0 && elementRect.left < windowWidth)
       || (elementRect.right > 0 && elementRect.right <= windowWidth)
     ){
-      console.log('scroll', this.get('elementId'));
+      console.log('scroll', this.elementId);
       const documentScrollTop = document.scrollingElement.scrollTop || document.documentElement.scrollTop;
       const elemBodyOffset = elementRect.top + documentScrollTop;
       const parallax = Math.min(Math.abs((elementRect.top - elemBodyOffset)), elementRect.height) / 2;
 
-      this.get('element')
+      this.element
         .querySelector('.parallax-image__transformable')
         .style.transform = `translateY(${parallax}px)`;
     }

@@ -4,16 +4,16 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
   currentModelIndex: computed('modelCollection.[]', 'model', function(){
-    return this.get('modelCollection').indexOf(this.get('model'));
+    return this.modelCollection.indexOf(this.model);
   }),
   previousModel: computed('modelCollection.[]', 'currentModelIndex', function(){
-    return this.get('currentModelIndex') > 0
-      ? this.get('modelCollection').objectAt(this.get('currentModelIndex') - 1)
+    return this.currentModelIndex > 0
+      ? this.modelCollection.objectAt(this.currentModelIndex - 1)
       : null;
   }),
   nextModel: computed('modelCollection.[]', 'currentModelIndex', function(){
-    return this.get('currentModelIndex') + 1 < this.get('modelCollection.length')
-      ? this.get('modelCollection').objectAt(this.get('currentModelIndex') + 1)
+    return this.currentModelIndex + 1 < this.get('modelCollection.length')
+      ? this.modelCollection.objectAt(this.currentModelIndex + 1)
       : null;
   }),
 
