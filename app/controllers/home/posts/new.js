@@ -1,11 +1,13 @@
+import classic from 'ember-classic-decorator';
 import Controller from '@ember/controller';
 
 import move from 'ember-animated/motions/move';
 import opacity from 'ember-animated/motions/opacity';
 
-export default Controller.extend({
-  transition
-});
+@classic
+export default class NewController extends Controller {
+  transition = transition;
+}
 
 
 function transition(){

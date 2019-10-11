@@ -1,14 +1,15 @@
-import Service from '@ember/service';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import Service from '@ember/service';
 
-export default Service.extend({
-  oldRouteName: '',
-  newRouteName: '',
-  direction: '',
+@classic
+export default class TransitionsService extends Service {
+  oldRouteName = '';
+  newRouteName = '';
+  direction = '';
+  previousScroll = 0;
 
-  previousScroll: 0,
-
-  setRoutes(sourceRouteName, targetRouteName){
+  setRoutes(sourceRouteName, targetRouteName) {
     const source = sourceRouteName.split('.');
     const target = targetRouteName.split('.');
 
@@ -35,9 +36,10 @@ export default Service.extend({
     this.set('oldRouteName', sourceRouteName);
     this.set('newRouteName', targetRouteName);
     this.set('direction', transitionDirection);
-  },
+  }
 
-  withinRoute: computed('oldRouteName', 'newRouteName', function(){
+  @computed('oldRouteName', 'newRouteName')
+  get withinRoute() {
     const oldRouteParts = this.oldRouteName.split('.');
     const newRouteParts = this.newRouteName.split('.');
 
@@ -49,5 +51,5 @@ export default Service.extend({
     newRouteParts.pop();
 
     return oldRouteParts.length && newRouteParts.length && oldRouteParts.join('.') === newRouteParts.join('.');
-  })
-});
+  }
+}

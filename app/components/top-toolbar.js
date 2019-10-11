@@ -1,5 +1,7 @@
-import Component from '@ember/component';
+import classic from 'ember-classic-decorator';
+import { classNames } from '@ember-decorators/component';
 import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { get } from '@ember/object';
 
 import { Promise } from 'rsvp';
@@ -11,28 +13,33 @@ import { printSprites } from 'ember-animated';
 let transitionsService;
 let duration;
 
-export default Component.extend({
-  btnLeftIconTransition,
-  btnLeftTransition,
-  titleTransition,
-  btnRightTransition,
+@classic
+@classNames('top-toolbar')
+export default class TopToolbar extends Component {
+  btnLeftIconTransition = btnLeftIconTransition;
+  btnLeftTransition = btnLeftTransition;
+  titleTransition = titleTransition;
+  btnRightTransition = btnRightTransition;
 
-  classNames: ['top-toolbar'],
+  @service
+  router;
 
-  router: service(),
-  motion: service('-ea-motion'),
-  transitions: service(),
+  @service('-ea-motion')
+  motion;
+
+  @service
+  transitions;
 
   // public
-  duration: 300,
+  duration = 300;
 
-  init(){
-    this._super(...arguments);
+  init() {
+    super.init(...arguments);
 
     duration = get(this, 'duration');
     transitionsService = get(this, 'transitions');
   }
-});
+}
 
 function * btnLeftIconTransition({ insertedSprites, removedSprites, duration }) {
   removedSprites.forEach(sprite => { opacity(sprite, { to: 0, duration: duration / 2 }); });

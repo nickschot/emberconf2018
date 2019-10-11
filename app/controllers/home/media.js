@@ -1,7 +1,8 @@
+import classic from 'ember-classic-decorator';
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['pane'],
-
-  pane: 0
-});
+@classic
+export default class MediaController extends Controller {
+  queryParams = ['pane'];
+  pane = 0;
+}

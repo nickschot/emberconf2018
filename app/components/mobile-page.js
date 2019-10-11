@@ -1,6 +1,8 @@
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+import classic from 'ember-classic-decorator';
+import { classNames, classNameBindings } from '@ember-decorators/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
@@ -16,23 +18,32 @@ let routeName;
 let transitions;
 let memoryScroll;
 
-export default Component.extend({
-  transition,
-  classNames: ['mobile-page'],
-  classNameBindings: ['isActive:mobile-page--active'],
+@classic
+@classNames('mobile-page')
+@classNameBindings('isActive:mobile-page--active')
+export default class MobilePage extends Component {
+  transition = transition;
 
-  transitions: service(),
-  router: service(),
-  memoryScroll: service(),
-  media: service(),
+  @service
+  transitions;
+
+  @service
+  router;
+
+  @service
+  memoryScroll;
+
+  @service
+  media;
 
   // public
-  route: '',
-  duration: 300,
-  isRoot: false,
+  route = '';
 
-  init(){
-    this._super(...arguments);
+  duration = 300;
+  isRoot = false;
+
+  init() {
+    super.init(...arguments);
 
     // set shared variables
     isRoot = this.isRoot;
@@ -41,16 +52,18 @@ export default Component.extend({
     // set shared services
     transitions = this.transitions;
     memoryScroll = this.memoryScroll;
-  },
+  }
 
-  isActive: computed('router.currentRouteName', 'route', function(){
+  @computed('router.currentRouteName', 'route')
+  get isActive() {
     return this.get('router.currentRouteName') === this.route;
-  }),
+  }
 
-  transitionsEnabled: computed('media.isXs', function(){
+  @computed('media.isXs')
+  get transitionsEnabled() {
     return this.get('media.isXs');
-  })
-});
+  }
+}
 
 function transition(){
   if(transitions.get('oldRouteName') && transitions.get('newRouteName')){

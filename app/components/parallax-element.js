@@ -1,15 +1,17 @@
+import classic from 'ember-classic-decorator';
+import { classNames } from '@ember-decorators/component';
 import Component from '@ember/component';
 import RespondsToScroll from 'ember-responds-to/mixins/responds-to-scroll';
 import getWindowWidth from 'ember-mobile-core/utils/get-window-width';
 
-export default Component.extend(RespondsToScroll, {
-  classNames: ['parallax-element'],
-
-  scroll(){
+@classic
+@classNames('parallax-element')
+export default class ParallaxElement extends Component.extend(RespondsToScroll) {
+  scroll() {
     this._updateParallax();
-  },
+  }
 
-  _updateParallax(){
+  _updateParallax() {
     const elementRect = this.element.getBoundingClientRect();
     const windowWidth = getWindowWidth();
 
@@ -27,4 +29,4 @@ export default Component.extend(RespondsToScroll, {
         .style.transform = `translateY(${parallax}px)`;
     }
   }
-});
+}

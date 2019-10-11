@@ -1,18 +1,21 @@
+import classic from 'ember-classic-decorator';
+import { classNames } from '@ember-decorators/component';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { get, set } from '@ember/object';
 
-export default Component.extend({
-  classNames: ['headline-carousel'],
-
+@classic
+@classNames('headline-carousel')
+export default class HeadlineCarousel extends Component {
   // public
-  posts: null,
-  carouselTimeout: 5000,
+  posts = null;
+
+  carouselTimeout = 5000;
 
   // private
-  visiblePane: 0,
+  visiblePane = 0;
 
-  changePane: task(function * (){
+  @(task(function * (){
     while(true){
       yield timeout(this.carouselTimeout);
 
@@ -20,26 +23,29 @@ export default Component.extend({
       const newPane = (this.visiblePane + 1) % postsLength;
       set(this, 'visiblePane', newPane);
     }
-  }).restartable(),
+  }).restartable())
+  changePane;
 
-  didInsertElement(){
-    this._super(...arguments);
+  didInsertElement() {
+    super.didInsertElement(...arguments);
 
-    this.changePane.perform();
-  },
-
-  // pause carousel when hovering with mouse or touching the carousel
-  mouseEnter(){
-    this.changePane.cancelAll();
-  },
-  mouseLeave(){
-    this.changePane.perform();
-  },
-
-  touchStart(){
-    this.changePane.cancelAll();
-  },
-  touchEnd(){
     this.changePane.perform();
   }
-});
+
+  // pause carousel when hovering with mouse or touching the carousel
+  mouseEnter() {
+    this.changePane.cancelAll();
+  }
+
+  mouseLeave() {
+    this.changePane.perform();
+  }
+
+  touchStart() {
+    this.changePane.cancelAll();
+  }
+
+  touchEnd() {
+    this.changePane.perform();
+  }
+}
