@@ -10,6 +10,7 @@ export default Controller.extend({
   router: service(),
   motion: service('-ea-motion'),
   scroller: service(),
+  media: service(),
 
   /**
    * Enable the side menu only on first and second level routes (and third level "index" routes)

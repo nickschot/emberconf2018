@@ -24,6 +24,7 @@ export default Component.extend({
   transitions: service(),
   router: service(),
   memoryScroll: service(),
+  media: service(),
 
   // public
   route: '',
