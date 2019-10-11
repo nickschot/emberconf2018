@@ -1,16 +1,20 @@
-{{#mobile-pane lazyRendering=false activeIndex=visiblePane as |mpn|}}
-  {{#mpn.scroller overScrollFactor=0 as |mpns|}}
+<MobilePane @lazyRendering={{false}} @activeIndex={{visiblePane}} as |mpn|>
+  <mpn.scroller @overScrollFactor={{0}} as |mpns|>
     {{#each posts as |post|}}
-      {{#mpns.pane class="text-center"}}
-        <div class="img-responsive" {{!--style="background-image:url("{{post.headerImage}}");"--}}>
-          {{responsive-image image=post.headerImage}}
+      <mpns.pane class="text-center">
+        <div
+          class="img-responsive"
+          {{!--style="background-image:url("{{post.headerImage}}");"--}}
+        >
+          <ResponsiveImage @image={{post.headerImage}} />
         </div>
         <div class="carousel__heading">
-          <h3 class="text-white">{{post.title}}</h3>
+          <h3 class="text-white">
+            {{post.title}}
+          </h3>
         </div>
-      {{/mpns.pane}}
+      </mpns.pane>
     {{/each}}
-  {{/mpn.scroller}}
-
-  {{mpn.simple-indicator}}
-{{/mobile-pane}}
+  </mpn.scroller>
+  <mpn.simple-indicator />
+</MobilePane>

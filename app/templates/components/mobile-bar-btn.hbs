@@ -1,5 +1,15 @@
 {{#if targetRoute}}
-  {{#link-to targetRoute}}{{#if icon}}{{material-icon icon class="align-top"}}{{/if}}{{text}}{{/link-to}}
+  <LinkTo @route={{targetRoute}}>
+    {{#if icon}}
+      {{material-icon icon class="align-top"}}
+    {{/if}}
+    {{text}}
+  </LinkTo>
 {{else if action}}
-  <a href="#{{elementId}}" class="d-block" {{action action}}>{{#if icon}}{{material-icon icon class="align-top"}}{{/if}}{{text}}</a>
+  <a href="#{{elementId}}" class="d-block" {{action action}}>
+    {{#if icon}}
+      {{material-icon icon class="align-top"}}
+    {{/if}}
+    {{text}}
+  </a>
 {{/if}}

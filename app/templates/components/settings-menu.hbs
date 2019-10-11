@@ -1,11 +1,26 @@
 <div class="list-group">
-  {{#link-to "home.settings.general" class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"}}
-    {{material-icon "settings" class="mr-3 mr-sm-1"}} General {{material-icon "keyboard_arrow_right" class="float-right"}}
-  {{/link-to}}
-  {{#link-to "home.settings.account" class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"}}
-    {{material-icon "account_circle" class="mr-3 mr-sm-1"}} Account {{material-icon "keyboard_arrow_right" class="float-right"}}
-  {{/link-to}}
-  {{#link-to "home.settings.notifications" class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"}}
-    {{material-icon "notifications" class="mr-3 mr-sm-1"}} Notifications {{material-icon "keyboard_arrow_right" class="float-right"}}
-  {{/link-to}}
+  <LinkTo
+    @route="home.settings.general"
+    class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"
+  >
+    {{material-icon "settings" class="mr-3 mr-sm-1"}}
+    General
+    {{material-icon "keyboard_arrow_right" class="float-right"}}
+  </LinkTo>
+  <LinkTo
+    @route="home.settings.account"
+    class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"
+  >
+    {{material-icon "account_circle" class="mr-3 mr-sm-1"}}
+    Account
+    {{material-icon "keyboard_arrow_right" class="float-right"}}
+  </LinkTo>
+  <LinkTo
+    @route="home.settings.notifications"
+    class="list-group-item list-group-item-action pl-sm-1 pr-sm-0 px-md-2"
+  >
+    {{material-icon "notifications" class="mr-3 mr-sm-1"}}
+    Notifications
+    {{material-icon "keyboard_arrow_right" class="float-right"}}
+  </LinkTo>
 </div>

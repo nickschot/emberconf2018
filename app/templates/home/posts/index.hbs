@@ -1,29 +1,38 @@
-{{to-elsewhere named="top-toolbar-title" send="Archive"}}
-
-{{#mobile-page route="home.posts.index"}}
+<ToElsewhere @named="top-toolbar-title" @send="Archive" />
+<MobilePage @route="home.posts.index">
   <div class="container posts">
     <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1">
-        <h1 class="display-4 text-primary mt-5 mb-2 d-none d-sm-block">Archive</h1>
+        <h1 class="display-4 text-primary mt-5 mb-2 d-none d-sm-block">
+          Archive
+        </h1>
         <div class="card">
           <div class="list-group list-group-flush">
             {{#each model as |post|}}
-              {{#link-to "home.posts.post" post class="list-group-item list-group-item-action p-2 mb-sm-3"}}
+              <LinkTo
+                @route="home.posts.post"
+                @model={{post}}
+                class="list-group-item list-group-item-action p-2 mb-sm-3"
+              >
                 <div class="media d-flex align-items-stretch">
                   <div class="post-img mb-sm-3">
                     <div class="img-responsive">
-                      {{responsive-image image=post.headerImage size="20"}}
+                      <ResponsiveImage @image={{post.headerImage}} @size="20" />
                     </div>
                   </div>
-                  <div class="media-body ml-3 ml-sm-0 d-flex flex-row align-items-center">
-                    <h3 class="mt-0 font-weight-bold">{{post.title}}</h3>
+                  <div
+                    class="media-body ml-3 ml-sm-0 d-flex flex-row align-items-center"
+                  >
+                    <h3 class="mt-0 font-weight-bold">
+                      {{post.title}}
+                    </h3>
                   </div>
                 </div>
-              {{/link-to}}
+              </LinkTo>
             {{/each}}
           </div>
         </div>
       </div>
     </div>
   </div>
-{{/mobile-page}}
+</MobilePage>

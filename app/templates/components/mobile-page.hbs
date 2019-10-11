@@ -1,11 +1,20 @@
-{{#animated-container}}
+<AnimatedContainer>
   {{#if transitionsEnabled}}
-    {{#animated-value route rules=transition duration=duration initialInsertion=true finalRemoval=true}}
-      <div class="mobile-page__transformable {{if isActive "mobile-page__transformable--active"}}">
+    {{#animated-value
+      route
+      rules=transition
+      duration=duration
+      initialInsertion=true
+      finalRemoval=true
+    }}
+      <div
+        class="mobile-page__transformable
+          {{if isActive "mobile-page__transformable--active"}}"
+      >
         {{yield}}
       </div>
     {{/animated-value}}
   {{else}}
     {{yield}}
   {{/if}}
-{{/animated-container}}
+</AnimatedContainer>
