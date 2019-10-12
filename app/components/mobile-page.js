@@ -7,6 +7,7 @@ import Component from '@ember/component';
 import opacity from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 import { easeOut } from 'ember-animated/easings/cosine';
+import { timeout } from 'ember-concurrency';
 
 import { Promise } from 'rsvp';
 
@@ -97,7 +98,7 @@ function transition(){
 
           if(insertedSprites.length){
             unlockBody();
-            restoreScroll();
+            yield restoreScroll();
           }
         };
       } else if(transitions.get('withinRoute')){
@@ -145,7 +146,6 @@ function transition(){
             yield Promise.all([
               ...removedSprites.map(sprite => {
                 sprite.applyStyles({zIndex: 2});
-
                 sprite.endTranslatedBy(viewportWidth, -1 * previousScroll);
                 sprite.startTranslatedBy(-1 * viewportWidth, previousScroll);
 
@@ -161,7 +161,7 @@ function transition(){
 
             if(insertedSprites.length){
               unlockBody();
-              restoreScroll();
+              yield restoreScroll();
             }
           }
         }
@@ -180,9 +180,7 @@ function unlockBody(){
   document.body.classList.remove('transitioning');
 }
 
-function restoreScroll(){
-  //TODO: check if we can find a better solution to this timeout
-  setTimeout(() => {
-    document.scrollingElement.scrollTop = memoryScroll[transitions.get('newRouteName')];
-  }, 0);
+async function restoreScroll(){
+  await timeout(0);
+  document.scrollingElement.scrollTop = memoryScroll[transitions.get('newRouteName')];
 }
